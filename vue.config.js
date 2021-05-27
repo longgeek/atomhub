@@ -4,7 +4,7 @@ module.exports = {
         extract: true
     },
     productionSourceMap: process.env.NODE_ENV === 'production' ? false : true,
-    outputDir: process.env.VUE_APP_OUTPU_PATH,
+    outputDir: process.env.VUE_APP_OUTPUT_PATH,
     publicPath: process.env.VUE_APP_PUBLIC_PATH,
     assetsDir: "res",
     indexPath: "index.html",
@@ -35,7 +35,5 @@ module.exports = {
         open: false,                                // 配置后自动启动浏览器
         hotOnly: true,                              // 热更新
         contentBase:path.join(__dirname, 'public'),
-        proxy: {
-        }
     },
 }
