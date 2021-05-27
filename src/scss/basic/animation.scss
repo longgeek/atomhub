@@ -1,0 +1,85 @@
+@-webkit-keyframes animate {
+    50% {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes animate {
+    50% {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotating {
+    0% {
+        transform: rotate(0deg);
+        top: 10%;
+    }
+    100% {
+        transform: rotate(360deg);
+        top: 25%;
+    }
+}
+
+@keyframes rotating2 {
+    0% {
+        transform: rotate(0deg);
+        top: 40%;
+        left: 25%;
+    }
+    100% {
+        transform: rotate(360deg);
+        top: 60%;
+        left: 40%;
+    }
+}
+
+@keyframes rotating3 {
+    0% {
+        top: 85%;
+    }
+    100% {
+        top: 40%;
+    }
+}
+
+@keyframes rotating4 {
+    0% {
+        top: 40%;
+    }
+    100% {
+        top: 10%;
+    }
+}
+
+@keyframes rotating5 {
+    0% {
+        left: 35%;
+    }
+    100% {
+        left: 5%;
+    }
+}
+
+@keyframes hero_animation {
+    0% {
+        -webkit-transform: translate(0, 0);
+    }
+    100% {
+        -webkit-transform: translate(20px, 10px);
+    }
+}

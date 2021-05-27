@@ -1,0 +1,24 @@
+// 全局变量
+@import "_variables.scss";
+
+// 基本样式
+@import "basic/main.scss";                      // 默认采用 Light 风格
+@import "basic/color.scss";                     // 默认颜色
+@import "basic/global.scss";                    // 全局 CSS 样式
+@import "basic/animation.scss";                 // Basic 动画
+@import "basic/grid.scss";                      // Basic 动画
+
+// 动画效果
+@import "animation/flying-icon.scss";           // 飞翔的 icon 图标动画
+
+// 各页面的样式
+@import "pages/home.scss";
+
+// 小控件
+@import "widget/secondary-nav.scss";
+@import "widget/box-shadow-after.scss";
+
+// 插件
+@import "plugins/form-wizard.scss";                 // form 步骤表单
+@import "plugins/toaster.scss";                     // bootstrap toaster 样式
+@import "plugins/icons/materialdesignicons.scss";   // material design icons

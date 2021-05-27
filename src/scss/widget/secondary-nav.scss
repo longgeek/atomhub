@@ -1,0 +1,48 @@
+.secondary-nav {
+    z-index: 2;
+    margin-top: -30px;
+    top: 65px !important;
+    box-shadow: 0 0 3px rgb(60 72 88 / 15%);
+    margin-bottom: 20px;
+
+    .nav {
+        min-height: 53px;
+
+        .nav-link {
+            padding: 0 40px 0 0;
+            display: table-cell;
+            color: #545a6d;
+            vertical-align: middle;
+            line-height: 53px;
+            outline: 0;
+
+            .icon {
+                color: inherit;
+                font-size: 15px;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+        }
+        .nav-link.active {
+            color: $primary;
+            .icon {
+                color: $primary;
+            }
+        }
+        .nav-link.disabled {
+            opacity: 0.5;
+            cursor: no-drop;
+        }
+        .nav-link:hover {
+            color: $primary;
+        }
+        .nav-link.active:hover {
+            color: $primary;
+        }
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:hover {
+        color: $primary;
+    }
+}

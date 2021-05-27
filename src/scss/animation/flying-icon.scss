@@ -1,0 +1,59 @@
+.effect-icon {
+    font-size: 28px;
+    opacity: 0.2;
+}
+.animation-flying-icon-1 {
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    left: 4%;
+    animation: rotating alternate ease-in-out infinite 6s;
+}
+
+.animation-flying-icon-2 {
+    position: absolute;
+    top: 85%;
+    left: 3%;
+    z-index: 1;
+    animation: rotating3 alternate ease-in-out infinite 12s;
+}
+
+.animation-flying-icon-3 {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    z-index: 1;
+    animation: rotating2 alternate ease-in-out infinite 8s;
+}
+
+.animation-flying-icon-4 {
+    position: absolute;
+    top: 40%;
+    left: 47%;
+    z-index: 1;
+    animation: rotating4 alternate ease-in-out infinite 7s;
+}
+
+.animation-flying-icon-5 {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    z-index: 1;
+    animation: rotating5 alternate ease-in-out infinite 15s;
+}
+
+.animation-flying-icon-6 {
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    right: 4%;
+    animation: rotating alternate ease-in-out infinite 6s;
+}
+
+.animation-flying-icon-7 {
+    position: absolute;
+    top: 85%;
+    right: 3%;
+    z-index: 1;
+    animation: rotating3 alternate ease-in-out infinite 12s;
+}
