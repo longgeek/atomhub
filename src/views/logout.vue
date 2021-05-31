@@ -3,16 +3,10 @@
  * Logout component
  */
 export default {
-    page: { title: '首页' },
-    data() {
-        return {
-            projects: [],
-        };
-    },
+    page: { title: '退出登录' },
     created() {
         localStorage.removeItem('user');
-        localStorage.removeItem('logintoken');
-        window.location.href = this.$vars.loginUrl;
+        this.$router.push({name: 'repos'});
     }
 };
 </script>

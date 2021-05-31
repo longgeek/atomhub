@@ -19,6 +19,18 @@ const routes = [
         component: () => import('@/views/repos/detail')
     },
     {
+        path: '/profile',
+        name: 'profile',
+        meta: { authRequired: true },
+        component: () => import('@/views/profile/profile.vue')
+    },
+    {
+        path: '/settings',
+        name: 'settings',
+        meta: { authRequired: true },
+        component: () => import('@/views/settings/settings.vue')
+    },
+    {
         path: '*',
         name: 'error',
         component: () => import('@/views/error')

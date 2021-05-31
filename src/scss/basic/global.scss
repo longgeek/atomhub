@@ -1,3 +1,7 @@
+.app-content {
+    min-height: calc(100vh - 59px);
+}
+
 .opacity {
     opacity: 1 !important;
 }
@@ -67,4 +71,8 @@ section {
 .bg-transparent {
     background: transparent !important;
     background-color: transparent !important;
+}
+
+a {
+    cursor: pointer;
 }

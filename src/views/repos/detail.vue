@@ -91,7 +91,7 @@ export default {
                         </router-link>
                         </div>
                         <div class="text-center my-5">
-                            <img src="images/job/Gitlab.svg" class="avatar avatar-small" alt="">
+                            <img src="temporary/company/Gitlab.svg" class="avatar avatar-small" alt="">
                             <h4 class="title mt-4 mb-3">{{ repo.name }}</h4>
                             <p class="para-desc mx-auto text-muted">{{ repo.descr }}</p>
                         </div>

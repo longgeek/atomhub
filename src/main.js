@@ -34,9 +34,15 @@ import Vuelidate from 'vuelidate';
 
 var VueScrollTo = require('vue-scrollto');
 Vue.config.productionTip = false;
-Vue.component('v-gravatar', Gravatar);
+
 moment.locale('zh-cn');
 Vue.prototype.$moment = moment;
+
+Vue.component('v-gravatar', Gravatar);
+Vue.prototype.$gravatar = {
+    host: 'gravatar.zeruns.tech',
+    defaultImg: 'monsterid',
+}
 
 Vue.use(Vuelidate);
 Vue.use(Scrollspy);

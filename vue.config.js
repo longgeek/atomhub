@@ -35,5 +35,25 @@ module.exports = {
         open: false,                                // 配置后自动启动浏览器
         hotOnly: true,                              // 热更新
         contentBase:path.join(__dirname, 'public'),
+        proxy: {
+            "/api": {
+                target: "https://159.138.53.210",
+                ws: true,
+                secure: false,
+                changeOrigin: true,
+                pathRewrite: {
+                    "/api/v2.0": "",
+                }
+            },
+            "/c": {
+                target: "https://159.138.53.210",
+                ws: true,
+                secure: false,
+                changeOrigin: true,
+                pathRewrite: {
+                    "/c": "",
+                }
+            },
+        },
     },
 }

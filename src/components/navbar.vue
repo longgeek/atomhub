@@ -80,26 +80,27 @@ export default {
          * 获取登录状态
          */
         getLoginStatus() {
-            if (!localStorage.getItem('logintoken')) return;
-
-            // 获取用户信息
-            this.$http.get(this.$api.users.get())
+            this.$http.get(this.$api.users.current())
                 .then((rsp) => {
-                    if (rsp.data.code === 200) {
-                        this.user = rsp.data.data;
-                        localStorage.setItem('user', JSON.stringify(rsp.data.data));
-                    }
-            })
-
-            // 获取用户开源经历
-            this.$http.get(this.$api.users.experience())
-                .then((rsp) => {
-                    if (rsp.data.code === 200) {
-                        this.user.experience = rsp.data.data;
-                        localStorage.setItem('user', JSON.stringify(this.user));
+                    if (rsp.status === 200) {
+                        this.user = rsp.data;
+                        localStorage.setItem('user', JSON.stringify(rsp.data));
+                    } else {
+                        localStorage.removeItem('user');
                     }
             })
         },
+        /**
+         * Logout
+         */
+        logout() {
+            this.$http.get(this.$vars.logoutUrl)
+                .then((rsp) => {
+                    if (rsp.status === 200) {
+                        window.location.href = "/repos";
+                    }
+            })
+        }
     },
 };
 </script>
@@ -160,17 +161,17 @@ export default {
                         >
                             <template #button-content>
                                 <v-gravatar :email="user.email"
-                                    alt="Nobody"
-                                    default-img="robohash"
-                                    :hostname="$gravatar_host"
+                                    alt="null"
+                                    :default-img="$gravatar.defaultImg"
+                                    :hostname="$gravatar.host"
                                     class="rounded-circle avatar avatar-ex-sm mx-auto"
                                 />
-                                <span class="ml-2">{{ user.nickname }}</span>
+                                <span class="ml-2">{{ user.realname }}</span>
                             </template>
                             <b-dropdown-item to="/profile">个人主页</b-dropdown-item>
                             <b-dropdown-item to="/settings">账号设置</b-dropdown-item>
                             <b-dropdown-divider></b-dropdown-divider>
-                            <b-dropdown-item to="/logout">退出登录</b-dropdown-item>
+                            <b-dropdown-item @click="logout">退出登录</b-dropdown-item>
                         </b-dropdown>
                     </li>
                 </ul>
@@ -226,12 +227,12 @@ export default {
                                 >
                                     <template #button-content>
                                         <v-gravatar :email="user.email"
-                                            alt="Nobody"
-                                            default-img="robohash"
-                                            :hostname="$gravatar_host"
+                                            alt="null"
+                                            :default-img="$gravatar.defaultImg"
+                                            :hostname="$gravatar.host"
                                             class="rounded-circle avatar avatar-ex-sm mx-auto"
                                         />
-                                        <span class="ml-2">{{ user.nickname }}</span>
+                                        <span class="ml-2">{{ user.realname }}</span>
                                     </template>
                                     <!-- b-dropdown-item to="/profile">个人主页</b-dropdown-item>
                                     <b-dropdown-item to="/settings">账号设置</b-dropdown-item>

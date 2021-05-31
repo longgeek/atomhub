@@ -1,0 +1,150 @@
+<div>
+    <section class="section">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-6">
+                    <div class="media align-items-center">
+                        <div class="rounded-circle avatar avatar-md-sm shadow">
+                        <v-gravatar :email="user.email"
+                            alt="none"
+                            :default-img="$gravatar.defaultImg"
+                            :hostname="$gravatar.host"
+                            class="avatar avatar-md-sm rounded-circle"
+                        />
+                        </div>
+                        <div class="ml-3">
+                            <h6 class="mb-0">
+                                <span class="text-muted">Hello, </span>
+                                {{ user.realname }}！
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <router-link to="/profile">
+                        <a class="btn btn-outline-dark float-right">
+                            <i class="mdi mdi-refresh"></i>
+                            转到个人主页
+                        </a>
+                    </router-link>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-12">
+                    <div class="card border-0 sidebar sticky-bar rounded shadow bg-white">
+                        <div class="card-body">
+                            <div class="widget">
+                                <h6 class="widget-title">账号设置</h6>
+                                <ul class="list-unstyled mt-4 mb-0 blog-categories">
+                                    <li class="active"><a>个人信息</a></li>
+                                    <li><a @click="logout">退出登录</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-9 col-12 mt-5 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card border-0 rounded shadow">
+                        <div class="card-body">
+                            <h6 class="text-md-left text-center">个人信息</h6>
+                            <form>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>用户名</label>
+                                            <div class="position-relative">
+                                                <i class="mdi mdi-account-settings-outline fea icons"></i>
+                                                <input
+                                                    name="name"
+                                                    id="first"
+                                                    type="text"
+                                                    class="form-control pl-5"
+                                                    :value="user.username"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>邮箱地址</label>
+                                            <div class="position-relative">
+                                                <i class="mdi mdi-email fea icons"></i>
+                                                <input
+                                                    name="name"
+                                                    type="text"
+                                                    class="form-control pl-5"
+                                                    :value="user.email"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>First and last name</label>
+                                            <div class="position-relative">
+                                                <i class="mdi mdi-ticket-account fea icons"></i>
+                                                <input
+                                                    name="name"
+                                                    type="text"
+                                                    class="form-control pl-5"
+                                                    :value="user.realname"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Comments</label>
+                                            <div class="position-relative">
+                                                <i class="mdi mdi-comment fea icons"></i>
+                                                <input
+                                                    name="name"
+                                                    type="text"
+                                                    class="form-control pl-5"
+                                                    :value="user.comment"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Join Time</label>
+                                            <div class="position-relative">
+                                                <i class="mdi mdi-clock fea icons"></i>
+                                                <input
+                                                    name="name"
+                                                    type="text"
+                                                    class="form-control pl-5"
+                                                    :value="user.creation_time"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-dark" disabled>确认修改</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

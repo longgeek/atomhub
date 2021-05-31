@@ -46,3 +46,21 @@
         color: $primary;
     }
 }
+
+.secondary-nav.bg-dark {
+    .nav .nav-link {
+        color: $text-muted;
+    }
+    .nav .nav-link.active {
+        color: $primary;
+    }
+    .nav .nav-link:hover {
+        color: $white;
+    }
+    .nav .nav-link.active:hover {
+        color: $primary;
+    }
+}
+.secondary-nav.bg-dark.border-top {
+    border-color: #2f4d61 !important;
+}

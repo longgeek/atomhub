@@ -24,7 +24,9 @@
 <template>
     <div id="app">
         <Navbar v-if="doNotShowNavbar.indexOf($route.name) == -1" :navLight="true" />
-        <router-view />
+        <div class="app-content">
+            <router-view />
+        </div>
         <Footer />
 
         <!-- Back to top -->
