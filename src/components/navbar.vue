@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             user: {},
+            search: '',
             isCondensed: false,
             homeUrl: process.env.VUE_APP_BASE_URL || '/',
         };
@@ -100,7 +101,28 @@ export default {
                         window.location.href = "/repos";
                     }
             })
-        }
+        },
+        /**
+         * 搜索动作
+         */
+        globalSearch() {
+            // 判断搜索内容是否为空
+            if ( !this.search ) { return; }
+
+            // 跳转页面到 /repos
+            this.$router.push({ name: 'repos'});
+            this.$sleep(0).then(() => {
+                this.$router.push({ name: 'repos', query: { search: this.search } });
+            })
+        },
+    },
+    watch: {
+        // 监听路由变化
+        // 适用于搜索后，移除搜索关键字时
+        // 在 repos 页面未搜索时，将顶部菜单的搜索框内容置空
+        '$route': function() {
+            if (this.$route.name === 'repos' && !this.$route.query.search) this.search = '';
+        },
     },
 };
 </script>
@@ -129,7 +151,13 @@ export default {
                 </a>
                 <form class="global-search">
                     <div class="position-relative">
-                        <input type="text" class="form-control" placeholder="搜索镜像仓库，例如 CentOS、MySQL..." />
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="search"
+                            @keydown.13="globalSearch($event)"
+                            placeholder="搜索镜像仓库，例如 CentOS、MySQL..."
+                        />
                         <span class="mdi mdi-magnify icon"></span>
                     </div>
                 </form>

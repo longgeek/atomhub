@@ -19,6 +19,9 @@ import "@/scss/index.scss";
 Vue.prototype.$api = api;
 Vue.prototype.$http = http;
 Vue.prototype.$vars = vars;
+Vue.prototype.$sleep = function(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
 
 
 /*

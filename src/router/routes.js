@@ -9,9 +9,9 @@ const routes = [
         redirect: '/repos',
     },
     {
-        path: '/repos',
+        path: '/repos:search?',
         name: 'repos',
-        component: () => import('@/views/repos/repos')
+        component: () => import('@/views/repos/repos.vue')
     },
     {
         path: '/repos/:repo',
