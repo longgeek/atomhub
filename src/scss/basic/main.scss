@@ -2043,7 +2043,7 @@ button:not(:disabled) {
 
 .custom-control-label:before,
 .custom-control-label:after {
-  top: 2px;
+  top: 1px;
 }
 
 .custom-switch .custom-control-label:after {
@@ -3164,6 +3164,11 @@ p {
   }
 }
 
+@media (max-width: 1200px) {
+  #topnav .global-search {
+    width: 23%;
+  }
+}
 @media (max-width: 991px) {
   #topnav {
     background-color: #ffffff;
@@ -3305,6 +3310,10 @@ p {
   #navigation.open {
     display: block;
     overflow-y: auto;
+  }
+
+  #topnav .global-search {
+    width: 35%;
   }
 }
 
@@ -4707,22 +4716,24 @@ p {
   font-size: 13px;
 }
 
-.sidebar .widget .tagcloud>a {
+.tagcloud>a {
   background: #e9ecef;
   color: $text-color;
   display: inline-block;
   font-size: 9px;
-  letter-spacing: 1px;
-  margin: 5px 10px 5px 0;
+  margin: 5px 10px 0 0;
   padding: 8px 12px 7px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  font-weight: 600;
+  border-radius: $border-radius;
+}
+.tagcloud.dark > a {
+  background: rgba(243, 243, 249, 0.07);
+  color: #94a2ad;
 }
 
-.sidebar .widget .tagcloud>a:hover {
-  background: $primary;
-  color: #ffffff;
+.tagcloud>a:hover {
+    opacity: 0.5;
 }
 
 .media-list .media .media-heading:hover {

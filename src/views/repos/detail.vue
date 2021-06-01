@@ -2,6 +2,8 @@
 /**
  * Page-job-detail component
  */
+import ReposType from './repos-type.vue';
+
 export default {
     data() {
         return {
@@ -18,67 +20,13 @@ export default {
             },
         }
     },
+    components: { ReposType }
 }
 </script>
 
 <template>
 <div>
-    <div class="secondary-nav bg-white sticky-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <b-nav>
-                        <b-nav-item active>
-                            <i class="icon mdi mdi-format-vertical-align-top"></i>Top Atoms
-                        </b-nav-item>
-                        <b-nav-item-dropdown toggle-class="nav-link-custom">
-                            <template #button-content>
-                                <i class="icon mdi mdi-code-parentheses-box"></i>Developer
-                            </template>
-                            <b-dropdown-item>Tools Runtime</b-dropdown-item>
-                            <b-dropdown-item>AI/Machine Learn</b-dropdown-item>
-                            <b-dropdown-item>Database</b-dropdown-item>
-                            <b-dropdown-item>Cloud tools</b-dropdown-item>
-                            <b-dropdown-item>Cloud tools</b-dropdown-item>
-                            <b-dropdown-item>Analytics</b-dropdown-item>
-                            <b-dropdown-item>Application Frameworks</b-dropdown-item>
-                            <b-dropdown-item>Application Infrastructure</b-dropdown-item>
-                            <b-dropdown-item>Application Services</b-dropdown-item>
-                            <b-dropdown-item>Base Images</b-dropdown-item>
-                            <b-dropdown-item>DevOps Tools</b-dropdown-item>
-                            <b-dropdown-item>Featured Images</b-dropdown-item>
-                            <b-dropdown-item>Messaging Services</b-dropdown-item>
-                            <b-dropdown-item>Monitoring</b-dropdown-item>
-                            <b-dropdown-item>Operating Systems</b-dropdown-item>
-                            <b-dropdown-item>Programming Languages</b-dropdown-item>
-                            <b-dropdown-item>Security</b-dropdown-item>
-                            <b-dropdown-item>Storage</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                        <b-nav-item-dropdown toggle-class="nav-link-custom">
-                            <template #button-content>
-                                <i class="icon mdi mdi-ubuntu"></i>Operating Systems
-                            </template>
-                            <b-dropdown-item>Linux</b-dropdown-item>
-                            <b-dropdown-item>Windows</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                        <b-nav-item-dropdown toggle-class="nav-link-custom">
-                            <template #button-content>
-                                <i class="icon mdi mdi-trello"></i>Architectures
-                            </template>
-                            <b-dropdown-item>ARM</b-dropdown-item>
-                            <b-dropdown-item>ARM64</b-dropdown-item>
-                            <b-dropdown-item>X86</b-dropdown-item>
-                            <b-dropdown-item>X86-64</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                        <b-nav-item>
-                            <i class="icon mdi mdi-unity"></i>Other
-                        </b-nav-item>
-                    </b-nav>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <ReposType />
     <section class="section">
         <div class="container">
             <div class="row">
