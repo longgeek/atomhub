@@ -8,7 +8,6 @@ export default {
             user: {},
             search: '',
             isCondensed: false,
-            homeUrl: process.env.VUE_APP_BASE_URL || '/',
         };
     },
     props: {
@@ -137,10 +136,10 @@ export default {
         >
             <div class="container">
                 <!-- Logo container-->
-                <a class="logo" :href="homeUrl" v-if="navLight !== true">
+                <router-link class="logo" :to="{name: 'home'}" v-if="navLight !== true">
                     <img src="@/assets/images/logo-light.svg" height="50" alt="" />
-                </a>
-                <a class="logo" :href="homeUrl" v-else>
+                </router-link>
+                <router-link class="logo" :to="{name: 'home'}" v-else>
                     <img src="@/assets/images/logo-light.svg" class="l-dark" height="50" alt="" />
                     <img
                         src="@/assets/images/logo-light.svg"
@@ -148,7 +147,7 @@ export default {
                         height="50"
                         alt=""
                     />
-                </a>
+                </router-link>
                 <form class="global-search">
                     <div class="position-relative">
                         <input
@@ -228,14 +227,11 @@ export default {
                         class="navigation-menu"
                         :class="{ 'nav-light': navLight === true }"
                     >
-                        <li>
-                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">Home</router-link>
+                        <li :class="{active: $route.name === 'home'}">
+                            <router-link :to="{name: 'home'}" class="side-nav-link-ref">Home</router-link>
                         </li>
-                        <li :class="{ active: $route.name === 'repos' || $route.name === 'repos-detail'}">
+                        <li :class="{active: $route.name === 'repos' || $route.name === 'repos-detail'}">
                             <router-link :to="{name: 'repos'}" class="side-nav-link-ref">Repositories</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">About</router-link>
                         </li>
                     </ul>
                     <div v-if="Object.keys(user).length === 0">

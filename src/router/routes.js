@@ -6,7 +6,8 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        redirect: '/repos',
+        name: 'home',
+        component: () => import('@/views/home.vue')
     },
     {
         path: '/repos:search?',
