@@ -228,10 +228,10 @@ export default {
                         :class="{ 'nav-light': navLight === true }"
                     >
                         <li :class="{active: $route.name === 'home'}">
-                            <router-link :to="{name: 'home'}" class="side-nav-link-ref">Home</router-link>
+                            <router-link :to="{name: 'home'}" class="side-nav-link-ref">首页</router-link>
                         </li>
                         <li :class="{active: $route.name === 'repos' || $route.name === 'repos-detail'}">
-                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">Repositories</router-link>
+                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">镜像仓库</router-link>
                         </li>
                     </ul>
                     <div v-if="Object.keys(user).length === 0">

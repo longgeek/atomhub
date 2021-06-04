@@ -14,7 +14,7 @@
                             </div>
                             <div class="section-title" v-else>
                                 <div class="text-muted">
-                                    1 - 10 of 1,018 available images.
+                                    1 - 10 of {{ repos.length }} available images.
                                     <span v-if="$route.query.search">
                                         search <b class="text-primary">{{ $route.query.search }}</b>,
                                         <button
@@ -49,23 +49,36 @@
                         >
                             <router-link :to="{name: 'repos-detail', params: {repo: item.url}}">
                                 <div class="repo-card media key-feature align-items-center p-4 rounded shadow bg-white">
-                                    <img :src="`temporary/company/${item.logo}`" class="avatar avatar-md-sm" alt="">
+                                    <img
+                                        v-if="item.logo"
+                                        :src="`temporary/company/${item.logo}`"
+                                        class="avatar avatar-md-sm" alt=""
+                                    />
+                                    <svg
+                                        v-else
+                                        id="svg-icon-templet"
+                                        viewBox="0 0 24 24"
+                                        fill="#b6c2cd"
+                                        style="color: #939ea9; width: 45px;"
+                                    ><g fill-rule="evenodd"><path d="M3.295 17l8.23 4.751.026-9.455-8.23-4.751z"></path><path fill="currentColor" d="M12.351 12.296l-.027 9.455L20.5 17l.027-9.455zm-8.63-5.552l8.23 4.752 8.176-4.751-8.23-4.752z"></path></g></svg>
                                     <div class="media-body ml-3">
                                         <div class="text-dark mb-3 font-size-14">{{ item.name }}</div>
                                         <div class="text-muted mb-3">
-                                            <div><span class="opacity-4">-</span> By <span class="text-primary">{{ item.by }}</span></div>
+                                            <div v-if="item.hasOwnProperty('by')"><span class="opacity-4">-</span> By <span class="text-primary">{{ item.by }}</span></div>
                                             <div><span class="opacity-4">-</span> Updated {{ item.update_time }}</div>
                                         </div>
-                                        <p class="text-dark descr">{{ item.descr }}</p>
-                                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                                        <p class="text-dark descr">{{ item.description }}</p>
+                                        <ul
+                                           class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0"
+                                        >
                                             <li class="text-muted small">
-                                                {{ item.downloads }} <span class="opacity-6">Downloads</span>
+                                                {{ item.pull_count || '-'}} <span class="opacity-6">Pulls</span>
                                             </li>
                                             <li class="text-muted small ml-3">
-                                                {{ item.stars }} <span class="opacity-6">Stars</span>
+                                                {{ item.stars || '-' }} <span class="opacity-6">Stars</span>
                                             </li>
                                             <li class="text-muted small ml-3">
-                                                {{ item.versions }} <span class="opacity-6">Versions</span>
+                                                {{ item.versions || '-' }} <span class="opacity-6">Versions</span>
                                             </li>
                                         </ul>
                                     </div>

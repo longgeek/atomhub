@@ -130,10 +130,17 @@ export default {
     methods: {
         init() {
             if (this.searching) { return; }
-
             this.searching = true;
-            this.$sleep(3000).then(() => { this.searching = false });
+
+            this.$http.get(this.$api.repositories.list())
+                .then((rsp) => {
+                    if (rsp.status === 200) {
+                        this.repos = rsp.data;
+                    }
+                    this.searching = false;
+            })
         },
+        // 移除搜索关键字
         clearSearch() {
             this.$router.push({name: this.$route.name});
         },
