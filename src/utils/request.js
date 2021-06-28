@@ -5,7 +5,7 @@ import axios from 'axios'
 
 // 1. 创建新的 axios 实例
 const request = axios.create({
-    baseURL: process.env.VUE_APP_BASE_URL,
+    baseURL: '',
     // 超时时间 单位是ms，这里设置了3s的超时时间
     timeout: 3 * 1000,
 })

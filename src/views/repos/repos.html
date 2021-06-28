@@ -47,11 +47,17 @@
                             class="col-lg-4 col-md-6 col-12 mt-4 pt-2"
                             v-for="(item, index) in repos" :key="index"
                         >
-                            <router-link :to="{name: 'repos-detail', params: {repo: item.url}}">
+                            <router-link :to="{
+                                name: 'repos-detail',
+                                params: {
+                                    project: item.name.split('/')[0],
+                                    repo: item.name.split('/')[1]}
+                                }"
+                            >
                                 <div class="repo-card media key-feature align-items-center p-4 rounded shadow bg-white">
                                     <img
                                         v-if="item.logo"
-                                        :src="`temporary/company/${item.logo}`"
+                                        :src="`${item.logo}`"
                                         class="avatar avatar-md-sm" alt=""
                                     />
                                     <svg

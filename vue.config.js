@@ -37,22 +37,16 @@ module.exports = {
         contentBase:path.join(__dirname, 'public'),
         proxy: {
             "/api": {
-                target: "https://159.138.53.210",
+                target: "https://atomhub.org",
                 ws: true,
                 secure: false,
                 changeOrigin: true,
-                pathRewrite: {
-                    "/api/v2.0": "",
-                }
             },
             "/c": {
-                target: "https://159.138.53.210",
+                target: "https://atomhub.org",
                 ws: true,
                 secure: false,
                 changeOrigin: true,
-                pathRewrite: {
-                    "/c": "",
-                }
             },
         },
     },

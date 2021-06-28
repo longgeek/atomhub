@@ -1,0 +1,132 @@
+<div>
+    <ReposType />
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12">
+                    <div class="bg-white p-4 shadow rounded">
+                        <div class="mt-2">
+                        <router-link class="text-primary" :to="{name: 'repos'}">
+                            <i class="mdi mdi-chevron-left"></i>
+                            返回镜像仓库列表页面
+                        </router-link>
+                        </div>
+                        <div class="text-center my-5">
+                            <img src="temporary/company/Gitlab.svg" class="avatar avatar-small" alt="">
+                            <h4 class="title mt-4 mb-3">{{ repo.name }}</h4>
+                            <small class="text-muted">
+                                创建于：{{ repo.creation_time | toLocalTime }}，更新于：{{ repo.update_time | toLocalTime }}
+                            </small>
+                        </div>
+
+                        <div class="mt-4">
+                            <b-tabs
+                                pills
+                                justified
+                                nav-class="bg-white shadow mb-4"
+                                content-class="py-4"
+                                nav-wrapper-class="col-lg-6 col-md-12 offset-md-3"
+                            >
+                                <b-tab active title-item-class="m-1">
+                                    <template #title>
+                                        <span class="nav-link py-2 px-5">
+                                            <div class="text-center">描述信息</div>
+                                        </span>
+                                    </template>
+                                    <div v-html="$options.filters.toMarkDown(repo.description)"></div>
+                                </b-tab>
+                                <b-tab title-item-class="m-1">
+                                    <template #title>
+                                        <span class="nav-link py-2 px-5 rounded">
+                                            <div class="text-center">Tags</div>
+                                        </span>
+                                    </template>
+                                    {{ artifacts }}
+                                    <div class="table-responsive">
+                                      <table class="table mb-0">
+                                        <thead>
+                                          <tr>
+                                            <th>Artifacts</th>
+                                            <th>拉取命令</th>
+                                            <th>Tags</th>
+                                            <th>大小</th>
+                                            <th>漏洞</th>
+                                            <th>注解</th>
+                                            <th>标签</th>
+                                            <th>推送时间</th>
+                                            <th>拉取时间</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td class="text-primary">6.0.43</td>
+                                            <td class="text-muted">a year ago</td>
+                                            <td>156 MB</td>
+                                            <td>
+                                                <p class="text-muted font-weight-bold mb-0"><span class="text-success">$</span> docker pull atomhub.org/library/gitlab:6.0.43</p>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                </b-tab>
+                            </b-tabs>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="card border-0 sidebar sticky-bar rounded shadow" style="top: 142px;">
+                        <div class="card-body">
+                            <div class="widget mb-4 pb-2">
+                                <h6 class="widget-title">Security</h6>
+                                <div class="text-center">
+                                    <i class="mdi mdi-shield-check-outline h1 text-success"></i>
+                                    <div class="text-success">It has passed the audit</div>
+                                </div>
+                            </div>
+                            <div class="widget mb-4 pb-2">
+                                <h6 class="widget-title">Overview</h6>
+                                <ul class="list-unstyled mt-4 mb-0 blog-categories">
+                                    <li>
+                                        <span class="text-muted">By</span>
+                                        <span class="float-right text-primary">{{ repo.by }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="text-muted">Updated</span>
+                                        <span class="float-right">{{ repo.update_time }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="text-muted">Downloads</span>
+                                        <span class="float-right">{{ repo.downloads }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="text-muted">Stars</span>
+                                        <span class="float-right">{{ repo.stars }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="text-muted">Versions</span>
+                                        <span class="float-right">{{ repo.versions }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget mb-4 pb-2">
+                                <h6 class="widget-title">Download</h6>
+                                <div class="bg-dark bg-white-dark p-4 rounded shadow mt-4">
+                                    <p class="text-muted font-weight-bold mb-0"><span class="text-success">$</span> docker pull atomhub.org/library/gitlab:last </p>
+                                </div>
+                            </div>
+                            <div class="widget mb-4 pb-2">
+                                <h6 class="widget-title">Categories</h6>
+                                <div class="tagcloud mt-4">
+                                    <a href="jvascript:void(0)" class="rounded">Developer</a>
+                                    <a href="jvascript:void(0)" class="rounded">Tools</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

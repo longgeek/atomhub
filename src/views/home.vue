@@ -3,6 +3,7 @@
  * Home component
  */
 export default {
+    page: { title: 'AtomHub 首页' },
 };
 </script>
 
