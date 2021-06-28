@@ -33,7 +33,7 @@ export default {
 }
 </script>
 <template>
-    <div class="secondary-nav bg-white sticky-bar">
+    <div class="secondary-nav bg-white sticky-bar" v-if="types.length">
         <div class="container">
             <div class="row">
                 <div class="col-12">

@@ -34,6 +34,7 @@ import VueMeta from 'vue-meta';
 import Gravatar from 'vue-gravatar';
 import animated from 'animate.css';
 import Vuelidate from 'vuelidate';
+import Clipboard from 'v-clipboard';
 
 var VueScrollTo = require('vue-scrollto');
 Vue.config.productionTip = false;
@@ -52,6 +53,7 @@ Vue.use(Scrollspy);
 Vue.use(BootstrapVue);
 Vue.use(VueMeta, {keyName: 'page'});
 Vue.use(VueScrollTo, {duration: 3000, easing: "ease"});
+Vue.use(Clipboard);
 
 
 new Vue({

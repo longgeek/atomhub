@@ -68,7 +68,7 @@ export default {
                             首次通过第三方（OIDC）进行身份验证时，您必须创建一个 AtomHub 用户名。这将在 Atomhub 内用于与项目、角色等相关联。
                             <form class="form-horizontal needs-validation mt-4">
                                 <div class="form-group mb-0">
-                                    <input maxlength="30" class="form-control" v-model="username" />
+                                    <input maxlength="30" class="form-control" v-model="username" autofocus />
                                 </div>
                             </form>
                         </div>

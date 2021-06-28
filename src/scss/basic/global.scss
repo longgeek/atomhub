@@ -80,3 +80,11 @@ a {
 .vertical-align-middle {
     vertical-align: middle;
 }
+
+.hover:hover {
+    color: $primary !important;
+}
+
+.hover-dark:hover {
+    color: $dark !important;
+}
