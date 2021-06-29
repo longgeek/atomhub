@@ -121,21 +121,14 @@ export default {
          */
         globalSearch() {
             // 判断搜索内容是否为空
-            if ( !this.search ) { return; }
+            if ( !this.search) return;
 
             // 跳转页面到 /repos
-            this.$router.push({ name: 'repos'});
-            this.$sleep(0).then(() => {
+            // this.$router.push({ name: 'repos'});
+            this.$sleep(100).then(() => {
                 this.$router.push({ name: 'repos', query: { search: this.search } });
+                this.search = '';
             })
-        },
-    },
-    watch: {
-        // 监听路由变化
-        // 适用于搜索后，移除搜索关键字时
-        // 在 repos 页面未搜索时，将顶部菜单的搜索框内容置空
-        '$route': function() {
-            if (this.$route.name === 'repos' && !this.$route.query.search) this.search = '';
         },
     },
 };
@@ -143,7 +136,6 @@ export default {
 
 <template>
     <div>
-        <!-- Navbar STart -->
         <header
             id="topnav"
             class="defaultscroll sticky nav-sticky"
@@ -163,7 +155,7 @@ export default {
                         alt=""
                     />
                 </router-link>
-                <form class="global-search">
+                <div class="global-search">
                     <div class="position-relative">
                         <input
                             type="text"
@@ -174,7 +166,7 @@ export default {
                         />
                         <span class="mdi mdi-magnify icon"></span>
                     </div>
-                </form>
+                </div>
                 <div class="auth-button" v-if="Object.keys(user).length === 0">
                     <a
                         :href="$vars.loginUrl"
@@ -282,11 +274,7 @@ export default {
                         </ul>
                     </div>
                 </div>
-                <!--end navigation-->
             </div>
-            <!--end container-->
         </header>
-        <!--end header-->
-        <!-- Navbar End -->
     </div>
 </template>

@@ -87,7 +87,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>First and last name</label>
+                                            <label>姓名</label>
                                             <div class="position-relative">
                                                 <i class="mdi mdi-ticket-account fea icons"></i>
                                                 <input
@@ -104,7 +104,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Comments</label>
+                                            <label>账户描述</label>
                                             <div class="position-relative">
                                                 <i class="mdi mdi-comment fea icons"></i>
                                                 <input
@@ -121,14 +121,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Join Time</label>
+                                            <label>加入时间</label>
                                             <div class="position-relative">
                                                 <i class="mdi mdi-clock fea icons"></i>
                                                 <input
                                                     name="name"
                                                     type="text"
                                                     class="form-control pl-5"
-                                                    :value="user.creation_time"
+                                                    :value="user.creation_time | toLocalTime"
                                                     disabled
                                                 />
                                             </div>

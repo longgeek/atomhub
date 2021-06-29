@@ -44,17 +44,11 @@ export default {
             ]
         }
     },
-    components: {
-    },
     created() {
         // 获取用户信息
         this.user = JSON.parse(localStorage.getItem('user'));
     },
-    methods: {
-        aa() {
-            console.log('-----');
-        }
-    }
+    methods: {}
 }
 </script>
 
@@ -87,7 +81,7 @@ export default {
                             <ul class="list-unstyled social-icon social mb-0 mt-4">
                                 <li class="list-inline-item text-muted">
                                     <i class="mdi mdi-clock"></i>
-                                    Joined August 31, 2014
+                                    {{ user.creation_time | toLocalTime }} 加入
                                 </li>
                             </ul>
                         </div>
@@ -103,13 +97,13 @@ export default {
                 <div class="col-lg-10 col-mg-10">
                     <b-nav>
                         <b-nav-item :active="nav == 'repo'" @click="nav = 'repo'" exact>
-                            My repositories
+                            我的仓库
                         </b-nav-item>
                         <b-nav-item :active="nav == 'starred'" @click="nav = 'starred'" exact>
-                            Starred
+                            个人收藏
                         </b-nav-item>
                         <b-nav-item :active="nav == 'contributed'" @click="nav = 'contributed'" exact>
-                            Contributed
+                            我的贡献
                         </b-nav-item>
                     </b-nav>
                 </div>
@@ -119,14 +113,14 @@ export default {
     <div class="mt-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-mg-10" v-if="nav == 'repo'">
+                <!-- div class="col-lg-10 col-mg-10" v-if="nav == 'repo'">
                     <div class="row align-items-center">
                         <div class="col-lg-9 col-md-7">
                             <div class="section-title">
-                                <div class="text-muted">Displaying 3 repository</div>
+                                <div class="text-muted">未找到个人仓库</div>
                             </div>
                         </div>
-                        <!-- div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
                             <div class="form custom-form">
                                 <div class="form-group mb-0">
                                     <select class="form-control custom-select" disabled>
@@ -134,9 +128,8 @@ export default {
                                     </select>
                                 </div>
                             </div>
-                        </div -->
+                        </div>
                     </div>
-
                     <div class="row mb-5">
                         <div
                             class="col-lg-6 col-md-6 col-12 mt-4 pt-2"
@@ -168,24 +161,36 @@ export default {
                             </router-link>
                         </div>
                     </div>
+                </div -->
+                <div class="col-lg-10 col-mg-10 text-center" v-if="nav == 'repo'">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <img
+                        src="@/assets/images/none-box.svg"
+                        class="avatar avatar-md-sm h1 mt-3" alt=""
+                    />
+                    <p class="mt-2"><b>我的仓库为空</b></p>
+                    <p class="text-muted">该账号下未找到任何镜像仓库</p>
                 </div>
                 <div class="col-lg-10 col-mg-10 text-center" v-if="nav == 'starred'">
                     <br />
                     <br />
                     <br />
                     <br />
-                    <i class="mdi mdi-account-star h1"></i>
-                    <p><b>No starred content</b></p>
-                    <p class="text-muted">This profile has not starred any content</p>
+                    <i class="mdi mdi-account-star h1 opacity-5"></i>
+                    <p><b>收藏为空</b></p>
+                    <p class="text-muted">该账号下未找到任何收藏的镜像仓库</p>
                 </div>
                 <div class="col-lg-10 col-mg-10 text-center" v-if="nav == 'contributed'">
                     <br />
                     <br />
                     <br />
                     <br />
-                    <i class="mdi mdi-hand-heart h1"></i>
-                    <p><b>No contributed repositories yet</b></p>
-                    <p class="text-muted">Repositories that you are a collaborator of will show up here.</p>
+                    <i class="mdi mdi-hand-heart h1 opacity-5"></i>
+                    <p><b>暂无贡献</b></p>
+                    <p class="text-muted">该账号下未找到贡献记录</p>
                 </div>
             </div>
         </div>

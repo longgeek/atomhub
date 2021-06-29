@@ -7,20 +7,20 @@
                     <div class="row align-items-center">
                         <div class="col-lg-9 col-md-7">
                             <div class="section-title" v-if="searching">
-                                <div class="text-muted" v-if="$route.query.search">
-                                    正在搜索关键字<b class="text-primary"> {{ $route.query.search }} </b>中...
+                                <div class="text-muted" v-if="search">
+                                    正在搜索关键字<b class="text-primary"> {{ search }} </b>中...
                                 </div>
                                 <div class="text-muted" v-else>正在加载数据中...</div>
                             </div>
                             <div class="section-title" v-else>
                                 <div class="text-muted">
                                     1 - 10 of {{ repos.length }} available images.
-                                    <span v-if="$route.query.search">
-                                        search <b class="text-primary">{{ $route.query.search }}</b>,
+                                    <span v-if="search">
+                                        搜索 <b class="text-primary">{{ search }}</b>,
                                         <button
                                             class="btn btn-pills btn-sm btn-outline-dark"
                                             @click="clearSearch"
-                                        >clear search</button>
+                                        >清除搜索</button>
                                     </span>
                                 </div>
                             </div>
@@ -34,8 +34,9 @@
                         <div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0" v-if="!searching">
                             <div class="form custom-form">
                                 <div class="form-group mb-0">
-                                    <select class="form-control custom-select" disabled>
-                                        <option>Sort by latest</option>
+                                    <select class="form-control custom-select" v-model="sort" @change="init">
+                                        <option value="creation_time">最近更新</option>
+                                        <option value="-pull_count">最受欢迎</option>
                                     </select>
                                 </div>
                             </div>

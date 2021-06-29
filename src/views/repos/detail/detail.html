@@ -59,6 +59,7 @@
                                             <td class="text-primary">{{ art.digest | limitTo(15) }}</td>
                                             <td class="text-muted">
                                                 <span class="mdi mdi-content-copy h6 pointer hover-dark"
+                                                    v-if="repo.hasOwnProperty('name')"
                                                     v-clipboard="'docker pull atomhub.org/' + repo.name + '@' + art.digest"
                                                 ></span>
                                             </td>
@@ -67,7 +68,17 @@
                                                     {{ tag.name }}<span v-if="idx != art.tags.length - 1">、</span>
                                                 </span>
                                             </td>
-                                            <td>{{ (art.size / 1000).toFixed(1) }} MB</td>
+                                            <td>
+                                                <span v-if="art.size / 1024 / 1024 > 1 && art.size / 1024 / 1024 < 1024">
+                                                    {{ (art.size / 1024 / 1024).toFixed(2) }} MB
+                                                </span>
+                                                <span v-if="art.size / 1024 / 1024 < 1">
+                                                    {{ (art.size / 1024).toFixed(2) }} KB
+                                                </span>
+                                                <span v-if="art.size / 1024 / 1024 >= 1024">
+                                                    {{ (art.size / 1024 / 1024 / 1024).toFixed(2) }} GB
+                                                </span>
+                                            </td>
                                             <td class="text-muted">{{ art.push_time | toLocalTime }}</td>
                                           </tr>
                                         </tbody>
@@ -118,6 +129,7 @@
                                 <h6 class="widget-title">
                                     <small>下载镜像</small>
                                     <span class="mdi mdi-content-copy float-right text-muted hover-dark pointer"
+                                        v-if="artifacts.length"
                                         v-clipboard="'docker pull atomhub.org/' + repo.name + ':' + artifacts[artifacts.length - 1].tags[artifacts[artifacts.length - 1].tags.length - 1].name"
                                     >
                                     </span>
