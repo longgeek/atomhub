@@ -7,7 +7,7 @@ export default {
     data() {
         return {
             repo: {},
-            artifacts: {},
+            artifacts: [],
         }
     },
     components: { ReposType },

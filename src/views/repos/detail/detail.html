@@ -129,15 +129,14 @@
                                 <h6 class="widget-title">
                                     <small>下载镜像</small>
                                     <span class="mdi mdi-content-copy float-right text-muted hover-dark pointer"
-                                        v-if="artifacts.length"
-                                        v-clipboard="'docker pull atomhub.org/' + repo.name + ':' + artifacts[artifacts.length - 1].tags[artifacts[artifacts.length - 1].tags.length - 1].name"
-                                    >
-                                    </span>
+                                        v-if="artifacts.length && artifacts[0].tags != null"
+                                        v-clipboard="'docker pull atomhub.org/' + repo.name + ':' + artifacts[0].tags[artifacts[0].tags.length - 1].name"
+                                    ></span>
                                 </h6>
                                 <div class="bg-dark bg-white-dark p-4 rounded shadow mt-4">
                                     <p class="text-muted font-weight-bold mb-0">
                                         <span class="text-success">$&nbsp;</span>
-                                        docker pull atomhub.org/{{ repo.name }}<span v-if="artifacts.length">:{{ artifacts[artifacts.length - 1].tags[artifacts[artifacts.length - 1].tags.length - 1].name }}</span>
+                                        docker pull atomhub.org/{{ repo.name }}<span v-if="artifacts.length && artifacts[0].tags != null">:{{ artifacts[0].tags[artifacts[0].tags.length - 1].name }}</span>
                                     </p>
                                 </div>
                             </div>
