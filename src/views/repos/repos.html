@@ -14,7 +14,7 @@
                             </div>
                             <div class="section-title" v-else>
                                 <div class="text-muted">
-                                    1 - 10 of {{ repos.length }} available images.
+                                    共有 {{ repos.length }} 个镜像.
                                     <span v-if="search">
                                         搜索 <b class="text-primary">{{ search }}</b>,
                                         <button
@@ -35,8 +35,8 @@
                             <div class="form custom-form">
                                 <div class="form-group mb-0">
                                     <select class="form-control custom-select" v-model="sort" @change="init">
-                                        <option value="creation_time">最近更新</option>
                                         <option value="-pull_count">最受欢迎</option>
+                                        <option value="creation_time">最近更新</option>
                                     </select>
                                 </div>
                             </div>
@@ -86,6 +86,20 @@
                                     </div>
                                 </div>
                             </router-link>
+                        </div>
+                        <div class="col-12 mt-5">
+                            <a-pagination
+                                v-if="repos.length > 0"
+                                :default-current="pagination.page"
+                                :total="pagination.total"
+                                :show-total="pagination.showTotal"
+                                :page-size="pagination.page_size"
+                                :page-size-options="pagination.pageSizeOptions"
+                                :show-size-changer="pagination.showSizeChanger"
+                                :show-quick-jumper="pagination.showQuickJumper"
+                                @change="init"
+                                @showSizeChange="init"
+                            />
                         </div>
                     </div>
                 </div>

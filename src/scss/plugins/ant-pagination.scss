@@ -1,0 +1,129 @@
+// Pagination
+.ant-pagination {
+    float: left !important;
+    width: 100%;
+    color: $text-color;
+    font-size: 12px;
+    margin-bottom: 5px !important;
+
+    .ant-pagination-item-ellipsis {
+        top: 1px;
+        color: #ebf1f8;
+    }
+    .ant-pagination-prev a {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .ant-pagination-next a {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    .ant-pagination-prev, .ant-pagination-next {
+        height: 30px !important;
+        margin-top: 2px;
+        i.anticon {
+            vertical-align: 0.125em;
+            font: 8px/1 FontAwesome;
+        }
+    }
+    .ant-pagination-item-active a {
+        color: $primary;
+        border-color: $border-color;
+        background-color: #ebf1f8;
+    }
+    .ant-pagination-disabled a:hover {
+        background: inherit;
+    }
+    .ant-pagination-jump-prev:hover, .ant-pagination-jump-next:hover {
+        .ant-pagination-item-link-icon {
+            font: 8px/1 FontAwesome;
+        }
+    }
+    .ant-pagination-item, .ant-pagination-prev, .ant-pagination-next, .ant-pagination-jump-prev, .ant-pagination-jump-next {
+        font-size: 12px;
+        height: 28px;
+        min-width: 36px;
+        line-height: 28px;
+        color: $text-color;
+        margin-right: 0;
+        border: none;
+        margin-right: -1px;
+    }
+    .ant-pagination-item, .ant-pagination-prev, .ant-pagination-next {
+        a {
+            border: 1px solid $border-color !important;
+        }
+        a:hover {
+            background-color: #f6f9fc;
+        }
+    }
+    .ant-pagination-item a:hover, .ant-pagination .ant-pagination-prev a:hover, .ant-pagination .ant-pagination-next a:hover,
+    .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon, .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
+        color: $primary;
+    }
+
+    // 合计多少条
+    .ant-pagination-total-text {
+        float: right;
+        height: 28px;
+        line-height: 28px;
+        color: $text-muted;
+    }
+
+    // 跳转到多少页
+    .ant-pagination-options-quick-jumper {
+        float: right;
+        margin-right: 16px;
+        height: 30px;
+        line-height: 30px;
+        input {
+            height: 30px;
+            color: $text-color;
+            font-size: 12px;
+            text-align: center;
+            border-radius: $border-radius;
+            border-color: $border-color;
+        }
+    }
+
+    // 每页多少条
+    .ant-pagination-options {
+        position: absolute;
+        margin-top: 2px;
+        margin-left: 20px;
+        .ant-select {
+            color: $text-color;
+            font-size: 12px;
+            margin-right: 16px;
+        }
+        .ant-select-selection--single {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            border-radius: $border-radius;
+            border-color: $border-color;
+
+            .ant-select-selection-selected-value {
+                margin-top: -1px;
+            }
+            .ant-select-arrow {
+                font-size: 6px;
+                color: $text-color;
+            }
+        }
+        .ant-select-dropdown-menu-item {
+            font-size: 12px;
+            color: $text-muted;
+        }
+        .ant-select-dropdown-menu-item-selected {
+            background-color: #ebf9fb;
+        }
+        .ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
+            background-color: #f6f9fc;
+        }
+    }
+}

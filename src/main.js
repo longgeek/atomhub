@@ -35,6 +35,8 @@ import Gravatar from 'vue-gravatar';
 import animated from 'animate.css';
 import Vuelidate from 'vuelidate';
 import Clipboard from 'v-clipboard';
+import { Pagination } from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.min.css';
 
 var VueScrollTo = require('vue-scrollto');
 Vue.config.productionTip = false;
@@ -54,6 +56,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueMeta, {keyName: 'page'});
 Vue.use(VueScrollTo, {duration: 3000, easing: "ease"});
 Vue.use(Clipboard);
+Vue.use(Pagination);
 
 
 new Vue({
