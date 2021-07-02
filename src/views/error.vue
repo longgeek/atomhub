@@ -3,10 +3,7 @@
  * Page-error component
  */
 export default {
-    data() {
-        return {}
-    },
-    components: {}
+    page: { title: '404' },
 }
 </script>
 
@@ -18,7 +15,6 @@ export default {
         </router-link>
     </div>
 
-    <!-- ERROR PAGE -->
     <section class="bg-home d-flex align-items-center">
         <div class="container">
             <div class="row justify-content-center">
@@ -29,22 +25,15 @@ export default {
                     请检查输入的 <b class="text-primary">URL</b> 地址是否正确，也可通过下面按钮进行页面跳转。
                     </p>
                 </div>
-                <!--end col-->
             </div>
-            <!--end row-->
 
             <div class="row">
                 <div class="col-md-12 text-center">
                     <router-link to="/" class="btn btn-outline-primary mt-4">返回</router-link>
                     <router-link to="/" class="btn btn-primary mt-4 ml-2">去首页</router-link>
                 </div>
-                <!--end col-->
             </div>
-            <!--end row-->
         </div>
-        <!--end container-->
     </section>
-    <!--end section-->
-    <!-- ERROR PAGE -->
 </div>
 </template>

@@ -1,0 +1,109 @@
+<div>
+    <ReposType :load="init" />
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-5 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-7">
+                            <div class="section-title" v-if="searching">
+                                <div class="text-muted" v-if="search">
+                                    正在搜索关键字<b class="text-primary"> {{ search }} </b>中...
+                                </div>
+                                <div class="text-muted" v-else>正在加载数据中...</div>
+                            </div>
+                            <div class="section-title" v-else>
+                                <div class="text-muted">
+                                    共有 {{ repos.length }} 个镜像.
+                                    <span v-if="search">
+                                        搜索 <b class="text-primary">{{ search }}</b>,
+                                        <button
+                                            class="btn btn-pills btn-sm btn-outline-dark"
+                                            @click="clearSearch"
+                                        >清除搜索</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="tagcloud mt-3">
+                                <a v-for="(filter, index) in $vars.reposFilters" @click="filterRemove(index, filter)">
+                                    <span class="mr-1 opacity-7">x</span>
+                                    {{ filter.name }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0" v-if="!searching">
+                            <div class="form custom-form">
+                                <div class="form-group mb-0">
+                                    <select class="form-control custom-select" v-model="sort" @change="init">
+                                        <option value="-pull_count">最受欢迎</option>
+                                        <option value="creation_time">最近更新</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" v-if="!searching">
+                        <div
+                            class="col-lg-4 col-md-6 col-12 mt-4 pt-2"
+                            v-for="(item, index) in repos" :key="index"
+                        >
+                            <router-link :to="{
+                                name: 'repos-detail',
+                                params: {
+                                    project: item.name.split('/')[0],
+                                    repo: item.name.split('/')[1]}
+                                }"
+                            >
+                                <div class="repo-card media key-feature align-items-center p-4 rounded shadow bg-white">
+                                    <img
+                                        v-if="item.logo"
+                                        :src="`${item.logo}`"
+                                        class="avatar avatar-md-sm" alt=""
+                                    />
+                                    <img
+                                        v-else
+                                        src="@/assets/images/none-box.svg"
+                                        class="avatar avatar-md-sm" alt=""
+                                    />
+                                    <div class="media-body ml-3">
+                                        <div class="text-dark mb-3 font-size-14">{{ item.name }}</div>
+                                        <div class="text-muted mb-3">
+                                            <div v-if="item.hasOwnProperty('by')"><span class="opacity-4">-</span> By <span class="text-primary">{{ item.by }}</span></div>
+                                            <div><span class="opacity-4">-</span> <small>更新于</small> {{ item.update_time | toLocalTime }}</div>
+                                        </div>
+                                        <p class="text-dark descr">{{ item.description }}</p>
+                                        <ul
+                                           class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0"
+                                        >
+                                            <li class="text-muted small">
+                                                {{ item.pull_count }} <span class="opacity-6">次下载</span>
+                                            </li>
+                                            <li class="text-muted small ml-3">
+                                                {{ item.artifact_count || '-' }} <span class="opacity-6">次构建</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </router-link>
+                        </div>
+                        <div class="col-12 mt-5">
+                            <a-pagination
+                                v-if="repos.length > 0"
+                                :default-current="pagination.page"
+                                :total="pagination.total"
+                                :show-total="pagination.showTotal"
+                                :page-size="pagination.page_size"
+                                :page-size-options="pagination.pageSizeOptions"
+                                :show-size-changer="pagination.showSizeChanger"
+                                :show-quick-jumper="pagination.showQuickJumper"
+                                @change="init"
+                                @showSizeChange="init"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

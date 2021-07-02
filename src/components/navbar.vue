@@ -6,8 +6,8 @@ export default {
     data() {
         return {
             user: {},
+            search: '',
             isCondensed: false,
-            homeUrl: process.env.VUE_APP_BASE_URL || '/',
         };
     },
     props: {
@@ -77,27 +77,57 @@ export default {
             return false;
         },
         /**
-         * 获取登录状态
+         * 获取登录状态和系统信息
          */
         getLoginStatus() {
-            if (!localStorage.getItem('logintoken')) return;
-
-            // 获取用户信息
-            this.$http.get(this.$api.users.get())
+            // 获取用户登录状态
+            // 将用户信息写入到 localStorage 以便其他页面用到
+            this.$http.get(this.$api.users.current())
                 .then((rsp) => {
-                    if (rsp.data.code === 200) {
-                        this.user = rsp.data.data;
-                        localStorage.setItem('user', JSON.stringify(rsp.data.data));
+                    if (rsp.status === 200) {
+                        this.user = rsp.data;
+                        localStorage.setItem('user', JSON.stringify(rsp.data));
+                    } else {
+                        localStorage.removeItem('user');
                     }
             })
 
-            // 获取用户开源经历
-            this.$http.get(this.$api.users.experience())
+            // 获取系统信息，同时写入 __csrf 到 LocalStorage 中
+            // 用户在第一次登录设置用户名时调用 api 需要传递 __csft
+            this.$http.get(this.$api.systeminfo())
                 .then((rsp) => {
-                    if (rsp.data.code === 200) {
-                        this.user.experience = rsp.data.data;
-                        localStorage.setItem('user', JSON.stringify(this.user));
+                    if (rsp.status === 200) {
+                        localStorage.setItem('systeminfo', JSON.stringify(rsp.data));
+                        localStorage.setItem('__csrf', rsp.headers['x-harbor-csrf-token']);
+                    } else {
+                        localStorage.removeItem('__csrf');
+                        localStorage.removeItem('systeminfo');
                     }
+            })
+        },
+        /**
+         * Logout
+         */
+        logout() {
+            this.$http.get(this.$vars.logoutUrl)
+                .then((rsp) => {
+                    if (rsp.status === 200) {
+                        window.location.href = "/repos";
+                    }
+            })
+        },
+        /**
+         * 搜索动作
+         */
+        globalSearch() {
+            // 判断搜索内容是否为空
+            if ( !this.search) return;
+
+            // 跳转页面到 /repos
+            // this.$router.push({ name: 'repos'});
+            this.$sleep(100).then(() => {
+                this.$router.push({ name: 'repos', query: { search: this.search } });
+                this.search = '';
             })
         },
     },
@@ -106,7 +136,6 @@ export default {
 
 <template>
     <div>
-        <!-- Navbar STart -->
         <header
             id="topnav"
             class="defaultscroll sticky nav-sticky"
@@ -114,10 +143,10 @@ export default {
         >
             <div class="container">
                 <!-- Logo container-->
-                <a class="logo" :href="homeUrl" v-if="navLight !== true">
+                <router-link class="logo" :to="{name: 'home'}" v-if="navLight !== true">
                     <img src="@/assets/images/logo-light.svg" height="50" alt="" />
-                </a>
-                <a class="logo" :href="homeUrl" v-else>
+                </router-link>
+                <router-link class="logo" :to="{name: 'home'}" v-else>
                     <img src="@/assets/images/logo-light.svg" class="l-dark" height="50" alt="" />
                     <img
                         src="@/assets/images/logo-light.svg"
@@ -125,13 +154,19 @@ export default {
                         height="50"
                         alt=""
                     />
-                </a>
-                <form class="global-search">
+                </router-link>
+                <div class="global-search">
                     <div class="position-relative">
-                        <input type="text" class="form-control" placeholder="搜索镜像仓库，例如 CentOS、MySQL..." />
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="search"
+                            @keydown.13="globalSearch($event)"
+                            placeholder="搜索镜像仓库，例如 CentOS、MySQL..."
+                        />
                         <span class="mdi mdi-magnify icon"></span>
                     </div>
-                </form>
+                </div>
                 <div class="auth-button" v-if="Object.keys(user).length === 0">
                     <a
                         :href="$vars.loginUrl"
@@ -160,17 +195,17 @@ export default {
                         >
                             <template #button-content>
                                 <v-gravatar :email="user.email"
-                                    alt="Nobody"
-                                    default-img="robohash"
-                                    :hostname="$gravatar_host"
+                                    alt="null"
+                                    :default-img="$gravatar.defaultImg"
+                                    :hostname="$gravatar.host"
                                     class="rounded-circle avatar avatar-ex-sm mx-auto"
                                 />
-                                <span class="ml-2">{{ user.nickname }}</span>
+                                <span class="ml-2">{{ user.realname }}</span>
                             </template>
                             <b-dropdown-item to="/profile">个人主页</b-dropdown-item>
                             <b-dropdown-item to="/settings">账号设置</b-dropdown-item>
                             <b-dropdown-divider></b-dropdown-divider>
-                            <b-dropdown-item to="/logout">退出登录</b-dropdown-item>
+                            <b-dropdown-item @click="logout">退出登录</b-dropdown-item>
                         </b-dropdown>
                     </li>
                 </ul>
@@ -199,14 +234,11 @@ export default {
                         class="navigation-menu"
                         :class="{ 'nav-light': navLight === true }"
                     >
-                        <li>
-                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">Home</router-link>
+                        <li :class="{active: $route.name === 'home'}">
+                            <router-link :to="{name: 'home'}" class="side-nav-link-ref">首页</router-link>
                         </li>
-                        <li :class="{ active: $route.name === 'repos' || $route.name === 'repos-detail'}">
-                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">Repositories</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">About</router-link>
+                        <li :class="{active: $route.name === 'repos' || $route.name === 'repos-detail'}">
+                            <router-link :to="{name: 'repos'}" class="side-nav-link-ref">镜像仓库</router-link>
                         </li>
                     </ul>
                     <div v-if="Object.keys(user).length === 0">
@@ -226,12 +258,12 @@ export default {
                                 >
                                     <template #button-content>
                                         <v-gravatar :email="user.email"
-                                            alt="Nobody"
-                                            default-img="robohash"
-                                            :hostname="$gravatar_host"
+                                            alt="null"
+                                            :default-img="$gravatar.defaultImg"
+                                            :hostname="$gravatar.host"
                                             class="rounded-circle avatar avatar-ex-sm mx-auto"
                                         />
-                                        <span class="ml-2">{{ user.nickname }}</span>
+                                        <span class="ml-2">{{ user.realname }}</span>
                                     </template>
                                     <!-- b-dropdown-item to="/profile">个人主页</b-dropdown-item>
                                     <b-dropdown-item to="/settings">账号设置</b-dropdown-item>
@@ -242,11 +274,7 @@ export default {
                         </ul>
                     </div>
                 </div>
-                <!--end navigation-->
             </div>
-            <!--end container-->
         </header>
-        <!--end header-->
-        <!-- Navbar End -->
     </div>
 </template>

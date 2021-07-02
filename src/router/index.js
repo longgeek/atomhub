@@ -18,7 +18,7 @@ const router = new VueRouter({
     // instead of routes with hashes (e.g. example.com/#/about).
     // This may require some server configuration in production:
     // https://router.vuejs.org/en/essentials/history-mode.html#example-server-configurations
-    // mode: 'history',
+    mode: 'history',
     // Simulate native-like scroll behavior when navigating to a new
     // route and using back/forward buttons.
     scrollBehavior(to, from, savedPosition) {
@@ -55,7 +55,7 @@ router.beforeEach((routeTo, routeFrom, next) => {
 
     // 由于 Login 是在 atomavator 项目中，无法使用 Vuex 的 store 来存储登录状态
     // 这里通过 Local Storage 来判断是否登录
-    localStorage.getItem('logintoken') ? next() : redirectToLogin()
+    localStorage.getItem('user') ? next() : redirectToLogin()
 
     // eslint-disable-next-line no-unused-vars
     function redirectToLogin() {

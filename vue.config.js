@@ -35,5 +35,19 @@ module.exports = {
         open: false,                                // 配置后自动启动浏览器
         hotOnly: true,                              // 热更新
         contentBase:path.join(__dirname, 'public'),
+        proxy: {
+            "/api": {
+                target: "https://atomhub.org",
+                ws: true,
+                secure: false,
+                changeOrigin: true,
+            },
+            "/c": {
+                target: "https://atomhub.org",
+                ws: true,
+                secure: false,
+                changeOrigin: true,
+            },
+        },
     },
 }

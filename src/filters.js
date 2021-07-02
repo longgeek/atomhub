@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import marked from 'marked';
+import moment from 'moment';
 
 /**
  * limitTo
@@ -10,6 +11,7 @@ Vue.filter( "limitTo", function (str, index) {
     return str.slice(0, index);
 })
 
+
 /**
  * toMarkDown
  * convert string to the markdown format
@@ -18,6 +20,17 @@ Vue.filter("toMarkDown", function (content) {
     if (!content) { return; }
     return marked(content);
 })
+
+
+/**
+ * toLocalTime
+ * convert str time to the local time format
+ */
+Vue.filter("toLocalTime", function (time, format="YYYY-MM-DD HH:mm:ss") {
+    if (!time) { return; }
+    return moment(time).format(format);
+})
+
 
 /**
  * toChinaTime
