@@ -17,9 +17,12 @@
 // 小控件
 @import "widget/secondary-nav.scss";
 @import "widget/box-shadow-after.scss";
+@import "widget/page-toolbar.scss";
+@import "widget/page-introduction.scss";
 
 // 插件
 @import "plugins/form-wizard.scss";                 // form 步骤表单
 @import "plugins/toaster.scss";                     // bootstrap toaster 样式
 @import "plugins/icons/materialdesignicons.scss";   // material design icons
 @import "plugins/ant-pagination.scss";              // ant design pagination
+@import "plugins/ant-table.scss";                   // ant design table

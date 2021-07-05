@@ -32,6 +32,12 @@ const routes = [
         component: () => import('@/views/settings/settings.vue')
     },
     {
+        path: '/logs',
+        name: 'logs',
+        meta: { authRequired: true },
+        component: () => import('@/views/logs/logs.vue')
+    },
+    {
         // 用户第一次登录需要确认用户名
         // 该 url 由后端 redirect 过来
         path: '/oidc-onboard:username?',

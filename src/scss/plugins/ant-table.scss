@@ -1,0 +1,179 @@
+.ant-table {
+    border: 1px solid #e6eff7;
+    border-radius: $border-radius;
+}
+table, .ant-table-wrapper table {
+    font-size: 12px;
+    color: $text-color;
+
+    thead th,
+    tbody td {
+        line-height: 20px;
+        padding: 10px;
+        border-top: none !important;
+        color: $text-color;
+        vertical-align: middle;
+        border-bottom: 1px solid #e6eff7;
+    }
+    thead th {
+        line-height: 25px;
+        min-width: 50px;
+        font-weight: 700;
+        background: #f6f9fc;
+        white-space: nowrap;
+        word-break:break-all;
+        border-bottom-width: 1px !important;
+    }
+    tbody tr:hover,
+    .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+        background: #f6f9fc;
+    }
+    thead th.ant-table-column-has-actions.ant-table-column-has-filters > i:hover,
+    thead th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
+        background-color: #e6eff7 !important;
+    }
+}
+
+.ant-table-wrapper {
+    .ant-table-layout-fixed table {
+        table-layout: auto;
+    }
+    .ant-checkbox-checked .ant-checkbox-inner {
+        border-color: $primary;
+        background-color: $primary;
+    }
+    .ant-table-thead > tr > th.ant-table-column-sort {
+        background: #e6eff7;
+    }
+    .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner {
+        border-color: $primary;
+    }
+    .ant-checkbox-inner {
+        -webkit-transition: all 0s;
+        transition: all 0s;
+    }
+    .ant-checkbox-checked .ant-checkbox-inner::after {
+        -webkit-transition: all 0s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0s;
+        transition: all 0s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0s;
+    }
+    .ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner,
+    .ant-table-thead > tr > th .anticon-filter, .ant-table-thead > tr > th .ant-table-filter-icon {
+        color: #20405447;
+    }
+    .ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-up.on, .ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-down.on {
+        color: $text-color;
+    }
+    .ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-up.on, .ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-down.on {
+        color: $text-color;
+    }
+    .ant-table-thead > tr > th .anticon-filter, .ant-table-thead > tr > th .ant-table-filter-icon {
+        font-size: 10px;
+    }
+    .ant-table-placeholder {
+        top: 0;
+        font-size: 12px;
+        color: $text-color;
+        text-align: left;
+        padding: 20px 20px 20px 0;
+        border: none !important;
+        margin-top: 0;
+    }
+    .ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner-full {
+        margin-top: -0.5rem;
+    }
+
+    // table sort icon 默认不展示
+    .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters {
+        .ant-table-column-sorter i.anticon {
+            opacity: 0;
+        }
+    }
+    // table sort icon 当点击或 hover 后展示
+    .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover,
+    .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters.ant-table-column-sort {
+        .ant-table-column-sorter i.anticon {
+            opacity: 1;
+        }
+    }
+
+    // loading
+    .ant-spin.ant-spin-spinning {
+        color: $primary;
+    }
+    .ant-spin-dot-item {
+        background-color: $primary;
+    }
+
+    .anticon-filter.ant-table-filter-selected {
+        color: $primary !important;
+    }
+}
+
+.ant-table-bordered.ant-table-empty .ant-table-placeholder {
+    border-color: $border-color;
+}
+.ant-table-wrapper .ant-table-placeholder {
+    border-bottom: 1px solid $border-color;
+}
+.ant-table-bordered .ant-table-thead > tr > th, .ant-table-bordered .ant-table-tbody > tr > td {
+    border-right: 1px solid $border-color;
+}
+
+.ant-table-bordered .ant-table-header > table, .ant-table-bordered .ant-table-body > table, .ant-table-bordered .ant-table-fixed-left table, .ant-table-bordered .ant-table-fixed-right table {
+    border-color: $border-color;
+}
+.ant-table-thead>tr>th.ant-table-column-has-sorters {
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
+}
+
+// ant table filter
+.ant-dropdown {
+    font-size: 12px;
+    color: $text-color;
+
+    .ant-table-filter-dropdown {
+        border-radius: $border-radius;
+
+        ul li {
+            font-size: 12px;
+        }
+
+        .ant-checkbox-checked .ant-checkbox-inner {
+            border-color: $primary;
+            background-color: $primary;
+        }
+        .ant-checkbox-inner {
+            -webkit-transition: all 0s;
+            transition: all 0s;
+        }
+        .ant-checkbox-checked .ant-checkbox-inner::after {
+            -webkit-transition: all 0s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0s;
+            transition: all 0s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0s;
+        }
+        .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+            color: $text-color;
+        }
+    }
+    .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover,
+    .ant-dropdown-menu-item-selected, .ant-dropdown-menu-submenu-title-selected, .ant-dropdown-menu-item-selected > a, .ant-dropdown-menu-submenu-title-selected > a {
+        color: $primary;
+        background-color: #ebf9fb;
+    }
+}
+.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters .anticon-filter.ant-table-filter-open, .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters .ant-table-filter-icon.ant-table-filter-open {
+    background: #e6eff7 !important;
+}
+.ant-empty {
+    color: #939ea9;
+    font-size: 12px;
+    margin: 10px 20px;
+}
+.ant-empty-image {
+    display: none;
+}
+.ant-empty-description {
+    text-align: left;
+}

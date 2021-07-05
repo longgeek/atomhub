@@ -1,0 +1,49 @@
+<div>
+    <section class="section">
+        <div class="container">
+            <PageIntroduction :intro="page_intro" />
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-toolbar">
+                        <div class="loading-layer" v-if="loading"></div>
+                        <button type="button" class="btn btn-dark" @click="tableData()" :disabled="loading">
+                            <i class="mdi mdi-refresh align-middle"></i>
+                        </button>
+                    </div>
+
+                    <div class="card border-0">
+                        <div class="card-body pt-0">
+                            <a-table
+                                class="text-norwap"
+                                :scroll="{ x: true }"
+                                :columns="table.cols"
+                                :dataSource="table.rows"
+                                :pagination="pagination"
+                                :loading="loading"
+                                :locale="locale"
+                                :rowKey="records => records.id"
+                                @change="tableChange"
+                            >
+                                <template slot="resource" slot-scope="resource">
+                                    <router-link :to="{
+                                        name: 'repos-detail',
+                                        params: {
+                                            project: resource.split('/')[0],
+                                            repo: resource.split('/')[1].split(':')[0]}
+                                        }"
+                                    >
+                                        {{ resource }}
+                                    </router-link>
+                                </template>
+                                <template slot="resource_type" slot-scope="resource_type">
+                                    <span class="text-muted">{{ resource_type }}</span>
+                                </template>
+                                <template slot="op_time" slot-scope="op_time">{{ op_time | toLocalTime }}</template>
+                            </a-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

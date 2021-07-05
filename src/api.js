@@ -4,6 +4,7 @@
 const url = process.env.VUE_APP_BASE_URL;
 const api = {
   systeminfo:     ()              => {return `${url}/systeminfo`},                                            // 获取后端信息
+  logs:           ()              => {return `${url}/audit-logs`},                                            // 获取用户所属项目的最近日志
   users: {
     current:      ()              => {return `${url}/users/current`},                                         // 获取当前用户信息
   },

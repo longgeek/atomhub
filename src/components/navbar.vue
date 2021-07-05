@@ -204,6 +204,7 @@ export default {
                             </template>
                             <b-dropdown-item to="/profile">个人主页</b-dropdown-item>
                             <b-dropdown-item to="/settings">账号设置</b-dropdown-item>
+                            <b-dropdown-item to="/logs">操作日志</b-dropdown-item>
                             <b-dropdown-divider></b-dropdown-divider>
                             <b-dropdown-item @click="logout">退出登录</b-dropdown-item>
                         </b-dropdown>
