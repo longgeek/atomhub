@@ -26,11 +26,12 @@ const http = {
             config: config,
         });
     },
-    put(url, params={}) {
+    put(url, data={}, config={}) {
         return request({
             url: url,
             method: 'put',
-            params: params,
+            data: data,
+            config: config,
         });
     },
     delete(url, params={}) {
