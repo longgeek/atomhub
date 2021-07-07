@@ -3,6 +3,7 @@
  * 账号设置-个人信息 component
  */
 export default {
+    page: { title: '账户设置-个人信息' },
     props: {
         user: { type: Object },
     },

@@ -3,6 +3,7 @@
  * 账号设置- Cli 密码 component
  */
 export default {
+    page: { title: '账户设置-Cli 密码' },
     props: {
         user: { type: Object },
     },

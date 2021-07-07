@@ -28,7 +28,7 @@ export default {
     created() { this.init() },
     components: { ReposType },
     watch: {
-        '$route': "init",
+        '$route': function() { this.init() },
     },
     methods: {
         // 初始化, 搜索、分页都会触发该方法
@@ -49,18 +49,21 @@ export default {
             if (this.search) params.q = `name=~${this.search}`;
             if (this.sort) params.sort = this.sort;
 
-            this.$http.get(this.$api.repositories.list(), params)
-                .then((rsp) => {
-                    if (rsp.hasOwnProperty('status') && rsp.status === 200) {
-                        this.repos = rsp.data;
-                        this.pagination.total = rsp.headers['x-total-count'];
-                    }
-                    this.searching = false;
+            this.$http.get(
+                this.$api.repositories.list(),
+                params,
+            ).then((rsp) => {
+                if (rsp != undefined && rsp.hasOwnProperty('status') && rsp.status === 200) {
+                    this.repos = rsp.data;
+                    this.pagination.total = rsp.headers['x-total-count'];
+                }
+                this.searching = false;
             })
         },
         // 移除搜索关键字
         clearSearch() {
             this.$router.push({name: this.$route.name});
+            this.$sleep(10).then(() => this.init() );
         },
         // 移除过滤条件
         filterRemove(index, filter) {
