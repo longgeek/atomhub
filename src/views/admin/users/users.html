@@ -1,0 +1,79 @@
+<div>
+    <SetAdmin :selects="selectedRows" />
+    <section class="section">
+        <div class="container">
+            <PageIntroduction :intro="page_intro" />
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-toolbar">
+                        <div class="loading-layer" v-if="loading"></div>
+                        <button type="button" class="btn btn-dark" @click="tableData()" :disabled="loading">
+                            <i class="mdi mdi-refresh align-middle"></i>
+                        </button>
+                        <button type="button" class="btn btn-dark" @click="tableSetAdmin()"
+                            :disabled="selectedRows.length != 1"
+                            v-if="selectedRows.length != 1 || !selectedRows[0].sysadmin_flag"
+                        >
+                            <i class="mdi mdi-check align-middle"></i>
+                            设置为管理员
+                        </button>
+                        <button type="button" class="btn btn-dark" @click="tableSetAdmin()"
+                            :disabled="selectedRows.length != 1"
+                            v-if="selectedRows.length == 1 && selectedRows[0].sysadmin_flag"
+                        >
+                            <i class="mdi mdi-undo align-middle"></i>
+                            取消管理员
+                        </button>
+                    </div>
+
+                    <div class="card border-0">
+                        <div class="card-body pt-0">
+                            <a-table
+                                class="text-norwap"
+                                :scroll="{ x: true }"
+                                :columns="table.cols"
+                                :dataSource="table.rows"
+                                :pagination="pagination"
+                                :loading="loading"
+                                :locale="locale"
+                                :rowKey="records => records.user_id"
+                                :rowSelection="{ onChange: tableOnSelect, selectedRowKeys: selectedRowKeys, }"
+                                @change="tableChange"
+                            >
+                                <template slot="user_id" slot-scope="user_id">
+                                    <span class="text-muted">{{ user_id }}</span>
+                                </template>
+                                <template slot="username" slot-scope="username, row">
+                                    <v-gravatar :email="row.email"
+                                        alt="null"
+                                        :default-img="$gravatar.defaultImg"
+                                        :hostname="$gravatar.host"
+                                        class="rounded-circle avatar avatar-ex-sm mx-auto"
+                                    />
+                                    <span class="ml-2">{{ username }}</span>
+                                </template>
+                                <template slot="realname" slot-scope="realname">
+                                    <span class="text-muted">{{ realname }}</span>
+                                </template>
+                                <template slot="sysadmin_flag" slot-scope="sysadmin_flag" v-if="sysadmin_flag">
+                                    <i class="mdi mdi-check-bold text-primary mr-2"></i>
+                                    <span class="text-muted">管理员</span>
+                                </template>
+                                <template slot="comment" slot-scope="comment">
+                                    <span class="text-muted">{{ comment }}</span>
+                                </template>
+                                <template slot="resource_type" slot-scope="resource_type">
+                                    <span class="text-muted">{{ resource_type }}</span>
+                                </template>
+                                <template slot="creation_time" slot-scope="creation_time">{{ creation_time | toLocalTime }}</template>
+                                <template slot="update_time" slot-scope="update_time">
+                                    <span class="text-muted">{{ update_time | toLocalTime }}</span>
+                                </template>
+                            </a-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

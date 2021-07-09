@@ -25,7 +25,7 @@ export default {
                 this.$api.users.cli_secret(this.user.user_id),
                 {secret: this.secret},
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
-            ).then((rsp) => {
+            ).then(rsp => {
                 if (rsp.status === 200) {
                     this.$bvToast.toast('修改 Cli 密码成功', {title: '提示', variant: 'primary'});
                     this.user.oidc_user_meta.secret = this.secret;
@@ -33,6 +33,8 @@ export default {
                 } else {
                     this.$bvToast.toast(rsp.data.msg, {title: '修改 Cli 密码失败', variant: 'danger'});
                 }
+            }).catch(error => {
+                console.log(error);
             })
         },
     }

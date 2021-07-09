@@ -32,6 +32,9 @@ table, .ant-table-wrapper table {
     thead th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
         background-color: #e6eff7 !important;
     }
+    tbody tr:last-child td {
+        border-bottom: 0;
+    }
 }
 
 .ant-table-wrapper {

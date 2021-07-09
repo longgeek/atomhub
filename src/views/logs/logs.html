@@ -24,16 +24,16 @@
                                 :rowKey="records => records.id"
                                 @change="tableChange"
                             >
-                                <template slot="resource" slot-scope="resource">
+                                <template slot="resource" slot-scope="resource, row">
                                     <router-link :to="{
                                         name: 'repos-detail',
                                         params: {
                                             project: resource.split('/')[0],
                                             repo: resource.split('/')[1].split(':')[0]}
                                         }"
-                                    >
-                                        {{ resource }}
-                                    </router-link>
+                                        v-if="row.resource_type == 'artifact'"
+                                    >{{ resource }}</router-link>
+                                    <span v-else>{{ resource }}</span>
                                 </template>
                                 <template slot="resource_type" slot-scope="resource_type">
                                     <span class="text-muted">{{ resource_type }}</span>

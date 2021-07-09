@@ -17,6 +17,10 @@ const api = {
   oidc: {
     onboard:      ()              => {return `/c/oidc/onboard`},                                              // 设置 OIDC 用户名
   },
+  admin: {
+    users:        ()              => {return `${url}/users`},                                                 // 获取所有用户列表
+    set_admin:    (id)            => {return `${url}/users/${id}/sysadmin`},                                  // 设置用户的管理员状态
+  },
 }
 
 export default api;

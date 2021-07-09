@@ -45,6 +45,12 @@ const routes = [
         component: () => import('@/views/oidc-onboard.vue')
     },
     {
+        path: '/admin/users',
+        name: 'admin-users',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/users/users.vue')
+    },
+    {
         path: '*',
         name: 'error',
         component: () => import('@/views/error')

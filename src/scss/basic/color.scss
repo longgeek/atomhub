@@ -276,3 +276,13 @@ a.text-primary:focus {
     border-right-color: #2443ac;
     border-top-color: #2443ac;
 }
+
+#topnav .has-submenu.active.active .menu-arrow,
+#topnav.scroll .navigation-menu > li:hover > .menu-arrow,
+#topnav.scroll .navigation-menu > li.active > .menu-arrow,
+#topnav .navigation-menu > li:hover > .menu-arrow,
+#topnav .has-submenu .submenu .has-submenu:hover .submenu-arrow,
+#topnav.nav-sticky .navigation-menu.nav-light > li:hover > .menu-arrow,
+#topnav.nav-sticky .navigation-menu.nav-light > li.active > .menu-arrow {
+    border-color: #fff !important;
+}

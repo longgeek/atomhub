@@ -2831,7 +2831,7 @@ p {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   right: -1px;
-  top: 30px;
+  top: 25px;
 }
 
 #topnav .navigation-menu .has-submenu:hover .menu-arrow {
@@ -2977,11 +2977,11 @@ p {
   }
 
   #topnav .navigation-menu>.has-submenu:hover .menu-arrow {
-    top: 33px !important;
+    top: 28px !important;
   }
 
   #topnav .navigation-menu>.has-submenu.active .menu-arrow {
-    top: 30px;
+    top: 25px;
   }
 
   #topnav .navigation-menu>li .submenu {

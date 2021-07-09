@@ -58,6 +58,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueMeta, {keyName: 'page'});
 Vue.use(VueScrollTo, {duration: 3000, easing: "ease"});
 Vue.use(Clipboard);
+Vue.use(Table);
 Vue.use(Pagination);
 
 
