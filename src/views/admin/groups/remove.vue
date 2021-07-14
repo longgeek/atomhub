@@ -12,7 +12,10 @@
         @show="show"
         v-if="selects.length"
     >
-        <span>确定要将组 <b class="text-primary">{{ selects[0].group_name }}</b> 删除？</span>
+        <div class="alert alert-danger mb-0">
+            <span class="mdi mdi-information-outline mr-2"></span>
+            确定要将组 <b class="text-primary">{{ selects[0].group_name }}</b> 删除？
+        </div>
     </b-modal>
 </template>
 <script>

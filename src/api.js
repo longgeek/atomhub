@@ -9,6 +9,9 @@ const api = {
     current:      ()              => {return `${url}/users/current`},                                         // 获取当前用户信息
     cli_secret:   (id)            => {return `${url}/users/${id}/cli_secret`},                                // 修改用户 cli-password
   },
+  projects: {
+    detail:       (id)            => {return `${url}/projects/${id}`},                                        // 获取单个 Project 详情
+  },
   repositories: {
     list:         ()              => {return `${url}/repositories`},                                          // 获取所有镜像仓库
     detail:       (project, repo) => {return `${url}/projects/${project}/repositories/${repo}`},              // 获取单个 Repo 详情

@@ -12,8 +12,14 @@
         @show="show"
         v-if="selects.length"
     >
-        <span v-if="selects[0].sysadmin_flag">确定要将用户 <b class="text-primary">{{ selects[0].username }}</b> 取消管理员？</span>
-        <span v-else>确定要将用户 <b class="text-primary">{{ selects[0].username }}</b> 设置管理员？</span>
+        <div class="alert alert-danger" v-if="selects[0].sysadmin_flag">
+            <span class="mdi mdi-information-outline mr-2"></span>
+            确定要将用户 <b class="text-primary">{{ selects[0].username }}</b> 取消管理员？
+        </div>
+        <div class="alert alert-success" v-else>
+            <span class="mdi mdi-information-outline mr-2"></span>
+            确定要将用户 <b class="text-primary">{{ selects[0].username }}</b> 设置管理员？
+        </div>
     </b-modal>
 </template>
 <script>

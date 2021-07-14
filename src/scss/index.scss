@@ -6,7 +6,7 @@
 @import "basic/color.scss";                     // 默认颜色
 @import "basic/global.scss";                    // 全局 CSS 样式
 @import "basic/animation.scss";                 // Basic 动画
-@import "basic/grid.scss";                      // Basic 动画
+@import "basic/grid.scss";
 
 // 动画效果
 @import "animation/flying-icon.scss";           // 飞翔的 icon 图标动画
@@ -26,3 +26,4 @@
 @import "plugins/icons/materialdesignicons.scss";   // material design icons
 @import "plugins/ant-pagination.scss";              // ant design pagination
 @import "plugins/ant-table.scss";                   // ant design table
+@import "plugins/mavon-editor.scss";                // mavon-editor markdown 编辑器, 用于 repo 描述信息编辑

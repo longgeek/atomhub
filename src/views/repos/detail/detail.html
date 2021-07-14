@@ -29,13 +29,18 @@
                                 content-class="py-4"
                                 nav-wrapper-class="col-lg-6 col-md-12 offset-md-3"
                             >
-                                <b-tab active title-item-class="m-1" v-if="repo.description">
+                                <b-tab active title-item-class="m-1">
                                     <template #title>
                                         <span class="nav-link py-2 px-5">
                                             <div class="text-center">描述信息</div>
                                         </span>
                                     </template>
-                                    <div v-html="$options.filters.toMarkDown(repo.description)"></div>
+                                    <Description
+                                        :repo="repo"
+                                        :loading="loading"
+                                        :project="project"
+                                        :getDescription="getDescription"
+                                    />
                                 </b-tab>
                                 <b-tab title-item-class="m-1">
                                     <template #title>
@@ -43,47 +48,12 @@
                                             <div class="text-center">构建历史</div>
                                         </span>
                                     </template>
-                                    <div class="table-responsive">
-                                      <table class="table mb-0">
-                                        <thead>
-                                          <tr>
-                                            <th>构建编号</th>
-                                            <th>拉取命令</th>
-                                            <th>Tags</th>
-                                            <th>大小</th>
-                                            <th>推送时间</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr v-for="(art, index) in artifacts" :key="index">
-                                            <td class="text-primary">{{ art.digest | limitTo(15) }}</td>
-                                            <td class="text-muted">
-                                                <span class="mdi mdi-content-copy h6 pointer hover-dark"
-                                                    v-if="repo.hasOwnProperty('name')"
-                                                    v-clipboard="'docker pull atomhub.org/' + repo.name + '@' + art.digest"
-                                                ></span>
-                                            </td>
-                                            <td>
-                                                <span v-for="(tag, idx) in art.tags" :key="idx">
-                                                    {{ tag.name }}<span v-if="idx != art.tags.length - 1">、</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span v-if="art.size / 1024 / 1024 > 1 && art.size / 1024 / 1024 < 1024">
-                                                    {{ (art.size / 1024 / 1024).toFixed(2) }} MB
-                                                </span>
-                                                <span v-if="art.size / 1024 / 1024 < 1">
-                                                    {{ (art.size / 1024).toFixed(2) }} KB
-                                                </span>
-                                                <span v-if="art.size / 1024 / 1024 >= 1024">
-                                                    {{ (art.size / 1024 / 1024 / 1024).toFixed(2) }} GB
-                                                </span>
-                                            </td>
-                                            <td class="text-muted">{{ art.push_time | toLocalTime }}</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
+                                    <Artifacts
+                                        :repo="repo"
+                                        :artifacts="artifacts"
+                                        :loading="loadingArtifacts"
+                                        :getArtifacts="getArtifacts"
+                                    />
                                 </b-tab>
                             </b-tabs>
                         </div>

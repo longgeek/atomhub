@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^1.7.6",
+    "mavon-editor": "^2.9.1",
     "moment": "^2.29.1",
     "v-clipboard": "^2.2.3",
     "vue-carousel": "^0.18.0",

@@ -1,0 +1,64 @@
+.v-note-wrapper {
+    margin-bottom: 20px;
+    z-index: 0 !important;
+}
+
+.v-note-wrapper .v-note-op {
+    border: 1px solid $border-color;
+}
+
+.v-note-wrapper .v-note-op .v-left-item .op-icon, .v-note-wrapper .v-note-op .v-right-item .op-icon {
+    color: $text-color !important;
+}
+
+.v-note-wrapper .v-note-panel {
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+}
+
+.v-note-wrapper .v-note-panel .v-note-show .v-show-content, .v-note-wrapper .v-note-panel .v-note-show .v-show-content-html {
+    font-size: 12px;
+    color: $text-color;
+    padding: 15px 20px !important;
+    background-color: #fff !important;
+}
+
+.v-note-wrapper .v-note-panel .v-note-edit.divarea-wrapper .content-input-wrapper {
+    padding: 15px 20px !important;
+}
+
+.v-note-wrapper .v-note-op .v-left-item .op-icon.selected, .v-note-wrapper .v-note-op .v-right-item .op-icon.selected {
+    background: #e4f2ff !important;
+}
+
+.v-note-wrapper .v-note-op .v-left-item .op-icon:hover, .v-note-wrapper .v-note-op .v-right-item .op-icon:hover {
+    background: #ebf1f7 !important;
+}
+
+.auto-textarea-wrapper .auto-textarea-input {
+    color: $text-color !important;
+}
+
+.v-note-wrapper .v-note-panel .v-note-edit.divarea-wrapper {
+    border-right: 1px solid $border-color;
+}
+
+// 导航目录
+.v-note-wrapper .v-note-panel .v-note-navigation-wrapper .v-note-navigation-title {
+    font-size: 14px !important;
+    color: $text-color !important;
+}
+
+.v-note-wrapper .v-note-panel .v-note-navigation-wrapper .v-note-navigation-title .v-note-navigation-close {
+    font-size: 12px;
+    margin-top: 18px;
+    color: $text-color;
+}
+
+// 全屏
+
+.v-note-wrapper.markdown-body.fullscreen {
+    height: 100% !important;
+    z-index: 10000 !important;
+}

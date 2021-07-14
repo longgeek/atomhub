@@ -1,0 +1,39 @@
+.modal {
+    .modal-content {
+        border-radius: $border-radius;
+        .modal-header {
+            color: #204055;
+            border-radius: 4px 4px 0 0;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: move;
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+            text-align: left;
+            border-bottom: 1px solid #e7eaec;
+
+            button span,
+            button.close {
+                color: inherit;
+                font-weight: 400;
+                opacity: 1;
+                font-size: 16px;
+                text-shadow: none;
+            }
+            button span {
+                margin-top: 3px;
+            }
+            button.close {
+                margin-top: -12px;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .modal-sm {
+        max-width: 400px;
+    }
+}

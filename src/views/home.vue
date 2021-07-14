@@ -131,7 +131,7 @@ export default {
                                 </li>
                             </ul>
                             <p class="text-muted mb-0">
-                                <a href="https://shimo.im/docs/j7jTfomMZaU6GY2n" target="_blank" class="text-primary">
+                                <a href="https://gitee.com/atomhub/opencontainerhub/blob/master/constitution/%E5%B7%A5%E4%BD%9C%E7%BB%84%E7%AB%A0%E7%A8%8B.md" target="_blank" class="text-primary">
                                     阅读我们工作组章程
                                 </a>
                             </p>
