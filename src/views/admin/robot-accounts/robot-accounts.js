@@ -1,7 +1,6 @@
 /**
- * Admin Users component
+ * Admin Robot Accounts component
  */
-import SetAdmin from "./set-admin.vue"
 import PageIntroduction from "@/components/page-introduction";
 
 const pagination = {
@@ -15,7 +14,7 @@ const pagination = {
 }
 
 export default {
-    page: { title: '用户管理' },
+    page: { title: '机器人账户' },
     data() {
         return {
             sort: '',
@@ -27,18 +26,18 @@ export default {
             searching: false,
             pagination: pagination,
             page_intro: {
-                icon: "mdi mdi-account",
-                title: '"用户管理"',
-                content: 'AtomHub 平台用户管理，可对用户设置和取消管理员操作。'
+                icon: "mdi mdi-robot",
+                title: '"机器人账户"',
+                content: 'AtomHub 平台机器人账户，可对用户设置和取消管理员操作。'
             },
         }
     },
-    components: { SetAdmin, PageIntroduction },
+    components: { PageIntroduction },
     created() {
         this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
-        for ( const field in this.$cols.admin.users ) {
-            const set = this.$cols.admin.users[field];
+        for ( const field in this.$cols.admin.robotAccounts ) {
+            const set = this.$cols.admin.robotAccounts[field];
             const col = {
                 ellipsis: true,
                 title: set.title,
@@ -57,8 +56,6 @@ export default {
             this.selectedRows = rows;
             this.selectedRowKeys = keys;
         },
-        // 设置管理员
-        tableSetAdmin() { this.$bvModal.show('set-admin') },
         // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {
             // 取消选中的行
@@ -75,10 +72,10 @@ export default {
 
             // 搜索、排序
             const params = { page: this.pagination.page, page_size: this.pagination.pageSize };
-            if (this.search) params.q = `username=~${this.search}`;
+            if (this.search) params.q = `name=~${this.search}`;
             if (this.sort) params.sort = this.sort;
 
-            this.$http.get(this.$api.admin.users(), params)
+            this.$http.get(this.$api.admin.robots(), params)
                 .then((rsp) => {
                     if (rsp.status === 200) {
                         this.table.rows = rsp.data;

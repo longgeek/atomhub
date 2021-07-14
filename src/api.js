@@ -20,6 +20,8 @@ const api = {
   admin: {
     users:        ()              => {return `${url}/users`},                                                 // 获取所有用户列表
     set_admin:    (id)            => {return `${url}/users/${id}/sysadmin`},                                  // 设置用户的管理员状态
+    robots:       ()              => {return `${url}/robots`},                                                // 获取机器人账户列表
+    groups:       (id=null)       => {return id ? `${url}/usergroups/${id}` : `${url}/usergroups`},           // 获取组列表
   },
 }
 

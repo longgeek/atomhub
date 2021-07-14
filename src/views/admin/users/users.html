@@ -24,8 +24,10 @@
                             <i class="mdi mdi-undo align-middle"></i>
                             取消管理员
                         </button>
+                        <div class="form-group float-right">
+                            <input class="form-control" placeholder="搜索用户" @keydown.13="tableData()" v-model="search" />
+                        </div>
                     </div>
-
                     <div class="card border-0">
                         <div class="card-body pt-0">
                             <a-table
@@ -72,6 +74,7 @@
                             </a-table>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

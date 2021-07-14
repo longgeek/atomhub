@@ -241,7 +241,7 @@ export default {
                         <li :class="{active: $route.name === 'repos' || $route.name === 'repos-detail'}">
                             <router-link :to="{name: 'repos'}" class="side-nav-link-ref">镜像仓库</router-link>
                         </li>
-                        <li class="has-submenu" :class="{active: $route.name === 'admin'}" v-if="user.sysadmin_flag">
+                        <li class="has-submenu" :class="{active: $route.name.startsWith('admin')}" v-if="user.sysadmin_flag">
                             <a href="javascript:void(0)" @click="onMenuClick">系统管理</a>
                             <span class="menu-arrow"></span>
                             <ul class="submenu">
@@ -251,16 +251,16 @@ export default {
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                    <router-link :to="{name: 'admin-robot-accounts'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-robot mr-2"></i>机器人账户
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                    <router-link :to="{name: 'admin-groups'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-account-multiple mr-2"></i>组管理
                                     </router-link>
                                 </li>
-                                <li>
+                                <!-- li>
                                     <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-checkbox-multiple-blank mr-2"></i>仓库管理
                                     </router-link>
@@ -299,7 +299,7 @@ export default {
                                     <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-cogs mr-2"></i>配置管理
                                     </router-link>
-                                </li>
+                                </li -->
                             </ul>
                         </li>
                     </ul>

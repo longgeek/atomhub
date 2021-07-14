@@ -3362,6 +3362,22 @@ p {
     display: block;
   }
 }
+@media (max-width: 768px) {
+  #topnav .auth-menu-btn {
+    display: block !important;
+    margin: 0 10px;
+    padding: 10px 20px;
+  }
+
+  #topnav .auth-menu-btn .dropdown .dropdown-menu.show {
+    -webkit-transform: translate3d(0px, -54px, 0px) !important;
+    transform: translate3d(0px, -54px, 0px) !important;
+  }
+
+  #topnav .navbar-toggle .lines {
+    margin-right: 5px !important;
+  }
+}
 @media (max-width: 375px) {
   #topnav .auth-menu-btn {
     display: block !important;

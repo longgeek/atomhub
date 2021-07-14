@@ -51,6 +51,18 @@ const routes = [
         component: () => import('@/views/admin/users/users.vue')
     },
     {
+        path: '/admin/robot-accounts',
+        name: 'admin-robot-accounts',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/robot-accounts/robot-accounts.vue')
+    },
+    {
+        path: '/admin/groups',
+        name: 'admin-groups',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/groups/groups.vue')
+    },
+    {
         path: '*',
         name: 'error',
         component: () => import('@/views/error')

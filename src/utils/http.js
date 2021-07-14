@@ -34,11 +34,12 @@ const http = {
             config: config,
         });
     },
-    delete(url, params={}) {
+    delete(url, params={}, config={}) {
         return request({
             url: url,
             method: 'delete',
             params: params,
+            config: config,
         });
     }
 }

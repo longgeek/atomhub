@@ -1,7 +1,8 @@
 /**
- * Admin Users component
+ * Admin Groups component
  */
-import SetAdmin from "./set-admin.vue"
+import Create from "./create.vue";
+import Remove from "./remove.vue";
 import PageIntroduction from "@/components/page-introduction";
 
 const pagination = {
@@ -15,30 +16,28 @@ const pagination = {
 }
 
 export default {
-    page: { title: '用户管理' },
+    page: { title: '组管理' },
     data() {
         return {
             sort: '',
-            search: '',
             table: { rows: [], cols: [] },
             loading: false,
             selectedRows: [],
             selectedRowKeys: [],
-            searching: false,
             pagination: pagination,
             page_intro: {
-                icon: "mdi mdi-account",
-                title: '"用户管理"',
-                content: 'AtomHub 平台用户管理，可对用户设置和取消管理员操作。'
+                icon: "mdi mdi-account-multiple",
+                title: '"组管理"',
+                content: 'AtomHub 平台组管理。'
             },
         }
     },
-    components: { SetAdmin, PageIntroduction },
+    components: { Create, Remove, PageIntroduction },
     created() {
         this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
-        for ( const field in this.$cols.admin.users ) {
-            const set = this.$cols.admin.users[field];
+        for ( const field in this.$cols.admin.groups ) {
+            const set = this.$cols.admin.groups[field];
             const col = {
                 ellipsis: true,
                 title: set.title,
@@ -57,8 +56,10 @@ export default {
             this.selectedRows = rows;
             this.selectedRowKeys = keys;
         },
-        // 设置管理员
-        tableSetAdmin() { this.$bvModal.show('set-admin') },
+        // 创建组
+        tableCreate() { this.$bvModal.show('create') },
+        // 删除组
+        tableRemove() { this.$bvModal.show('remove') },
         // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {
             // 取消选中的行
@@ -75,10 +76,9 @@ export default {
 
             // 搜索、排序
             const params = { page: this.pagination.page, page_size: this.pagination.pageSize };
-            if (this.search) params.q = `username=~${this.search}`;
             if (this.sort) params.sort = this.sort;
 
-            this.$http.get(this.$api.admin.users(), params)
+            this.$http.get(this.$api.admin.groups(), params)
                 .then((rsp) => {
                     if (rsp.status === 200) {
                         this.table.rows = rsp.data;
