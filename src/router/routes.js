@@ -45,6 +45,12 @@ const routes = [
         component: () => import('@/views/oidc-onboard.vue')
     },
     {
+        path: '/admin/projects',
+        name: 'admin-projects',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/projects/projects.vue')
+    },
+    {
         path: '/admin/users',
         name: 'admin-users',
         meta: { authRequired: true },
@@ -61,6 +67,12 @@ const routes = [
         name: 'admin-groups',
         meta: { authRequired: true },
         component: () => import('@/views/admin/groups/groups.vue')
+    },
+    {
+        path: '/admin/labels',
+        name: 'admin-labels',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/labels/labels.vue')
     },
     {
         path: '*',

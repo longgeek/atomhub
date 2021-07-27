@@ -48,7 +48,7 @@ export default {
                                     <div class="col-md-6 col-12">
                                         <div class="media features p-4">
                                             <div class="icon text-center rounded-circle mr-3 mt-2">
-                                                <i class="mdi mdi-dice-4-outline align-middle h4 mb-0"></i>
+                                                <i class="mdi mdi-dice-4-outline align-middle h4 mb-0 text-muted"></i>
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="title">中立平台</h4>
@@ -62,7 +62,7 @@ export default {
                                     <div class="col-md-6 col-12">
                                         <div class="media features p-4">
                                             <div class="icon text-center rounded-circle mr-3 mt-2">
-                                                <i class="mdi mdi-shield-check-outline align-middle h4 mb-0"></i>
+                                                <i class="mdi mdi-shield-check-outline align-middle h4 mb-0 text-muted"></i>
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="title">可信平台</h4>
@@ -76,7 +76,7 @@ export default {
                                     <div class="col-md-6 col-12">
                                         <div class="media features p-4">
                                             <div class="icon text-center rounded-circle mr-3 mt-2">
-                                                <i class="mdi mdi-nature-people align-middle h4 mb-0"></i>
+                                                <i class="mdi mdi-nature-people align-middle h4 mb-0 text-muted"></i>
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="title">共建平台</h4>
@@ -92,7 +92,7 @@ export default {
                                             <div
                                                 class="icon text-center rounded-circle mr-3 mt-2"
                                             >
-                                                <i class="mdi mdi-gate-open align-middle h4 mb-0"></i>
+                                                <i class="mdi mdi-gate-open align-middle h4 mb-0 text-muted"></i>
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="title">生态开放</h4>

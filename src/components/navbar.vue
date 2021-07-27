@@ -246,6 +246,11 @@ export default {
                             <span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li>
+                                    <router-link :to="{name: 'admin-projects'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-layers-triple mr-2"></i>项目管理
+                                    </router-link>
+                                </li>
+                                <li>
                                     <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-account mr-2"></i>用户管理
                                     </router-link>
@@ -274,13 +279,13 @@ export default {
                                     <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-view-week mr-2"></i>分布式分发
                                     </router-link>
-                                </li>
+                                </li -->
                                 <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                    <router-link :to="{name: 'admin-labels'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-tag mr-2"></i>标签
                                     </router-link>
                                 </li>
-                                <li>
+                                <!-- li>
                                     <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-hexagon-slice-5 mr-2"></i>项目定额
                                     </router-link>

@@ -1,7 +1,9 @@
-import logs from '@/columns/logs.js'
-import users from '@/columns/admin/users.js'
-import robotAccounts from '@/columns/admin/robot-accounts.js'
-import groups from '@/columns/admin/groups.js'
+import logs from '@/columns/logs.js';
+import users from '@/columns/admin/users.js';
+import robotAccounts from '@/columns/admin/robot-accounts.js';
+import groups from '@/columns/admin/groups.js';
+import projects from '@/columns/admin/projects.js';
+import labels from '@/columns/admin/labels.js';
 
 /**
  * 表格字段
@@ -12,5 +14,7 @@ export default {
         users: users,
         robotAccounts: robotAccounts,
         groups: groups,
+        projects: projects,
+        labels: labels,
     },
 }

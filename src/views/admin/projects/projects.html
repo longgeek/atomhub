@@ -1,0 +1,67 @@
+<div>
+    <Create />
+    <Remove :selects="selectedRows" />
+    <section class="section">
+        <div class="container">
+            <PageIntroduction :intro="page_intro" />
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-toolbar">
+                        <div class="loading-layer" v-if="loading"></div>
+                        <button type="button" class="btn btn-dark" @click="tableData()" :disabled="loading">
+                            <i class="mdi mdi-refresh align-middle"></i>
+                        </button>
+                        <button type="button" class="btn btn-dark" @click="tableCreate()">
+                            <i class="mdi mdi-shape-rectangle-plus align-middle"></i>
+                            新增
+                        </button>
+                        <button type="button" class="btn btn-light" @click="tableRemove()"
+                            :disabled="selectedRows.length != 1"
+                        >
+                            <i class="mdi mdi-close align-middle"></i>
+                            删除
+                        </button>
+                        <div class="form-group float-right">
+                            <input class="form-control" placeholder="搜索项目" @keydown.13="tableData()" v-model="search" />
+                        </div>
+                    </div>
+                    <div class="card border-0">
+                        <div class="card-body pt-0">
+                            <a-table
+                                class="text-norwap"
+                                :scroll="{ x: true }"
+                                :columns="table.cols"
+                                :dataSource="table.rows"
+                                :pagination="pagination"
+                                :loading="loading"
+                                :locale="locale"
+                                :rowKey="records => records.project_id"
+                                :rowSelection="{ onChange: tableOnSelect, selectedRowKeys: selectedRowKeys, }"
+                                @change="tableChange"
+                            >
+                                <template slot="project_id" slot-scope="project_id">
+                                    <span class="text-muted">{{ project_id }}</span>
+                                </template>
+                                <template slot="name" slot-scope="name">
+                                    <a class="text-primary">{{ name }}</a>
+                                </template>
+                                <template slot="metadata" slot-scope="metadata">
+                                    <span v-if="metadata.public == 'true'">公开</span>
+                                    <span v-else>私有</span>
+                                </template>
+                                <template slot="group_type" slot-scope="group_type">
+                                    <span class="text-muted" v-if="group_type == 3">OIDC</span>
+                                    <span class="text-muted" v-else>{{ group_type }}</span>
+                                </template>
+                                <template slot="creation_time" slot-scope="creation_time">
+                                    <span class="text-muted">{{ creation_time | toLocalTime }}</span>
+                                </template>
+                            </a-table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

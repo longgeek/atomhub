@@ -86,7 +86,13 @@
 <div>
     <div class="small" v-if="loading">正在加载...</div>
     <div v-if="!loading">
-        <div class="page-toolbar detail p-0 mb-3" v-if="repo && project.owner_id == user.user_id || user.sysadmin_flag">
+        <div class="page-toolbar detail p-0 mb-3"
+            v-if="
+                repo &&
+                (user && project.owner_id == user.user_id) ||
+                (user && user.sysadmin_flag)
+            "
+        >
             <button class="btn btn-dark" v-if="readonly" @click="getDescription()">
                 <i class="mdi mdi-refresh align-middle"></i>
             </button>
