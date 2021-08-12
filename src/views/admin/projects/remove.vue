@@ -2,7 +2,7 @@
     <b-modal id="remove"
         centered
         size="sm"
-        title="删除组"
+        title="删除项目"
         title-class="font-18"
         ok-title="确认"
         cancel-title="取消"
@@ -35,6 +35,10 @@
             },
             // 提交表单
             submit() {
+                if (this.selects[0].name == 'library') {
+                    this.$bvToast.toast('该项目属于平台内置项目，无法被删除', {title: '删除被拒绝', variant: 'danger'});
+                    return;
+                }
                 this.$http.delete(
                     this.$api.admin.projects(this.selects[0].project_id),
                     {},

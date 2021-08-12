@@ -1,0 +1,96 @@
+<div>
+    <Create />
+    <Remove :selects="selectedRows" />
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <PageIntroductionBreadcrumb :icon="page_intro_breadcrumb.icon" :navs="page_intro_breadcrumb.navs" />
+                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content">
+                        <b-tab active>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="bx bx-server"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">镜像仓库</span>
+                            </template>
+                            <hardware :des="des" :fit="fit" :loading="loading" :getDetail="getDetail"/>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">成员</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">标签</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">扫描器</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">P2P 预热</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">策略</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">机器人账户</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">Webhooks</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">日志</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-progress-wrench"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">配置管理</span>
+                            </template>
+                        </b-tab>
+                    </b-tabs>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

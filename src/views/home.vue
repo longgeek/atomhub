@@ -3,7 +3,7 @@
  * Home component
  */
 export default {
-    page: { title: 'AtomHub 首页' },
+    page: { title: 'AtomHub 可信镜像仓库平台' },
 };
 </script>
 
@@ -18,12 +18,12 @@ export default {
             <div class="row mt-5 mt-md-4">
                 <div class="col-12">
                     <div class="title-heading">
-                        <h4 class="display-4 mb-4 font-weight-bold text-white title-dark">
+                        <h5 class="display-4 mb-4 font-weight-bold text-white title-dark">
                             AtomHub<br />
                             可信镜像仓库平台
-                        </h4>
+                        </h5>
                         <p class="para-desc text-white-50">
-                            基础镜像由 AtomHub (Open Container Hub) 官方维护，通过溯源各开源软件上游社区，使用开源社区 Dockerfile 进行构建
+                            在云原生以及云原生应用发布趋势的背景下，由 TOC 提名，基金会主持建设的可信镜像平台。致力于为国内开发者、企业提供安全监测的容器镜像托管，也是基金会未来服务各类入孵项目的平台。
                         </p>
                         <div class="mt-4 pt-2">
                             <router-link :to="{name: 'repos'}" class="btn btn-lg btn-dark">
@@ -48,17 +48,55 @@ export default {
                                     <div class="col-md-6 col-12">
                                         <div class="media features p-4">
                                             <div class="icon text-center rounded-circle mr-3 mt-2">
+                                                <i class="mdi mdi-office-building align-middle h4 mb-0 text-muted"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="title">镜像来源</h4>
+                                                <p class="text-muted para mb-0">
+                                                    基础镜像由 AtomHub (Open Container Hub) 官方维护，通过溯源各开源软件上游社区，使用开源社区 Dockerfile 进行构建
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="media features p-4">
+                                            <div class="icon text-center rounded-circle mr-3 mt-2">
+                                                <i class="mdi mdi-gate-open align-middle h4 mb-0 text-muted"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="title">生态开放</h4>
+                                                <p class="text-muted para mb-0">
+                                                    用户可上传自定义容器镜像；涉及新增的开源项目，托管到基金会，实现从技术到平台运营的开放性
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="media features p-4">
+                                            <div class="icon text-center rounded-circle mr-3 mt-2">
+                                                <i class="mdi mdi-account-switch align-middle h4 mb-0 text-muted"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="title">互认机制</h4>
+                                                <p class="text-muted para mb-0">
+                                                    由基金会牵头，与其他基金会和项目生态积极接洽，指定基金会层面的 CLA 互认机制
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="media features p-4">
+                                            <div class="icon text-center rounded-circle mr-3 mt-2">
                                                 <i class="mdi mdi-dice-4-outline align-middle h4 mb-0 text-muted"></i>
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="title">中立平台</h4>
                                                 <p class="text-muted para mb-0">
-                                                    由开放原子基金会牵头发起，初期由基金会成员联合建设，后续考虑社区化管理维护（或IT外包）实现社区自治
+                                                    由开放原子基金会牵头发起，初期由基金会成员联合建设，后续考虑社区化管理维护（或 IT 外包）实现社区自治
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 col-12">
                                         <div class="media features p-4">
                                             <div class="icon text-center rounded-circle mr-3 mt-2">
@@ -72,7 +110,6 @@ export default {
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 col-12">
                                         <div class="media features p-4">
                                             <div class="icon text-center rounded-circle mr-3 mt-2">
@@ -82,22 +119,6 @@ export default {
                                                 <h4 class="title">共建平台</h4>
                                                 <p class="text-muted para mb-0">
                                                     发起官方的基金会、项目团队、开发者共同参与建设
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-12">
-                                        <div class="media features p-4">
-                                            <div
-                                                class="icon text-center rounded-circle mr-3 mt-2"
-                                            >
-                                                <i class="mdi mdi-gate-open align-middle h4 mb-0 text-muted"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="title">生态开放</h4>
-                                                <p class="text-muted para mb-0">
-                                                    用户可上传自定义容器镜像；涉及新增的开源项目，托管到基金会，实现从技术到平台运营的开放性
                                                 </p>
                                             </div>
                                         </div>

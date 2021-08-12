@@ -1,0 +1,43 @@
+.tooltip {
+    font-size: 12px;
+    font-family: inherit;
+
+    .tooltip-inner {
+        padding: 15px;
+        text-align: left;
+        max-width: 100%;
+        background-color: $text-color;
+    }
+}
+
+.bs-tooltip-top {
+  .arrow {
+    &::before {
+      border-top-color: $text-color;
+    }
+  }
+}
+
+.bs-tooltip-right {
+  .arrow {
+    &::before {
+      border-right-color: $text-color;
+    }
+  }
+}
+
+.bs-tooltip-bottom {
+  .arrow {
+    &::before {
+      border-bottom-color: $text-color;
+    }
+  }
+}
+
+.bs-tooltip-left {
+  .arrow {
+    &::before {
+      border-left-color: $text-color;
+    }
+  }
+}

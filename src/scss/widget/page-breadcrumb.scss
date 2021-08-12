@@ -1,0 +1,51 @@
+.page-breadcrumb {
+    padding: 12px 0;
+
+    .breadcrumb {
+        margin-bottom: 0;
+        background-color: transparent;
+        padding: 0;
+
+        .breadcrumb-item {
+            font-size: 12px;
+            font-weight: inherit;
+
+            a {
+                color: $text-color;
+            }
+        }
+
+        .breadcrumb-item.active {
+            opacity: 0.6;
+            color: $text-color !important;
+        }
+
+        .breadcrumb-item + .breadcrumb-item {
+            padding-left: 0.5rem;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            font-family: "Material Design Icons";
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            display: inline-block;
+            padding-right: 0.5rem;
+            color: #74788d;
+            content: "/";
+        }
+        .breadcrumb-item:after {
+            display: none;
+        }
+    }
+}
+
+.page-introduction {
+    .page-breadcrumb {
+        display: inline;
+        padding: 0;
+
+        .breadcrumb {
+            display: inline;
+        }
+    }
+}

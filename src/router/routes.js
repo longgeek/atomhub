@@ -51,6 +51,12 @@ const routes = [
         component: () => import('@/views/admin/projects/projects.vue')
     },
     {
+        path: '/admin/projects/:project_id/',
+        name: 'admin-projects-detail',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/projects/detail/detail.vue')
+    },
+    {
         path: '/admin/users',
         name: 'admin-users',
         meta: { authRequired: true },

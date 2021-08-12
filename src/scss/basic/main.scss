@@ -402,6 +402,10 @@ small {
   font-size: 90%;
 }
 
+.card {
+    border-color: $border-color;
+}
+
 .card .card-body {
   padding: 1.5rem;
 }

@@ -7,6 +7,7 @@
 @import "basic/global.scss";                    // 全局 CSS 样式
 @import "basic/animation.scss";                 // Basic 动画
 @import "basic/grid.scss";
+@import "basic/tooltip.scss";
 
 // 动画效果
 @import "animation/flying-icon.scss";           // 飞翔的 icon 图标动画
@@ -20,6 +21,10 @@
 @import "widget/page-toolbar.scss";
 @import "widget/page-introduction.scss";
 @import "widget/lables.scss";
+@import "widget/base-item.scss";
+@import "widget/page-tabs.scss";
+@import "widget/page-breadcrumb.scss";
+@import "widget/page-statistics.scss";
 
 // 插件
 @import "plugins/form-wizard.scss";                 // form 步骤表单

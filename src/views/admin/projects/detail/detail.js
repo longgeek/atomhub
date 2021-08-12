@@ -1,11 +1,8 @@
 /**
  * Admin Projects component
  */
-import Create from "./create.vue";
-import Remove from "./remove.vue";
-import Quota from "./quota.vue";
-import QuotaGlobal from "./quota-global.vue";
-import PageIntroduction from "@/components/page-introduction";
+
+import PageIntroductionBreadcrumb from "@/components/page-introduction-breadcrumb";
 
 const pagination = {
     total: 0,
@@ -19,22 +16,8 @@ const pagination = {
 
 export default {
     page: { title: '项目管理' },
-    components: { Create, Remove, Quota, QuotaGlobal, PageIntroduction },
     data() {
         return {
-            quotas: [],
-            statistics: {
-                private_project_count: 0,
-                private_repo_count: 0,
-                public_project_count: 0,
-                public_repo_count: 0,
-                total_project_count: 0,
-                total_repo_count: 0,
-                total_storage_consumption: 0
-            },
-            configurations: {
-                storage_per_project: { value: 0 },
-            },
             sort: '',
             search: '',
             table: { rows: [], cols: [] },
@@ -42,13 +25,16 @@ export default {
             selectedRows: [],
             selectedRowKeys: [],
             pagination: pagination,
-            page_intro: {
+            page_intro_breadcrumb: {
                 icon: "mdi mdi-layers-triple",
-                title: '"项目管理"',
-                content: 'AtomHub 平台项目管理。'
+                navs: [
+                    { text: "项目管理", to: { name: "server", params: { idc_id: this.$route.query.idc_id } } },
+                    { text: "镜像详情" },
+                ],
             },
         }
     },
+    components: { PageIntroductionBreadcrumb },
     created() {
         this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
@@ -76,10 +62,6 @@ export default {
         tableCreate() { this.$bvModal.show('create') },
         // 删除组
         tableRemove() { this.$bvModal.show('remove') },
-        // 修改单个项目配额
-        editQuota() { this.$bvModal.show('quota') },
-        // 修改所有项目默认配额
-        editQuotaGlobal() { this.$bvModal.show('quota-global') },
         // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {
             // 取消选中的行
@@ -104,9 +86,6 @@ export default {
                     if (rsp.status === 200) {
                         this.table.rows = rsp.data;
                         this.pagination.total = rsp.headers['x-total-count'];
-                        this.getQuotas();
-                        this.getStatistics();
-                        this.getConfigurations();
                     } else {
                         this.$bvToast.toast(rsp.data.msg, {title: '获取列表错误', variant: 'danger'});
                     }
@@ -130,39 +109,6 @@ export default {
 
             // 触发 API 调用
             this.tableData(pagination.current, pagination.pageSize);
-        },
-        // 获取配额信息
-        getQuotas() {
-            this.$http.get(this.$api.admin.quotas())
-                .then((rsp) => {
-                    if (rsp.status === 200) {
-                        this.quotas = rsp.data;
-                    } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取配额信息错误', variant: 'danger'});
-                    }
-            })
-        },
-        // 获取统计信息
-        getStatistics() {
-            this.$http.get(this.$api.admin.statistics())
-                .then((rsp) => {
-                    if (rsp.status === 200) {
-                        this.statistics = rsp.data;
-                    } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取统计信息错误', variant: 'danger'});
-                    }
-            })
-        },
-        // 获取配置信息
-        getConfigurations() {
-            this.$http.get(this.$api.admin.configurations())
-                .then((rsp) => {
-                    if (rsp.status === 200) {
-                        this.configurations = rsp.data;
-                    } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取配置信息错误', variant: 'danger'});
-                    }
-            })
         },
     },
 };
