@@ -1,5 +1,5 @@
 .page-breadcrumb {
-    padding: 12px 0;
+    padding: 15px 0;
 
     .breadcrumb {
         margin-bottom: 0;
@@ -9,6 +9,7 @@
         .breadcrumb-item {
             font-size: 12px;
             font-weight: inherit;
+            text-transform: inherit;
 
             a {
                 color: $text-color;

@@ -241,7 +241,7 @@ export default {
                         <li :class="{active: $route.name === 'repos' || $route.name === 'repos-detail'}">
                             <router-link :to="{name: 'repos'}" class="side-nav-link-ref">镜像仓库</router-link>
                         </li>
-                        <li class="has-submenu" :class="{active: $route.name.startsWith('admin')}" v-if="user.sysadmin_flag">
+                        <li class="has-submenu" :class="{active: $route.hasOwnProperty('name') && $route.name.startsWith('admin')}" v-if="user.sysadmin_flag">
                             <a href="javascript:void(0)" @click="onMenuClick">系统管理</a>
                             <span class="menu-arrow"></span>
                             <ul class="submenu">

@@ -4,6 +4,7 @@
  * Account-profile component
  */
 export default {
+    page: { title: '个人主页' },
     data() {
         return {
             nav: 'repo',

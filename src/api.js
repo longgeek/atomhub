@@ -22,6 +22,7 @@ const api = {
   },
   admin: {
     quotas:         (id=null)       => {return id ? `${url}/quotas/${id}` : `${url}/quotas`},                   // 获取配额信息
+    summary:        (id)            => {return `${url}/projects/${id}/summary`},                                // 获取项目统计信息
     statistics:     ()              => {return `${url}/statistics`},                                            // 获取统计信息
     configurations: ()              => {return `${url}/configurations`},                                        // 获取配置信息
     projects:       ()              => {return `${url}/projects`},                                              // 获取所有项目列表

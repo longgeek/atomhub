@@ -6,6 +6,7 @@ import Artifacts from './artifacts.vue';
 import Description from './description.vue';
 
 export default {
+    page: { title: '镜像详情' },
     data() {
         return {
             repo: {},

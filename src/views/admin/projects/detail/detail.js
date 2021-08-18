@@ -2,113 +2,80 @@
  * Admin Projects component
  */
 
-import PageIntroductionBreadcrumb from "@/components/page-introduction-breadcrumb";
-
-const pagination = {
-    total: 0,
-    page: 1,
-    pageSize: 10,
-    showSizeChanger: true,
-    showQuickJumper: false,
-    pageSizeOptions: ['10', '20', '50', '100'],
-    showTotal: total => `合计: ${total} 条`,
-}
+import Basic from "./basic.vue";
+import PageBreadcrumb from "@/components/page-breadcrumb";
 
 export default {
-    page: { title: '项目管理' },
+    page: { title: '项目详情' },
+    created() { this.init() },
+    components: { Basic, PageBreadcrumb },
     data() {
         return {
-            sort: '',
-            search: '',
-            table: { rows: [], cols: [] },
-            loading: false,
-            selectedRows: [],
-            selectedRowKeys: [],
-            pagination: pagination,
-            page_intro_breadcrumb: {
-                icon: "mdi mdi-layers-triple",
+            des: {name: ''},
+            summary: {},
+            // tabs 作为功能标签从左至右排序顺序
+            tabs: {
+                basic: 0,
+                repos: 1,
+            },
+            tabIndex: null,
+            page_breadcrumb: {
                 navs: [
-                    { text: "项目管理", to: { name: "server", params: { idc_id: this.$route.query.idc_id } } },
-                    { text: "镜像详情" },
+                    {text: "系统管理"},
+                    {text: "项目管理", to: {name: "admin-projects"}},
+                    {text: "项目详情"},
                 ],
             },
         }
     },
-    components: { PageIntroductionBreadcrumb },
-    created() {
-        this.user = JSON.parse(localStorage.getItem('user'));
-        // 生成 table column
-        for ( const field in this.$cols.admin.projects ) {
-            const set = this.$cols.admin.projects[field];
-            const col = {
-                ellipsis: true,
-                title: set.title,
-                sorter: set.hasOwnProperty('sorter') ? set.sorter : true,
-                fixed: set.hasOwnProperty('fixed') ? set.fixed : false,
-                dataIndex: set.dataIndex || field,
-                scopedSlots: set.scopedSlots || { customRender: field },
-            };
-            this.table.cols.push(col);
+    watch: {
+        // 监听激活标签
+        // 标签激活时，自动修改 URL 路径
+        tabIndex () {
+            for (let i in Object.keys(this.tabs)) {
+                const key = Object.keys(this.tabs)[i];
+                if (this.tabs[key] == this.tabIndex && this.$route.params.tab != key) {
+                    this.$router.push({
+                        name: 'admin-projects-detail',
+                        params: {
+                            project_id: this.$route.params.project_id,
+                            tab: key
+                        }
+                    });
+                }
+            }
         }
-        this.tableData();
     },
     methods: {
-        // 选中表格
-        tableOnSelect(keys, rows) {
-            this.selectedRows = rows;
-            this.selectedRowKeys = keys;
-        },
-        // 创建组
-        tableCreate() { this.$bvModal.show('create') },
-        // 删除组
-        tableRemove() { this.$bvModal.show('remove') },
-        // 获取列表
-        tableData(page=pagination.page, page_size=pagination.pageSize) {
-            // 取消选中的行
-            this.selectedRowKeys = [];
-            this.pagination = { ...pagination };
-
-            // page 为切换分页参数
-            // page_size 为显示每页多少条参数
-            this.pagination.page = page;
-            this.pagination.pageSize = page_size;
-
-            if ( this.loading )  return;
+        init() {
             this.loading = true;
-
-            // 搜索、排序
-            const params = { page: this.pagination.page, page_size: this.pagination.pageSize };
-            if (this.search) params.q = `name=~${this.search}`;
-            if (this.sort) params.sort = this.sort;
-
-            this.$http.get(this.$api.admin.projects(), params)
-                .then((rsp) => {
+            // 根据 URL 参数激活当前标签卡
+            this.$route.params.tab ? this.tabIndex = this.tabs[this.$route.params.tab] : this.tabIndex = 0;
+            this.getDetail();
+        },
+        // 获取项目详细信息
+        getDetail() {
+            this.$http.get(this.$api.admin.projects(this.$route.params.project_id))
+                .then(rsp => {
                     if (rsp.status === 200) {
-                        this.table.rows = rsp.data;
-                        this.pagination.total = rsp.headers['x-total-count'];
+                        this.des = rsp.data;
+                        this.page_breadcrumb.navs[2].text = `${this.des.name} 项目详情`;
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取列表错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp.data.msg, {title: '获取项目详情错误', variant: 'danger'});
                     }
                     this.loading = false;
-            })
-        },
-        // 表格变化处理动作
-        tableChange(pagination, filters, sorter) {
-            const pager = { ...this.pagination };
-            pager.current = pagination.current;
-            this.pagination = pager;
-
-            // 排序
-            if ( sorter.order == 'ascend' ) {
-                this.sort = `${sorter.field}`;
-            } else if ( sorter.order == 'descend' ) {
-                this.sort = `-${sorter.field}`;
-            } else {
-                this.sort = '';
-            }
-
-            // 触发 API 调用
-            this.tableData(pagination.current, pagination.pageSize);
+                })
+            // 获取项目概览信息
+            this.loading = true;
+            this.$http.get(this.$api.admin.summary(this.$route.params.project_id))
+                .then(rsp => {
+                    if (rsp.status === 200) {
+                        this.summary = rsp.data;
+                    } else {
+                        this.$bvToast.toast(rsp.data.msg, {title: '获取项目概览信息错误', variant: 'danger'});
+                    }
+                    this.loading = false;
+                })
         },
     },
 };

@@ -1,25 +1,34 @@
 <div>
     <Create />
     <Remove :selects="selectedRows" />
-    <section class="section">
+    <section class="pt-navbar pb-4 projects-detail-page">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <PageIntroductionBreadcrumb :icon="page_intro_breadcrumb.icon" :navs="page_intro_breadcrumb.navs" />
-                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content">
-                        <b-tab active>
+                    <PageBreadcrumb :navs="page_breadcrumb.navs" v-if="!loading" />
+                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content" v-model="tabIndex">
+                        <b-tab lazy>
                             <template v-slot:title>
                                 <span class="d-inline-block mr-2">
-                                    <i class="bx bx-server"></i>
+                                    <i class="mdi mdi-information-outline"></i>
                                 </span>
-                                <span class="d-none d-sm-inline-block">镜像仓库</span>
+                                <span class="d-none d-sm-inline-block">概要</span>
                             </template>
-                            <hardware :des="des" :fit="fit" :loading="loading" :getDetail="getDetail"/>
+                            <Basic :des="des" :loading="loading" :summary="summary" v-if="tabIndex == 0" />
                         </b-tab>
                         <b-tab lazy>
                             <template v-slot:title>
                                 <span class="d-inline-block mr-2">
-                                    <i class="mdi mdi-progress-wrench"></i>
+                                    <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">镜像仓库</span>
+                            </template>
+                            <Hardware :des="des" :fit="fit" :loading="loading" :getDetail="getDetail"/>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-account-multiple"></i>
                                 </span>
                                 <span class="d-none d-sm-inline-block">成员</span>
                             </template>

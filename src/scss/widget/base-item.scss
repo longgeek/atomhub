@@ -12,9 +12,15 @@
     transition-timing-function: ease-in-out!important;
 }
 .base-item.gray {
-    background: $gray;
+    background: $light;
     box-shadow: none;
     color: $text-color;
+}
+.base-item.no-shadow {
+    box-shadow: none;
+}
+.base-item.border {
+    border: 1px solid $border-color !important;
 }
 .base-item .title {
     padding: 14px 20px;

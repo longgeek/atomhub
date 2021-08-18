@@ -185,15 +185,11 @@
                                     <router-link
                                         :to="{name: 'admin-projects-detail', params: {project_id: row.project_id}}"
                                         class="text-primary"
-                                    >{{ name }}</router-link>
+                                    ><b>{{ name }}</b></router-link>
                                 </template>
                                 <template slot="metadata" slot-scope="metadata">
                                     <span v-if="metadata.public == 'true'">公开</span>
                                     <span v-else>私有</span>
-                                </template>
-                                <template slot="group_type" slot-scope="group_type">
-                                    <span class="text-muted" v-if="group_type == 3">OIDC</span>
-                                    <span class="text-muted" v-else>{{ group_type }}</span>
                                 </template>
                                 <template slot="update_time" slot-scope="update_time, row">
                                     <span class="text-muted" v-for="(quota, index) in quotas" :key="index">
