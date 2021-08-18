@@ -1,32 +1,19 @@
 <script>
 /**
- * 镜像详情-概要
+ * 概要 - 项目详情
  */
 export default {
+    page: { title: '概要 - 项目详情' },
     props: {
         des: { type: Object },
         loading: { type: Boolean },
         summary: { type: Object },
-    },
-    data: {
-        return: {
-            summary: {},
-            loading: false,
-        }
+        getDetail: { type: Function },
     },
     methods: {
-        // 获取镜像详细信息
-        getSummary() {
+        refresh() {
             this.loading = true;
-            this.$http.get(this.$api.admin.summary(this.$route.params.project_id))
-                .then(rsp => {
-                    if (rsp.status === 200) {
-                        this.summary = rsp.data;
-                    } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取项目概览信息错误', variant: 'danger'});
-                    }
-                    this.loading = false;
-                })
+            this.getDetail();
         },
     },
 };
@@ -42,7 +29,7 @@ export default {
             <div class="col-12">
                 <div class="page-toolbar pt-0 pl-0">
                     <div class="loading-layer" v-if="loading"></div>
-                    <button type="button" class="btn btn-dark" @click="getSummary()" :disabled="loading">
+                    <button type="button" class="btn btn-dark" @click="refresh()" :disabled="loading">
                         <i class="mdi mdi-refresh align-middle"></i>
                     </button>
                     <button type="button" class="btn btn-dark" disabled>

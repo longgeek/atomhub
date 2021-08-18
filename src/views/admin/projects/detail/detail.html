@@ -14,7 +14,7 @@
                                 </span>
                                 <span class="d-none d-sm-inline-block">概要</span>
                             </template>
-                            <Basic :des="des" :loading="loading" :summary="summary" v-if="tabIndex == 0" />
+                            <Basic :des="des" :loading="loading" :summary="summary" :getDetail="getDetail" v-if="tabIndex == 0" />
                         </b-tab>
                         <b-tab lazy>
                             <template v-slot:title>
@@ -23,7 +23,7 @@
                                 </span>
                                 <span class="d-none d-sm-inline-block">镜像仓库</span>
                             </template>
-                            <Hardware :des="des" :fit="fit" :loading="loading" :getDetail="getDetail"/>
+                            <Repos :des="des" :loading="loading" :summary="summary" :getDetail="getDetail" v-if="tabIndex == 1 && des.name" />
                         </b-tab>
                         <b-tab lazy>
                             <template v-slot:title>
