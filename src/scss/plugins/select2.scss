@@ -1,0 +1,80 @@
+//
+// Select2.scss
+//
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
+.multiselect__select:before {
+    top: 60%;
+}
+
+.multiselect__tags {
+  color: inherit !important;
+  border: 1px solid $border-color !important;
+  font-size: 12px;
+  padding-top: 10px;
+  padding-left: 16px;
+  border-radius: $border-radius;
+}
+
+.multiselect__placeholder {
+  padding-top: 0 !important;
+  margin-bottom: 0 !important;
+  color: $gray !important
+}
+
+.multiselect__input {
+  margin-bottom: 0 !important;
+}
+
+.multiselect__single {
+  padding-left: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.multiselect__tag {
+  background-color: $primary !important;
+  margin-bottom: 0 !important;
+}
+
+.multiselect__tag-icon:after {
+  color: $light !important;
+}
+
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+  font-size: 12px !important;
+}
+
+.multiselect__input,
+.multiselect__single {
+  line-height: 1.8;
+  background-color: #fff !important;
+}
+
+.multiselect__content-wrapper {
+  background-color: #fff !important;
+  border: 1px solid $border-color !important;
+}
+
+.mx-input::placeholder {
+  color: $muted;
+}
+
+.multiselect__input,
+.mx-calendar-icon,
+.mx-datepicker-btn-confirm,
+.multiselect__option {
+  color: inherit !important;
+}
+
+
+.multiselect__option--highlight,
+.multiselect__option--highlight:after {
+  background: $primary !important;
+  color: $white !important;
+}
+
+.multiselect.is-invalid .multiselect__tags {
+    border-color: $danger !important;
+}

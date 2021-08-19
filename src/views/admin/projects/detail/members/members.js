@@ -1,9 +1,9 @@
 /**
- * Admin Labels component
+ * Admin Groups component
  */
-import Create from "./create.vue";
 import Remove from "./remove.vue";
-import PageIntroduction from "@/components/page-introduction";
+import AddUser from "./add-user.vue";
+import AddGroup from "./add-group.vue";
 
 const pagination = {
     total: 0,
@@ -16,28 +16,28 @@ const pagination = {
 }
 
 export default {
-    page: { title: '标签管理' },
+    page: { title: '成员 - 项目详情' },
+    props: {
+        des: { type: Object },
+        loading: { type: Boolean },
+        getDetail: { type: Function },
+    },
     data() {
         return {
             sort: '',
+            search: '',
             table: { rows: [], cols: [] },
             loading: false,
             selectedRows: [],
             selectedRowKeys: [],
             pagination: pagination,
-            page_intro: {
-                icon: "mdi mdi-tag",
-                title: '"标签管理"',
-                content: 'AtomHub 平台标签管理。'
-            },
         }
     },
-    components: { Create, Remove, PageIntroduction },
+    components: { Remove, AddUser, AddGroup },
     created() {
-        this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
-        for ( const field in this.$cols.admin.labels ) {
-            const set = this.$cols.admin.labels[field];
+        for ( const field in this.$cols.admin.projectsMembers ) {
+            const set = this.$cols.admin.projectsMembers[field];
             const col = {
                 ellipsis: true,
                 title: set.title,
@@ -56,9 +56,11 @@ export default {
             this.selectedRows = rows;
             this.selectedRowKeys = keys;
         },
-        // 创建组
-        tableCreate() { this.$bvModal.show('create') },
-        // 删除组
+        // 添加用户
+        addUser() { this.$bvModal.show('add-user') },
+        // 添加组
+        addGroup() { this.$bvModal.show('add-group') },
+        // 移除用户
         tableRemove() { this.$bvModal.show('remove') },
         // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {
@@ -71,20 +73,15 @@ export default {
             this.pagination.page = page;
             this.pagination.pageSize = page_size;
 
-            if ( this.loading )  return;
-            this.loading = true;
-
             // 搜索、排序
-            const params = {
-                page: this.pagination.page,
-                page_size: this.pagination.pageSize,
-                scope: 'g',
-                project_id: 0,
-                sort: '-creation_time',
-            };
+            const params = { page: this.pagination.page, page_size: this.pagination.pageSize };
+            if (this.search) params.q = `entity_name=~${this.search}`;
             if (this.sort) params.sort = this.sort;
 
-            this.$http.get(this.$api.admin.labels(), params)
+            if (this.loading) return;
+            this.loading = true;
+
+            this.$http.get(this.$api.projects.members(this.des.project_id), params)
                 .then((rsp) => {
                     if (rsp.status === 200) {
                         this.table.rows = rsp.data;

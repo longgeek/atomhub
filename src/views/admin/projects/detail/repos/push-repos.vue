@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="create"
+    <b-modal id="push-repos"
         centered
         size="md"
         title="推送镜像"
@@ -8,6 +8,8 @@
         cancel-title="取消"
         ok-variant="dark"
         cancel-variant="outline-dark"
+        no-close-on-backdrop
+        no-close-on-esc
     >
         <p><b>Docker 推送命令</b></p>
         <p>在项目中标记镜像：</p>

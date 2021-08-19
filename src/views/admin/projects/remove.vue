@@ -8,6 +8,8 @@
         cancel-title="取消"
         ok-variant="dark"
         cancel-variant="outline-dark"
+        no-close-on-backdrop
+        no-close-on-esc
         @ok="ok"
         @show="show"
         v-if="selects.length"
@@ -48,7 +50,7 @@
                         this.$bvToast.toast('删除成功', {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '删除失败', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '删除失败', variant: 'danger'});
                     }
                 })
                 this.$nextTick(() => { this.$bvModal.hide('remove') });   // 关闭 modal

@@ -39,12 +39,15 @@ import Vuelidate from 'vuelidate';
 import Clipboard from 'v-clipboard';
 import { Table, Pagination } from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.min.css';
+import Multiselect from 'vue-multiselect';
 
 var VueScrollTo = require('vue-scrollto');
 Vue.config.productionTip = false;
 
 moment.locale('zh-cn');
 Vue.prototype.$moment = moment;
+
+Vue.component('multiselect', Multiselect);
 
 Vue.component('v-gravatar', Gravatar);
 Vue.prototype.$gravatar = {

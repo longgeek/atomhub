@@ -59,7 +59,7 @@
                     this.getDescription();
                     this.$bvToast.toast('保存镜像描述信息成功', {title: '提示', variant: 'primary'});
                 } else {
-                    this.$bvToast.toast(rsp.data.msg, {title: '提示', variant: 'danger'});
+                    this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '提示', variant: 'danger'});
                 }
             })
         },
@@ -147,6 +147,8 @@
             cancel-title="取消"
             ok-variant="dark"
             cancel-variant="outline-dark"
+            no-close-on-backdrop
+            no-close-on-esc
             @ok="saveOk"
         >
             <div class="alert alert-primary mb-0">
@@ -163,6 +165,8 @@
             cancel-title="取消"
             ok-variant="dark"
             cancel-variant="outline-dark"
+            no-close-on-backdrop
+            no-close-on-esc
             @ok="cancelOk"
         >
             <div class="alert alert-danger mb-0">

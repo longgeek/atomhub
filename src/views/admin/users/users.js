@@ -83,7 +83,7 @@ export default {
                         this.table.rows = rsp.data;
                         this.pagination.total = rsp.headers['x-total-count'];
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取列表错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取列表错误', variant: 'danger'});
                     }
                     this.loading = false;
             })

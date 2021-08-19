@@ -108,7 +108,7 @@ export default {
                         this.getStatistics();
                         this.getConfigurations();
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取列表错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取列表错误', variant: 'danger'});
                     }
                     this.loading = false;
             })
@@ -138,7 +138,7 @@ export default {
                     if (rsp.status === 200) {
                         this.quotas = rsp.data;
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取配额信息错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取配额信息错误', variant: 'danger'});
                     }
             })
         },
@@ -149,7 +149,7 @@ export default {
                     if (rsp.status === 200) {
                         this.statistics = rsp.data;
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取统计信息错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取统计信息错误', variant: 'danger'});
                     }
             })
         },
@@ -160,7 +160,7 @@ export default {
                     if (rsp.status === 200) {
                         this.configurations = rsp.data;
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取配置信息错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取配置信息错误', variant: 'danger'});
                     }
             })
         },

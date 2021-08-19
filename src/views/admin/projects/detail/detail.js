@@ -4,12 +4,13 @@
 
 import Basic from "./basic.vue";
 import Repos from "./repos/repos.vue";
+import Members from "./members/members.vue";
 import PageBreadcrumb from "@/components/page-breadcrumb";
 
 export default {
     page: { title: '项目详情' },
     created() { this.init() },
-    components: { Basic, Repos, PageBreadcrumb },
+    components: { Basic, Repos, Members, PageBreadcrumb },
     data() {
         return {
             des: {name: ''},
@@ -18,6 +19,7 @@ export default {
             tabs: {
                 basic: 0,
                 repos: 1,
+                members: 2,
             },
             tabIndex: null,
             page_breadcrumb: {
@@ -63,7 +65,7 @@ export default {
                         this.page_breadcrumb.navs[2].text = `${this.des.name} 项目详情`;
                         this.getSummary();
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取项目详情错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取项目详情错误', variant: 'danger'});
                     }
                     this.loading = false;
                 })
@@ -75,7 +77,7 @@ export default {
                     if (rsp.status === 200) {
                         this.summary = rsp.data;
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取项目概览信息错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取项目概览信息错误', variant: 'danger'});
                     }
                     this.loading = false;
                 })

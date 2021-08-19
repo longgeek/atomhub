@@ -9,6 +9,8 @@
         cancel-title="取消"
         ok-variant="dark"
         cancel-variant="outline-dark"
+        no-close-on-backdrop
+        no-close-on-esc
         @ok="ok"
         @show="show"
     >
@@ -105,7 +107,7 @@
                         this.$bvToast.toast(`创建标签 ${this.form.name} 成功`, {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '创建失败', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '创建失败', variant: 'danger'});
                     }
                 })
                 this.$nextTick(() => { this.$bvModal.hide('create') });   // 关闭 modal

@@ -1,8 +1,8 @@
 /**
- * Admin Groups component
+ * Admin Projects component
  */
-import Create from "./create.vue";
 import Remove from "./remove.vue";
+import PushRepos from "./push-repos.vue";
 
 const pagination = {
     total: 0,
@@ -19,7 +19,6 @@ export default {
     props: {
         des: { type: Object },
         loading: { type: Boolean },
-        summary: { type: Object },
         getDetail: { type: Function },
     },
     data() {
@@ -33,7 +32,7 @@ export default {
             pagination: pagination,
         }
     },
-    components: { Create, Remove },
+    components: { Remove, PushRepos },
     created() {
         // 生成 table column
         for ( const field in this.$cols.admin.projectsRepos ) {
@@ -56,9 +55,9 @@ export default {
             this.selectedRows = rows;
             this.selectedRowKeys = keys;
         },
-        // 创建组
-        tableCreate() { this.$bvModal.show('create') },
-        // 删除组
+        // 推送镜像
+        pushRepos() { this.$bvModal.show('push-repos') },
+        // 删除镜像
         tableRemove() { this.$bvModal.show('remove') },
         // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {
@@ -85,7 +84,7 @@ export default {
                         this.table.rows = rsp.data;
                         this.pagination.total = rsp.headers['x-total-count'];
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '获取列表错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取列表错误', variant: 'danger'});
                     }
                     this.loading = false;
             })

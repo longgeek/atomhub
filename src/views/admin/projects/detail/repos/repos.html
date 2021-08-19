@@ -1,5 +1,5 @@
 <div class="p-2">
-    <Create />
+    <PushRepos />
     <Remove :des="des" :selects="selectedRows" />
     <div class="loading-text" v-if="loading">
         <p>正在加载...</p>
@@ -11,8 +11,8 @@
                 <button type="button" class="btn btn-dark" @click="tableData()" :disabled="loading">
                     <i class="mdi mdi-refresh align-middle"></i>
                 </button>
-                <button type="button" class="btn btn-dark" @click="tableCreate()">
-                    <i class="mdi mdi-shape-rectangle-plus align-middle"></i>
+                <button type="button" class="btn btn-dark" @click="pushRepos()">
+                    <i class="mdi mdi-upload"></i>
                     推送镜像
                 </button>
                 <button type="button" class="btn btn-light" @click="tableRemove()"

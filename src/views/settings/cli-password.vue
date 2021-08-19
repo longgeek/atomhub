@@ -31,7 +31,7 @@ export default {
                     this.user.oidc_user_meta.secret = this.secret;
                     localStorage.setItem('user', JSON.stringify(this.user));
                 } else {
-                    this.$bvToast.toast(rsp.data.msg, {title: '修改 Cli 密码失败', variant: 'danger'});
+                    this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '修改 Cli 密码失败', variant: 'danger'});
                 }
             }).catch(error => {
                 console.log(error);
@@ -97,6 +97,8 @@ export default {
                 ok-variant="dark"
                 cancel-variant="outline-dark"
                 cancel-title="取消"
+                no-close-on-backdrop
+                no-close-on-esc
                 @ok="submit"
             >确定需要重新设置 Cli 密码吗，重新设置后，就的 Cli 密码将会被弃用。</b-modal>
         </div>

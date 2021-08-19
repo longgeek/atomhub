@@ -8,6 +8,8 @@
         cancel-title="取消"
         ok-variant="dark"
         cancel-variant="outline-dark"
+        no-close-on-backdrop
+        no-close-on-esc
         @ok="ok"
         @show="show"
         v-if="selects.length"
@@ -134,7 +136,7 @@
                             this.$nextTick(() => { this.$bvModal.hide('quota') });   // 关闭 modal
                         })
                     } else {
-                        this.$bvToast.toast(rsp.data.msg, {title: '修改失败', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '修改失败', variant: 'danger'});
                     }
                 })
             },
