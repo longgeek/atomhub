@@ -2,6 +2,7 @@
  * Admin Labels component
  */
 import Create from "./create.vue";
+import Editor from "./editor.vue";
 import Remove from "./remove.vue";
 import PageIntroduction from "@/components/page-introduction";
 
@@ -32,7 +33,7 @@ export default {
             },
         }
     },
-    components: { Create, Remove, PageIntroduction },
+    components: { Create, Editor, Remove, PageIntroduction },
     created() {
         this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
@@ -56,9 +57,11 @@ export default {
             this.selectedRows = rows;
             this.selectedRowKeys = keys;
         },
-        // 创建组
+        // 创建
         tableCreate() { this.$bvModal.show('create') },
-        // 删除组
+        // 编辑
+        tableEditor() { this.$bvModal.show('editor') },
+        // 删除
         tableRemove() { this.$bvModal.show('remove') },
         // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {

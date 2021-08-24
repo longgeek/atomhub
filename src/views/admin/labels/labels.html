@@ -1,5 +1,6 @@
 <div>
     <Create />
+    <Editor :selects="selectedRows" />
     <Remove :selects="selectedRows" />
     <section class="section">
         <div class="container">
@@ -13,14 +14,22 @@
                         </button>
                         <button type="button" class="btn btn-dark" @click="tableCreate()">
                             <i class="mdi mdi-shape-rectangle-plus align-middle"></i>
-                            新增
+                            新建标签
                         </button>
-                        <button type="button" class="btn btn-light" @click="tableRemove()"
-                            :disabled="selectedRows.length != 1"
-                        >
-                            <i class="mdi mdi-close align-middle"></i>
-                            删除
-                        </button>
+                        <b-dropdown variant="dark" class="dropdown-dark">
+                            <template v-slot:button-content>
+                                <span class="mdi mdi-dots-horizontal align-middle"></span>
+                                <span class="ml-2 mr-4">更多操作</span>
+                            </template>
+                            <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableEditor">
+                                <span class="icon mdi mdi-circle-edit-outline"></span>
+                                <span class="text">编辑</span>
+                            </b-dropdown-item>
+                            <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableRemove">
+                                <span class="icon mdi mdi-close"></span>
+                                <span class="text">删除</span>
+                            </b-dropdown-item>
+                        </b-dropdown>
                     </div>
                     <div class="card border-0">
                         <div class="card-body pt-0">

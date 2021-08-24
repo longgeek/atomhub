@@ -45,11 +45,12 @@
                     if (rsp.status === 200) {
                         this.$bvToast.toast('删除成功', {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
+                        this.$nextTick(() => { this.$bvModal.hide('remove') });   // 关闭 modal
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '删除失败', variant: 'danger'});
                     }
+                    this.loading = false;
                 })
-                this.$nextTick(() => { this.$bvModal.hide('remove') });   // 关闭 modal
             },
         },
     }

@@ -1,9 +1,9 @@
 <template>
-    <b-modal id="create"
+    <b-modal id="editor"
         modal-class="labels-modal"
         centered
         size="sm"
-        title="创建标签"
+        title="编辑标签"
         title-class="font-18"
         ok-title="确认"
         cancel-title="取消"
@@ -64,6 +64,7 @@
             }
         },
         components: { Compact },
+        props: { selects: { type: Array } },
         validations: {
             form: {
                 name: { required },
@@ -79,9 +80,9 @@
                 this.submit();
             },
             show() {
-                this.form.name = '';
-                this.form.color = '#FCDC00';
-                this.form.description = '';
+                this.form.name = this.selects[0].name;
+                this.form.color = this.selects[0].color;
+                this.form.description = this.selects[0].description;
             },
             updateColor(value) {
                 this.color = value.hex;
@@ -97,16 +98,16 @@
                     return;
                 }
 
-                // 调用 API 创建
-                this.$http.post(
-                    this.$api.admin.labels(),
+                // 调用 API 创建组
+                this.$http.put(
+                    this.$api.admin.labels(this.selects[0].id),
                     this.form,
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
-                    if (rsp.status === 201) {
-                        this.$bvToast.toast(`创建标签 ${this.form.name} 成功`, {title: '提示', variant: 'primary'});
+                    if (rsp.status === 200) {
+                        this.$bvToast.toast(`编辑标签 ${this.form.name} 成功`, {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
-                        this.$nextTick(() => { this.$bvModal.hide('create') });   // 关闭 modal
+                        this.$nextTick(() => { this.$bvModal.hide('editor') });   // 关闭 modal
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '创建失败', variant: 'danger'});
                     }
