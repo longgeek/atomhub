@@ -41,6 +41,7 @@
                                 </span>
                                 <span class="d-none d-sm-inline-block">标签</span>
                             </template>
+                            <Labels :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 3 && des.name" />
                         </b-tab>
                         <b-tab lazy>
                             <template v-slot:title>

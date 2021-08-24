@@ -30,6 +30,9 @@
                                 <span class="text">删除</span>
                             </b-dropdown-item>
                         </b-dropdown>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="搜索标签" @keydown.13="tableData()" v-model="search" />
+                        </div>
                     </div>
                     <div class="card border-0">
                         <div class="card-body pt-0">
@@ -58,7 +61,6 @@
                             </a-table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

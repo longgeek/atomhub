@@ -1,10 +1,9 @@
 /**
- * Admin Labels component
+ * Admin Project Labels component
  */
 import Create from "./create.vue";
 import Editor from "./editor.vue";
 import Remove from "./remove.vue";
-import PageIntroduction from "@/components/page-introduction";
 
 const pagination = {
     total: 0,
@@ -17,7 +16,12 @@ const pagination = {
 }
 
 export default {
-    page: { title: '标签管理' },
+    page: { title: '标签 - 项目详情' },
+    props: {
+        des: { type: Object },
+        loading: { type: Boolean },
+        getDetail: { type: Function },
+    },
     data() {
         return {
             sort: '',
@@ -27,16 +31,10 @@ export default {
             selectedRows: [],
             selectedRowKeys: [],
             pagination: pagination,
-            page_intro: {
-                icon: "mdi mdi-tag",
-                title: '"标签管理"',
-                content: 'AtomHub 平台标签管理。'
-            },
         }
     },
-    components: { Create, Editor, Remove, PageIntroduction },
+    components: { Create, Editor, Remove },
     created() {
-        this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
         for ( const field in this.$cols.admin.labels ) {
             const set = this.$cols.admin.labels[field];
@@ -75,19 +73,18 @@ export default {
             this.pagination.page = page;
             this.pagination.pageSize = page_size;
 
-            if ( this.loading )  return;
-            this.loading = true;
-
             // 搜索、排序
             const params = {
+                scope: 'p',
                 page: this.pagination.page,
                 page_size: this.pagination.pageSize,
-                scope: 'g',
-                project_id: 0,
-                sort: '-creation_time',
+                project_id: this.des.project_id,
             };
             if (this.search) params.q = `name=~${this.search}`;
             if (this.sort) params.sort = this.sort;
+
+            if (this.loading) return;
+            this.loading = true;
 
             this.$http.get(this.$api.admin.labels(), params)
                 .then((rsp) => {
