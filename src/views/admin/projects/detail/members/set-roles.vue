@@ -1,8 +1,8 @@
 <template>
-    <b-modal id="add-group"
+    <b-modal id="set-roles"
         centered
         size="sm"
-        title="新建组成员"
+        title="设置角色"
         title-class="font-18"
         ok-title="确认"
         cancel-title="取消"
@@ -12,17 +12,19 @@
         no-close-on-esc
         @ok="ok"
         @show="show"
+        v-if="selects.length"
     >
-        <div class="alert alert-primary">添加一个组作为具有指定角色的此项目的成员</div>
-        <form class="form-horizontal needs-validation">
-            <div class="form-group">
-                <label>组名称 <span class="text-danger">*</span></label>
-                <input maxlength="30" class="form-control" v-model="form.group_name"
-                    :class="{ 'is-invalid': (submitted && $v.form.group_name.$error) || groupExisted }"
-                />
-                <div class="text-danger mt-2" v-if="submitted && $v.form.group_name.$error">请输入组名称，限制 2 - 30 个字符</div>
-                <div class="text-danger mt-2" v-if="submitted && groupExisted">组已存在于成员中，请重新选择</div>
-            </div>
+        <div class="alert alert-primary">
+            成员 <b>{{ selects[0].entity_name }}</b>
+            当前角色为：
+            <b>
+                <span v-for="(role, index) in roles" :key="index">
+                    <span v-if="Object.keys(role)[0] == selects[0].role_id">"{{ Object.values(role)[0] }}"</span>
+                </span>
+            </b>
+            ，如需修改请在下方选择新角色。
+        </div>
+        <form class="form-horizontal">
             <div class="form-group">
                 <label>角色 <span class="text-danger">*</span></label>
                 <div class="ml-2">
@@ -44,24 +46,15 @@
     </b-modal>
 </template>
 <script>
-    import { required, minLength, maxLength } from "vuelidate/lib/validators";
-
-    const form = {
-        group_name: '',
-        role_id: 1,
-    }
-
     export default {
         props: {
-            members: { type: Array },
+            selects: {type: Array},
         },
         data() {
             return {
                 users: [],
-                form: form,
+                form: {},
                 loading: false,
-                submitted: false,
-                groupExisted: false,
                 roles: [
                     { 1: '项目管理员'},
                     { 2: '开发者'},
@@ -69,11 +62,6 @@
                     { 4: '维护人员'},
                     { 5: '受限访客'},
                 ]
-            }
-        },
-        validations: {
-            form: {
-                group_name: { required, minLength: minLength(2), minLength: maxLength(30) },
             }
         },
         methods: {
@@ -84,48 +72,29 @@
                 this.submit();
             },
             show() {
-                this.form = { ...form };
+                this.form = { role_id: this.selects[0].role_id };
                 this.loading = false;
-                this.submitted = false;
             },
             // 提交表单
             submit() {
-                this.submitted = true;
-
-                if (this.$v.form.$invalid) {
-                    this.$v.$touch();
-                    this.loading = false;
-                    return;
-                }
-
-                // 检测用户是否已存在于成员中
-                for (let i in this.members) {
-                    const obj = this.members[i];
-                    if (obj.entity_name == this.form.group_name && obj.entity_type == 'g')  {
-                        this.groupExisted = true;
-                        return;
-                    }
-                }
-
                 // 调用 API
                 const params = {
-                    member_group: {group_type: 3, group_name: this.form.group_name},
                     role_id: parseInt(this.form.role_id),
                 };
 
-                this.$http.post(
-                    this.$api.projects.members(this.$route.params.project_id),
+                this.$http.put(
+                    this.$api.projects.members(this.$route.params.project_id, this.selects[0].id),
                     params,
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
-                    if (rsp.status === 201) {
-                        this.$bvToast.toast(`添加 ${this.form.group_name} 成功`, {title: '提示', variant: 'primary'});
+                    if (rsp.status === 200) {
+                        this.$bvToast.toast(`修改 ${this.selects[0].entity_name} 角色成功`, {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '创建失败', variant: 'danger'});
                     }
                     this.loading = false;
-                    this.$nextTick(() => { this.$bvModal.hide('add-group') });   // 关闭 modal
+                    this.$nextTick(() => { this.$bvModal.hide('set-roles') });   // 关闭 modal
                 })
             },
         },

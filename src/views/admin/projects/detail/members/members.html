@@ -1,4 +1,5 @@
 <div class="p-2">
+    <SetRoles :selects="selectedRows" />
     <AddUser :members="table.rows" />
     <AddGroup :members="table.rows" />
     <Remove :des="des" :selects="selectedRows" />
@@ -25,6 +26,10 @@
                         <span class="mdi mdi-dots-horizontal align-middle"></span>
                         <span class="ml-2 mr-4">更多操作</span>
                     </template>
+                    <b-dropdown-item :disabled="selectedRows.length != 1" @click="setRoles">
+                        <span class="icon mdi mdi-cogs"></span>
+                        <span class="text">设置角色</span>
+                    </b-dropdown-item>
                     <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableRemove">
                         <span class="icon mdi mdi-close"></span>
                         <span class="text">移除成员</span>

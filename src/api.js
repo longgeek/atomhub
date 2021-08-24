@@ -13,7 +13,9 @@ const api = {
     detail:         (id)            => {return `${url}/projects/${id}`},                                        // 获取单个 Project 详情
     repositories:   (project)       => {return `${url}/projects/${project}/repositories`},                      // 获取单个 Project 的所有镜像
     repositorie:    (project, repo) => {return `${url}/projects/${project}/repositories/${repo}`},              // 移除单个镜像
-    members:        (id)            => {return `${url}/projects/${id}/members`},                                // 获取单个 Project 的所有成员
+    members:        (pid, mid=null) => {
+        return mid ?  `${url}/projects/${pid}/members/${mid}` : `${url}/projects/${pid}/members`
+    },                                                                                                          // 获取单个 Project 的所有成员
   },
   repositories: {
     list:           ()              => {return `${url}/repositories`},                                          // 获取所有镜像仓库

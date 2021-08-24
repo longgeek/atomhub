@@ -1,8 +1,8 @@
 export default {
-    id: { title: 'ID' },
-    name: { title: '镜像名称' },
-    artifact_count: { title: 'Artifacts' },
-    pull_count: { title: '下载数' },
-    update_time: { title: '更新时间' },
-    creation_time: { title: '创建时间' },
+    id: { title: 'ID', sorter: false },
+    name: { title: '镜像名称', sorter: false },
+    artifact_count: { title: 'Artifacts', sorter: false },
+    pull_count: { title: '下载数', sorter: false },
+    update_time: { title: '更新时间', sorter: false },
+    creation_time: { title: '创建时间', sorter: false },
 }

@@ -123,10 +123,10 @@
                     }
                 }
 
-                // 调用 API 创建项目
+                // 调用 API
                 const params = {
                     member_user: {username: this.form.name.username},
-                    role_id: this.form.role_id,
+                    role_id: parseInt(this.form.role_id),
                 };
 
                 this.$http.post(

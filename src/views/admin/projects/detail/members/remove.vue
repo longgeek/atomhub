@@ -16,7 +16,7 @@
     >
         <div class="alert alert-danger mb-0">
             <span class="mdi mdi-information-outline mr-2"></span>
-            确定要将镜像 <b class="text-primary">{{ selects[0].name }}</b> 删除？
+            确定要将成员 <b class="text-primary">{{ selects[0].entity_name }}</b> 从项目中移除？
         </div>
     </b-modal>
 </template>
@@ -36,16 +36,17 @@
             // 提交表单
             submit() {
                 this.$http.delete(
-                    this.$api.projects.repositorie(this.des.name, this.selects[0].name.split('/')[1]),
+                    this.$api.projects.members(this.des.project_id, this.selects[0].id),
                     {},
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
                     if (rsp.status === 200) {
-                        this.$bvToast.toast('删除成功', {title: '提示', variant: 'primary'});
+                        this.$bvToast.toast('移除成功', {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '删除失败', variant: 'danger'});
                     }
+                    this.loading = false;
                     this.$nextTick(() => { this.$bvModal.hide('remove') });   // 关闭 modal
                 })
             },

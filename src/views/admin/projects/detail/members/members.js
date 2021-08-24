@@ -4,6 +4,7 @@
 import Remove from "./remove.vue";
 import AddUser from "./add-user.vue";
 import AddGroup from "./add-group.vue";
+import SetRoles from "./set-roles.vue";
 
 const pagination = {
     total: 0,
@@ -33,7 +34,7 @@ export default {
             pagination: pagination,
         }
     },
-    components: { Remove, AddUser, AddGroup },
+    components: { Remove, AddUser, AddGroup, SetRoles },
     created() {
         // 生成 table column
         for ( const field in this.$cols.admin.projectsMembers ) {
@@ -60,6 +61,8 @@ export default {
         addUser() { this.$bvModal.show('add-user') },
         // 添加组
         addGroup() { this.$bvModal.show('add-group') },
+        // 设置角色
+        setRoles() { this.$bvModal.show('set-roles') },
         // 移除用户
         tableRemove() { this.$bvModal.show('remove') },
         // 获取列表
