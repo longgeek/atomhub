@@ -122,6 +122,7 @@
                 fontSize="12px"
                 toolbarsBackground="#f6f9fc"
                 placeholder="在此输入 Mardown 格式描述信息..."
+                codeStyle="tomorrow-night"
                 :tabSize=4
                 :shortCut=false
                 :scrollStyle=false
@@ -129,7 +130,7 @@
                 :editable="!readonly"
                 style="height: calc(100vh - 240px);"
             ></mavon-editor>
-            <div class="shadow p-4" v-if="readonly && repo.description" v-html="$options.filters.toMarkDown(repo.description)"></div>
+            <div class="shadow markdown-body p-4" v-if="readonly && repo.description" v-html="$options.filters.toMarkDown(repo.description)"></div>
             <div class="shadow p-4" v-if="readonly && !repo.description">
                 <span class="opacity-8">此镜像仓库没有描述信息</span>
             </div>

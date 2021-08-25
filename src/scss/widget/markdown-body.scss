@@ -1,0 +1,46 @@
+/*
+    markdown 编辑器预览和 .markdown-body 类的样式调整
+    markdown-body 类来自于 github-markdown css
+*/
+.markdown-body,
+.markdown-body .v-show-content {
+    h1 {
+      font-size: 30px !important;
+    }
+
+    h2 {
+      font-size: 26px !important;
+    }
+
+    h3 {
+      font-size: 22px !important;
+    }
+
+    h4 {
+      font-size: 18px !important;
+    }
+
+    h5 {
+      font-size: 14px !important;
+    }
+
+    h6 {
+      font-size: 12px !important;
+    }
+}
+
+.markdown-body {
+    color: $text-color !important;
+    font-size: 12px !important;
+    line-height: 1.8 !important;
+    font-family: monospace !important;
+
+    pre,
+    .highlight pre {
+        background-color: $text-color !important;
+    }
+
+    .hljs {
+        background: $text-color !important;
+    }
+}
