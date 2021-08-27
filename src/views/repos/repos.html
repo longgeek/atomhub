@@ -14,7 +14,7 @@
                             </div>
                             <div class="section-title" v-else>
                                 <div class="text-muted">
-                                    共有 {{ repos.length }} 个镜像.
+                                    共有 {{ pagination.total }} 个镜像.
                                     <span v-if="search">
                                         搜索 <b class="text-primary">{{ search }}</b>,
                                         <button
@@ -34,7 +34,7 @@
                         <div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0" v-if="!searching">
                             <div class="form custom-form">
                                 <div class="form-group mb-0">
-                                    <select class="form-control custom-select" v-model="sort" @change="init">
+                                    <select class="form-control custom-select" v-model="sort" @change="init()">
                                         <option value="-pull_count">最受欢迎</option>
                                         <option value="creation_time">最近更新</option>
                                     </select>

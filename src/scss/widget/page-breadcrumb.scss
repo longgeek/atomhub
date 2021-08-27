@@ -1,0 +1,62 @@
+.page-breadcrumb-dark {
+    padding-top: $navbar-height;
+    background-color: #2f4d61 !important;
+
+    .breadcrumb-item a,
+    .breadcrumb-item.active {
+        color: #fff !important;
+    }
+}
+
+.page-breadcrumb {
+    padding: 15px 0;
+
+    .breadcrumb {
+        margin-bottom: 0;
+        background-color: transparent;
+        padding: 0;
+
+        .breadcrumb-item {
+            font-size: 12px;
+            font-weight: inherit;
+            text-transform: inherit;
+
+            a {
+                color: $text-color;
+            }
+        }
+
+        .breadcrumb-item.active {
+            opacity: 0.6;
+            color: $text-color;
+        }
+
+        .breadcrumb-item + .breadcrumb-item {
+            padding-left: 0.5rem;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            font-family: "Material Design Icons";
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            display: inline-block;
+            padding-right: 0.5rem;
+            color: #74788d;
+            content: "/";
+        }
+        .breadcrumb-item:after {
+            display: none;
+        }
+    }
+}
+
+.page-introduction {
+    .page-breadcrumb {
+        display: inline;
+        padding: 0;
+
+        .breadcrumb {
+            display: inline;
+        }
+    }
+}

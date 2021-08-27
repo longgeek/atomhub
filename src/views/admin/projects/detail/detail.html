@@ -1,0 +1,108 @@
+<div>
+    <Create />
+    <Remove :selects="selectedRows" />
+    <section class="pt-navbar pb-4 projects-detail-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <PageBreadcrumb :navs="page_breadcrumb.navs" v-if="!loading" />
+                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content" v-model="tabIndex">
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-information-outline"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">概要</span>
+                            </template>
+                            <Basic :des="des" :loading="loading" :summary="summary" :getDetail="getDetail" v-if="tabIndex == 0" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">镜像仓库</span>
+                            </template>
+                            <Repos :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 1 && des.name" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-account-multiple"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">成员</span>
+                            </template>
+                            <Members :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 2 && des.name" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-tag"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">标签</span>
+                            </template>
+                            <Labels :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 3 && des.name" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-overscan"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">扫描器</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-parking"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">P2P 预热</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-scatter-plot"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">策略</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-robot"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">机器人账户</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-webhook"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">Webhooks</span>
+                            </template>
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-math-log"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">日志</span>
+                            </template>
+                            <Logs :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 9 && des.name" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-cogs"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">配置管理</span>
+                            </template>
+                        </b-tab>
+                    </b-tabs>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

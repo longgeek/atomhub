@@ -1,0 +1,215 @@
+<div>
+    <Create />
+    <Remove :selects="selectedRows" />
+    <Quota :selects="selectedRows" />
+    <QuotaGlobal />
+    <section class="section">
+        <div class="container">
+            <PageIntroduction :intro="page_intro" />
+            <div class="page-statistics pb-0">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <i class="mdi mdi-layers-triple"></i>
+                                            项目（Projects）
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h5 class="mb-0" :class="{'text-muted': statistics.private_project_count == 0}">{{ statistics.private_project_count }}</h5>
+                                                <p class="text-muted mb-0">私有</p>
+                                            </div>
+                                            <div class="col-4" :class="{'text-muted': statistics.public_project_count == 0}">
+                                                <h5 class="mb-0">{{ statistics.public_project_count }}</h5>
+                                                <p class="text-muted mb-0">公开</p>
+                                            </div>
+                                            <div class="col-4" :class="{'text-muted': statistics.total_project_count == 0}">
+                                                <h5 class="mb-0 text-primary">{{ statistics.total_project_count }}</h5>
+                                                <p class="text-muted mb-0">总计</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <img src="/res/img/none-box.6eb53cd2.svg" alt="" height="12" width="12">
+                                            镜像仓库（Repos）
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h5 class="mb-0" :class="{'text-muted': statistics.private_repo_count == 0}">{{ statistics.private_repo_count }}</h5>
+                                                <p class="text-muted mb-0">私有</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5 class="mb-0" :class="{'text-muted': statistics.public_repo_count == 0}">{{ statistics.public_repo_count }}</h5>
+                                                <p class="text-muted mb-0">公开</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5 class="mb-0 text-primary" :class="{'text-muted': statistics.total_repo_count == 0}">{{ statistics.total_repo_count }}</h5>
+                                                <p class="text-muted mb-0">总计</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <i class="mdi mdi-cloud-alert"></i>
+                                            已使用的存储空间（Used Space）
+                                        </p>
+                                        <h3 class="mb-0 text-warning" :class="{'text-muted': statistics.total_storage_consumption == 0}">
+                                            {{ (statistics.total_storage_consumption / 1024 / 1024 / 1024).toFixed(2) }}<small>&nbsp;GB</small>
+                                        </h3>
+                                    </div>
+                                    <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <i class="mdi mdi-database"></i>
+                                            每个项目的默认磁盘空间（Quota）
+                                        </p>
+                                        <h5 class="text-muted pt-2 font-weight-400"
+                                            v-if="configurations.storage_per_project.value == -1"
+                                        >
+                                            <a class="text-primary" @click="editQuotaGlobal">
+                                                <i class="mdi mdi-database-edit mr-1"></i>
+                                            </a>
+                                            不设限
+                                        </h5>
+                                        <h3 class="mb-0 text-primary" v-else>
+                                            <a class="text-primary h5" @click="editQuotaGlobal">
+                                                <i class="mdi mdi-database-edit mr-1"></i>
+                                            </a>
+                                            {{ (configurations.storage_per_project.value / 1024 / 1024 / 1024).toFixed(0) }} GB
+                                        </h3>
+                                    </div>
+                                    <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-toolbar">
+                        <div class="loading-layer" v-if="loading"></div>
+                        <button type="button" class="btn btn-dark" @click="tableData()" :disabled="loading">
+                            <i class="mdi mdi-refresh align-middle"></i>
+                        </button>
+                        <button type="button" class="btn btn-dark" @click="tableCreate">
+                            <i class="mdi mdi-shape-rectangle-plus align-middle"></i>
+                            新建项目
+                        </button>
+                        <b-dropdown variant="dark" class="dropdown-dark">
+                            <template v-slot:button-content>
+                                <span class="mdi mdi-dots-horizontal align-middle"></span>
+                                <span class="ml-2 mr-4">更多操作</span>
+                            </template>
+                            <b-dropdown-item :disabled="selectedRows.length != 1" @click="editQuota">
+                                <span class="icon mdi mdi-database"></span>
+                                <span class="text">修改配额</span>
+                            </b-dropdown-item>
+                            <!-- b-dropdown-item :disabled="selectedRows.length != 1" @click="tableEdit">
+                                <span class="icon mdi mdi-circle-edit-outline"></span>
+                                <span class="text">编辑</span>
+                            </b-dropdown-item -->
+                            <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableRemove">
+                                <span class="icon mdi mdi-close"></span>
+                                <span class="text">删除</span>
+                            </b-dropdown-item>
+                        </b-dropdown>
+                        <div class="form-group float-right">
+                            <input class="form-control" placeholder="搜索项目" @keydown.13="tableData()" v-model="search" />
+                        </div>
+                    </div>
+                    <div class="card border-0">
+                        <div class="card-body pt-0">
+                            <a-table
+                                class="text-norwap"
+                                :scroll="{ x: true }"
+                                :columns="table.cols"
+                                :dataSource="table.rows"
+                                :pagination="pagination"
+                                :loading="loading"
+                                :locale="locale"
+                                :rowKey="records => records.project_id"
+                                :rowSelection="{ onChange: tableOnSelect, selectedRowKeys: selectedRowKeys, }"
+                                @change="tableChange"
+                            >
+                                <template slot="project_id" slot-scope="project_id">
+                                    <span class="text-muted">{{ project_id }}</span>
+                                </template>
+                                <template slot="name" slot-scope="name, row">
+                                    <router-link
+                                        :to="{name: 'admin-projects-detail', params: {project_id: row.project_id}}"
+                                        class="text-primary"
+                                    ><b>{{ name }}</b></router-link>
+                                </template>
+                                <template slot="metadata" slot-scope="metadata">
+                                    <span v-if="metadata.public == 'true'">公开</span>
+                                    <span v-else>私有</span>
+                                </template>
+                                <template slot="update_time" slot-scope="update_time, row">
+                                    <span class="text-muted" v-for="(quota, index) in quotas" :key="index">
+                                        <span v-if="quota.ref.id == row.project_id">
+                                            <span v-if="quota.hard.storage == -1">不设限<br />已使用 {{ (quota.used.storage / 1024 / 1024 / 1024).toFixed(2) }} GB</span>
+                                            <span v-else>
+                                                已使用 {{ (quota.used.storage / 1024 / 1024 / 1024).toFixed(2) }} GB / {{ (quota.hard.storage / 1024 / 1024 / 1024).toFixed(2) }} GB
+                                                <b-progress :value="quota.used.storage / quota.hard.storage * 100" class="mt-2"></b-progress>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </template>
+                                <template slot="creation_time" slot-scope="creation_time">
+                                    <span class="text-muted">{{ creation_time | toLocalTime }}</span>
+                                </template>
+                            </a-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,93 @@
+.page-tabs {
+    background: #FFF;
+    border-bottom: 1px solid $border-color;
+    border-radius: $border-radius;
+    box-shadow: 0 1px 2px 0 rgba(161, 171, 181, 0.48), 0 2px 4px 0 rgba(213, 222, 231, 0.64);
+    -webkit-transition: all;
+    -moz-transition: all;
+    -o-transition: all;
+    transition-duration: .2s!important;
+    transition-timing-function: ease-in-out !important;
+
+    .nav-item {
+        .nav-link {
+            font-size: 13px;
+            font-weight: inherit;
+            padding: 14px 20px 14px 25px;
+            color: $text-color;
+            background: #fff;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid $border-color;
+            line-height: 1.8;
+            .fa {
+                margin-right: 8px;
+            }
+        }
+        .nav-link:hover {
+            color: $info;
+            background: #fff;
+        }
+        .nav-link::after {
+            height: 1px;
+            bottom: 0px;
+        }
+        .nav-link.active {
+            padding-left: 25px;
+            color: $info;
+            background: #fff;
+            border-bottom: 1px solid $info;
+        }
+    }
+}
+
+.page-tabs-content {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 1px 2px 0 rgba(161, 171, 181, 0.48), 0 2px 4px 0 rgba(213, 222, 231, 0.64);
+    .ibox {
+        margin-bottom: 20px;
+        border: 1px solid $border-color;
+    }
+    .ibox-title {
+        min-height: 44px;
+        padding: 13px 20px;
+        border-top: none;
+        border-bottom: 1px solid $border-color;
+        background: $gray;
+
+        h5 {
+            line-height: 1.42857143;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 0;
+            display: inline-block;
+        }
+        .ibox-tools {
+            float: right;
+            display: inline-block;
+            a {
+                color: $text-color;
+                margin: 0;
+                opacity: 0.5;
+            }
+            a:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+    }
+    .ibox-content {
+        border: none;
+        overflow: auto;
+        background-color: $gray;
+        padding: 15px 20px 20px;
+
+        .table {
+            margin: 0;
+            > thead > tr > th {
+                font-weight: 400;
+            }
+        }
+    }
+}

@@ -204,6 +204,7 @@ export default {
                             </template>
                             <b-dropdown-item to="/profile">个人主页</b-dropdown-item>
                             <b-dropdown-item to="/settings">账号设置</b-dropdown-item>
+                            <b-dropdown-item to="/logs">操作日志</b-dropdown-item>
                             <b-dropdown-divider></b-dropdown-divider>
                             <b-dropdown-item @click="logout">退出登录</b-dropdown-item>
                         </b-dropdown>
@@ -239,6 +240,72 @@ export default {
                         </li>
                         <li :class="{active: $route.name === 'repos' || $route.name === 'repos-detail'}">
                             <router-link :to="{name: 'repos'}" class="side-nav-link-ref">镜像仓库</router-link>
+                        </li>
+                        <li class="has-submenu" :class="{active: $route.hasOwnProperty('name') && $route.name.startsWith('admin')}" v-if="user.sysadmin_flag">
+                            <a href="javascript:void(0)" @click="onMenuClick">系统管理</a>
+                            <span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                <li>
+                                    <router-link :to="{name: 'admin-projects'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-layers-triple mr-2"></i>项目管理
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-account mr-2"></i>用户管理
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-robot-accounts'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-robot mr-2"></i>机器人账户
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-groups'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-account-multiple mr-2"></i>组管理
+                                    </router-link>
+                                </li>
+                                <!-- li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-checkbox-multiple-blank mr-2"></i>仓库管理
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-content-copy mr-2"></i>复制管理
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-view-week mr-2"></i>分布式分发
+                                    </router-link>
+                                </li -->
+                                <li>
+                                    <router-link :to="{name: 'admin-labels'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-tag mr-2"></i>标签
+                                    </router-link>
+                                </li>
+                                <!-- li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-hexagon-slice-5 mr-2"></i>项目定额
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-shield-alert mr-2"></i>审查服务
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-trash-can mr-2"></i>垃圾清理
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-cogs mr-2"></i>配置管理
+                                    </router-link>
+                                </li -->
+                            </ul>
                         </li>
                     </ul>
                     <div v-if="Object.keys(user).length === 0">

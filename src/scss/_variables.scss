@@ -15,10 +15,10 @@ $gray-dark: #343a40;
 $primary: #0fb4ff;
 $secondary: #6c757d;
 $success: #28a745;
-$info: #0f69b2;
+$info: #0fb4ff;
 $warning: #ffc107;
 $danger: #dc3545;
-$light: #f8f9fa;
+$light: #f6f9fc;
 $dark: #343a40;
 $breakpoint-xs: 0;
 $breakpoint-sm: 576px;
@@ -37,7 +37,7 @@ $navbar-height: 65px;
 $navbar-bg: $text-color;
 
 // Body
-$body-bg: #f6f9fc;
+$body-bg: $light;
 $body-font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $body-font-size: 12px;
 $body-font-color: $text-color;

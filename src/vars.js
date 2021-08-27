@@ -121,7 +121,7 @@ const vars = {
         //     name: 'Other',
         //     icon: 'mdi mdi-unity',
         // },
-    ]
+    ],
 }
 
 export default vars;

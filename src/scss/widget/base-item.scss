@@ -1,0 +1,150 @@
+.base-item {
+    background: #FFF;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(161,171,181,.48), 0 2px 4px 0 rgba(213,222,231,.64);
+    -moz-box-shadow: 0 1px 2px 0 rgba(161,171,181,.48),0 2px 4px 0 rgba(213,222,231,.64);
+    box-shadow: 0 1px 2px 0 rgba(161,171,181,.48), 0 2px 4px 0 rgba(213,222,231,.64);
+    -webkit-transition: all;
+    -moz-transition: all;
+    -o-transition: all;
+    transition-duration: .2s!important;
+    transition-timing-function: ease-in-out!important;
+}
+.base-item.gray {
+    background: $light;
+    box-shadow: none;
+    color: $text-color;
+}
+.base-item.no-shadow {
+    box-shadow: none;
+}
+.base-item.border {
+    border: 1px solid $border-color !important;
+}
+.base-item .title {
+    padding: 14px 20px;
+    border-bottom: 1px solid $border-color;
+    h3 {
+        margin: 0;
+        padding: 0;
+        color: $text-color;
+        font-size: 13px !important;
+        font-weight: 400;
+        display: inline-block;
+    }
+    a.text-color {
+        color: $text-color;
+    }
+    a.text-color:hover {
+        color: $primary;
+    }
+    .dropdown {
+        float: right;
+        margin-top: -5px;
+        margin-right: -10px;
+        .dropdown-toggle {
+            font-size: 10px;
+            cursor: pointer;
+            color: $text-color;
+        }
+        .dropdown-toggle:hover {
+            color: $primary;
+        }
+        .dropdown-menu {
+            border-radius: $border-radius;
+            box-shadow: 0 0 3px rgba(86,96,117,.7);
+        }
+        .dropdown-menu > li > a > .fa.icon {
+            width: 20px;
+            margin-right: 8px;
+            text-align: center;
+        }
+        .dropdown-menu > li > a:hover,
+        .dropdown-menu > li > a:focus {
+            color: inherit;
+            background-color: $gray;
+        }
+    }
+    .pull-right {
+        > a.action {
+            color: $text-color;
+        }
+        > a:hover {
+            color: $primary;
+        }
+    }
+}
+.base-item .content {
+    margin-top: 0;
+    padding: 20px 20px 20px;
+    line-height: 22px;
+    white-space: normal;
+    word-break: break-word;
+    dl {
+        margin: 0;
+    }
+    dt {
+        font-weight: 500;
+    }
+    dl dt {
+        width: 90px;
+        text-align: center;
+        color: $text-color;
+    }
+    dl dd {
+        margin-top: -32px;
+        margin-bottom: 0px;
+        white-space: normal;
+        word-break: break-word;
+        margin-inline-start: 100px;
+        .fa.fa-file-o {
+            opacity: 0.3;
+            float: right;
+            margin-top: 2px !important;
+        }
+        .fa.fa-file-o:hover {
+            opacity: 1;
+            color: $primary;
+            cursor: pointer;
+        }
+    }
+    dl dt,
+    dl dd {
+        border-bottom: 0 none;
+        line-height: 16px;
+        min-height: 32px;
+        padding: 5px 0;
+    }
+    dl dd:after,
+    dl dd:before {
+        display: none;
+    }
+    .tag-list {
+        margin: 0;
+        padding: 0;
+        li {
+            list-style: none;
+            display: inline-block;
+            a {
+                background-color: $gray;
+                padding: 3px 12px;
+                color: inherit;
+                border-radius: 2px;
+                border: 1px solid $border-color;
+                margin-right: 5px;
+                margin-top: 5px;
+                display: inline-block;
+                i {
+                    margin-right: 8px;
+                }
+            }
+            a:hover {
+                color: #fff;
+                border-color: $dark;
+                background-color: $dark;
+            }
+        }
+    }
+}
+

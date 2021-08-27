@@ -1,0 +1,18 @@
+pre {
+    background: $text-color;
+    border: none;
+    border-radius: $border-radius;
+    padding: 15px 20px;
+    color: #FFF;
+    vertical-align: baseline;
+    word-break: break-word;
+    text-shadow: 1px 1px 1px rgba(43,56,66,0.3);
+    font-weight: 300;
+    margin: 20px 0;
+}
+pre code {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 13px;
+    font-family: monospace;
+}

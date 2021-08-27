@@ -1,155 +1,92 @@
 <div>
     <ReposType />
-    <section class="section">
+    <div class="page-breadcrumb-dark">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-7 col-12">
-                    <div class="bg-white p-4 shadow rounded">
-                        <div class="mt-2">
-                        <router-link class="btn btn-outline-dark" :to="{name: 'repos'}">
-                            <i class="mdi mdi-chevron-left"></i>
-                            返回镜像仓库列表页面
-                        </router-link>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <PageBreadcrumb :navs="page_breadcrumb.navs" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="repo-detail-header d-table w-100 bg-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 text-md-left text-center">
+                    <img v-if="repo.logo" :src="`${repo.logo}`" width="120" height="120" alt="">
+                    <img v-else src="@/assets/images/none-box.svg" width="120" height="120" />
+                </div>
+                <div class="col-lg-6 col-md-9 text-md-left text-center">
+                    <h3 class="title mb-0 text-white">{{ repo.name }}</h3>
+                    <p class="text-muted">
+                        <i class="mdi mdi-cloud-download mr-2"></i>{{ repo.pull_count }} 次下载
+                        <br />
+                        上传于：{{ repo.creation_time | toLocalTime }}，更新于：{{ repo.update_time | toLocalTime }}
+                    </p>
+                    <div class="text-white">{{ repo.description | limitTo(200) }}</div>
+                </div>
+                <div class="col-lg-4 col-md-9">
+                    <div class="shadow p-4 mt-5 border-radius bg-white">
+                        <div class="widget">
+                            <div class="text-center text-success">
+                                <i class="mdi mdi-shield-check-outline h1 text-success"></i>
+                                <div>镜像已通过安全漏洞扫描</div>
+                            </div>
                         </div>
-                        <div class="text-center my-5">
-                            <img v-if="repo.logo" :src="`${repo.logo}`" class="avatar avatar-small" alt="">
-                            <img
-                                v-else
-                                src="@/assets/images/none-box.svg"
-                                class="avatar avatar-small" alt=""
-                            />
-                            <h4 class="title mt-4">{{ repo.name }}</h4>
-                        </div>
-
-                        <div class="mt-4">
-                            <b-tabs
-                                pills
-                                justified
-                                nav-class="bg-white shadow mb-4"
-                                content-class="py-4"
-                                nav-wrapper-class="col-lg-6 col-md-12 offset-md-3"
-                            >
-                                <b-tab active title-item-class="m-1" v-if="repo.description">
-                                    <template #title>
-                                        <span class="nav-link py-2 px-5">
-                                            <div class="text-center">描述信息</div>
-                                        </span>
-                                    </template>
-                                    <div v-html="$options.filters.toMarkDown(repo.description)"></div>
-                                </b-tab>
-                                <b-tab title-item-class="m-1">
-                                    <template #title>
-                                        <span class="nav-link py-2 px-5 rounded">
-                                            <div class="text-center">构建历史</div>
-                                        </span>
-                                    </template>
-                                    <div class="table-responsive">
-                                      <table class="table mb-0">
-                                        <thead>
-                                          <tr>
-                                            <th>构建编号</th>
-                                            <th>拉取命令</th>
-                                            <th>Tags</th>
-                                            <th>大小</th>
-                                            <th>推送时间</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr v-for="(art, index) in artifacts" :key="index">
-                                            <td class="text-primary">{{ art.digest | limitTo(15) }}</td>
-                                            <td class="text-muted">
-                                                <span class="mdi mdi-content-copy h6 pointer hover-dark"
-                                                    v-if="repo.hasOwnProperty('name')"
-                                                    v-clipboard="'docker pull atomhub.org/' + repo.name + '@' + art.digest"
-                                                ></span>
-                                            </td>
-                                            <td>
-                                                <span v-for="(tag, idx) in art.tags" :key="idx">
-                                                    {{ tag.name }}<span v-if="idx != art.tags.length - 1">、</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span v-if="art.size / 1024 / 1024 > 1 && art.size / 1024 / 1024 < 1024">
-                                                    {{ (art.size / 1024 / 1024).toFixed(2) }} MB
-                                                </span>
-                                                <span v-if="art.size / 1024 / 1024 < 1">
-                                                    {{ (art.size / 1024).toFixed(2) }} KB
-                                                </span>
-                                                <span v-if="art.size / 1024 / 1024 >= 1024">
-                                                    {{ (art.size / 1024 / 1024 / 1024).toFixed(2) }} GB
-                                                </span>
-                                            </td>
-                                            <td class="text-muted">{{ art.push_time | toLocalTime }}</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                </b-tab>
-                            </b-tabs>
+                        <div class="widget mt-4">
+                            <span class="widget-title">
+                                <small class="text-muted">复制以下命令拉取镜像</small>
+                                <span class="mdi mdi-content-copy float-right text-muted hover-dark pointer h6"
+                                    v-if="repo && artifacts.length && artifacts[0].tags != null"
+                                    v-clipboard="'docker pull atomhub.org/' + repo.name + ':' + artifacts[0].tags[artifacts[0].tags.length - 1].name"
+                                    style="margin-top: -5px;"
+                                ></span>
+                            </span>
+                            <div class="bg-dark p-4 rounded shadow mt-4 mb-2">
+                                <p class="text-muted font-weight-bold mb-0">
+                                    <span class="text-success">$&nbsp;</span>
+                                    docker pull atomhub.org/{{ repo.name }}<span v-if="artifacts.length && artifacts[0].tags != null">:{{ artifacts[0].tags[artifacts[0].tags.length - 1].name }}</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <div class="card border-0 sidebar sticky-bar rounded shadow" style="top: 142px;">
-                        <div class="card-body">
-                            <div class="widget mb-5 pb-2">
-                                <h6 class="widget-title"><small>安全性</small></h6>
-                                <div class="text-center">
-                                    <i class="mdi mdi-shield-check-outline h1 text-success"></i>
-                                    <div class="text-success">镜像已通过安全漏洞扫描</div>
-                                </div>
-                            </div>
-                            <div class="widget mb-5 pb-2">
-                                <h6 class="widget-title"><small>镜像信息</small></h6>
-                                <ul class="list-unstyled mt-4 mb-0 blog-categories">
-                                    <li>
-                                        <span class="text-muted">名称</span>
-                                        <span class="float-right">{{ repo.name }}</span>
-                                    </li>
-                                    <li>
-                                        <span class="text-muted">创建时间</span>
-                                        <span class="float-right text-muted">{{ repo.creation_time | toLocalTime }}</span>
-                                    </li>
-                                    <li>
-                                        <span class="text-muted">更新时间</span>
-                                        <span class="float-right text-muted">{{ repo.update_time | toLocalTime }}</span>
-                                    </li>
-                                    <li>
-                                        <span class="text-muted">构建次数</span>
-                                        <span class="float-right">{{ repo.artifact_count }} <span class="text-muted">次</span></span>
-                                    </li>
-                                    <li>
-                                        <span class="text-muted">下载次数</span>
-                                        <span class="float-right">{{ repo.pull_count }} <span class="text-muted">次</span></span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="widget mb-5 pb-2">
-                                <h6 class="widget-title">
-                                    <small>下载镜像</small>
-                                    <span class="mdi mdi-content-copy float-right text-muted hover-dark pointer"
-                                        v-if="artifacts.length && artifacts[0].tags != null"
-                                        v-clipboard="'docker pull atomhub.org/' + repo.name + ':' + artifacts[0].tags[artifacts[0].tags.length - 1].name"
-                                    ></span>
-                                </h6>
-                                <div class="bg-dark bg-white-dark p-4 rounded shadow mt-4">
-                                    <p class="text-muted font-weight-bold mb-0">
-                                        <span class="text-success">$&nbsp;</span>
-                                        docker pull atomhub.org/{{ repo.name }}<span v-if="artifacts.length && artifacts[0].tags != null">:{{ artifacts[0].tags[artifacts[0].tags.length - 1].name }}</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- div class="widget mb-4 pb-2">
-                                <h6 class="widget-title">Categories</h6>
-                                <div class="tagcloud mt-4">
-                                    <a href="jvascript:void(0)" class="rounded">Developer</a>
-                                    <a href="jvascript:void(0)" class="rounded">Tools</a>
-                                </div>
-                            </div -->
-                        </div>
-                    </div>
+    <div class="secondary-nav bg-dark mt-0 mb-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <b-nav>
+                        <b-nav-item :active="nav == 'markdown'" @click="nav = 'markdown'" exact>
+                            描述信息
+                        </b-nav-item>
+                        <b-nav-item :active="nav == 'artifacts'" @click="nav = 'artifacts'" exact>
+                            构建历史
+                        </b-nav-item>
+                    </b-nav>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="repo-detail-content">
+        <div class="container">
+            <div class="bg-white p-4 shadow rounded">
+                <Description
+                    :repo="repo"
+                    :loading="loading"
+                    :project="project"
+                    :getDescription="getDescription"
+                    v-if="nav == 'markdown'"
+                />
+                <Artifacts
+                    :repo="repo"
+                    :loading="loading"
+                    v-if="nav == 'artifacts'"
+                />
             </div>
         </div>
     </section>

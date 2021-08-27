@@ -6,20 +6,35 @@
 @import "basic/color.scss";                     // 默认颜色
 @import "basic/global.scss";                    // 全局 CSS 样式
 @import "basic/animation.scss";                 // Basic 动画
-@import "basic/grid.scss";                      // Basic 动画
+@import "basic/grid.scss";
+@import "basic/tooltip.scss";
+@import "basic/pre.scss";
 
 // 动画效果
 @import "animation/flying-icon.scss";           // 飞翔的 icon 图标动画
 
 // 各页面的样式
 @import "pages/home.scss";
+@import "pages/project-detail.scss";
+@import "pages/repos-detail.scss";
 
 // 小控件
 @import "widget/secondary-nav.scss";
 @import "widget/box-shadow-after.scss";
+@import "widget/page-toolbar.scss";
+@import "widget/page-introduction.scss";
+@import "widget/lables.scss";
+@import "widget/base-item.scss";
+@import "widget/page-tabs.scss";
+@import "widget/page-breadcrumb.scss";
+@import "widget/page-statistics.scss";
+@import "widget/markdown-body.scss";
 
 // 插件
 @import "plugins/form-wizard.scss";                 // form 步骤表单
 @import "plugins/toaster.scss";                     // bootstrap toaster 样式
 @import "plugins/icons/materialdesignicons.scss";   // material design icons
 @import "plugins/ant-pagination.scss";              // ant design pagination
+@import "plugins/ant-table.scss";                   // ant design table
+@import "plugins/mavon-editor.scss";                // mavon-editor markdown 编辑器, 用于 repo 描述信息编辑
+@import "plugins/select2.scss";                     // vue-multiselect

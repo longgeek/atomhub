@@ -6,15 +6,16 @@
     margin-bottom: 20px;
 
     .nav {
-        min-height: 53px;
-
         .nav-link {
-            padding: 0 40px 0 0;
+            min-width: 100px;
+            padding: 20px;
             display: table-cell;
             color: #545a6d;
             vertical-align: middle;
-            line-height: 53px;
             outline: 0;
+            font-weight: 600;
+            font-size: 13px;
+            border-bottom: 3px solid transparent;
 
             .icon {
                 color: inherit;
@@ -25,6 +26,7 @@
         }
         .nav-link.active {
             color: $primary;
+            border-color: $primary;
             .icon {
                 color: $primary;
             }

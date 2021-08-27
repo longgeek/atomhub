@@ -6,11 +6,12 @@ import router from './router/index';
 /*
  * Custom Files
  */
-import '@/filters';
-import api from '@/api';
-import http from '@/utils/http';
-import vars from '@/vars';
-import "@/scss/index.scss";
+import '@/filters';                                             // 过滤器
+import api from '@/api';                                        // 所有 API 列表
+import http from '@/utils/http';                                // HTTP 拦截器
+import vars from '@/vars';                                      // 全局静态变量
+import cols from '@/columns/main';                              // 表格列头
+import "@/scss/index.scss";                                     // 样式入口文件
 
 
 /*
@@ -19,6 +20,7 @@ import "@/scss/index.scss";
 Vue.prototype.$api = api;
 Vue.prototype.$http = http;
 Vue.prototype.$vars = vars;
+Vue.prototype.$cols = cols;
 Vue.prototype.$sleep = function(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
@@ -35,14 +37,17 @@ import Gravatar from 'vue-gravatar';
 import animated from 'animate.css';
 import Vuelidate from 'vuelidate';
 import Clipboard from 'v-clipboard';
-import { Pagination } from 'ant-design-vue';
+import { Table, Pagination } from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.min.css';
+import Multiselect from 'vue-multiselect';
 
 var VueScrollTo = require('vue-scrollto');
 Vue.config.productionTip = false;
 
 moment.locale('zh-cn');
 Vue.prototype.$moment = moment;
+
+Vue.component('multiselect', Multiselect);
 
 Vue.component('v-gravatar', Gravatar);
 Vue.prototype.$gravatar = {
@@ -56,6 +61,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueMeta, {keyName: 'page'});
 Vue.use(VueScrollTo, {duration: 3000, easing: "ease"});
 Vue.use(Clipboard);
+Vue.use(Table);
 Vue.use(Pagination);
 
 

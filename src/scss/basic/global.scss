@@ -88,3 +88,32 @@ a {
 .hover-dark:hover {
     color: $dark !important;
 }
+
+.font-weight-400 {
+    font-weight: 400 !important;
+}
+
+.pt-navbar {
+    padding-top: $navbar-height !important;
+}
+
+hr {
+    border-color: $border-color;
+}
+
+.border-radius {
+    border-radius: $border-radius;
+}
+
+.loading-layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    opacity: 0.3;
+    cursor: no-drop;
+    background: #fff;
+    transition: all 1s ease;
+}

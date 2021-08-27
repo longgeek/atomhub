@@ -1,0 +1,42 @@
+.resource-labels {
+    color: #fff;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    margin: 0 5px 5px 0;
+    padding: 2px 12px;
+    display: inline-block;
+    position: relative;
+    line-height: 16px;
+    font-size: 10px;
+    font-weight: inherit;
+    text-shadow: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+
+    .close {
+        vertical-align: middle;
+        margin-left: 4px;
+        font-size: 12px;
+        width: 14px;
+        text-shadow: none;
+        color: #fff;
+        margin-top: 1px;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+    .close::before {
+        content: '\2715';
+    }
+    .close:hover {
+        opacity: 1;
+    }
+}
+
+// 设置在 Modal 中 vue-color 插件的宽度为 100%
+.labels-modal {
+    .vc-slider, .vc-compact {
+        width: 100%;
+    }
+}
