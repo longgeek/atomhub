@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-            user: '',
+            user: {},
             sort: '',
             search: '',
             searchField: 'tags',
@@ -34,7 +34,7 @@ export default {
     },
     components: { Remove },
     created() {
-        this.user = JSON.parse(localStorage.getItem('user'))
+        this.user = JSON.parse(localStorage.getItem('user')) || { sysadmin_flat: false};
 
         // 生成 table column
         for ( const field in this.$cols.artifacts ) {

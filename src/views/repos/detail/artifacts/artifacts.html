@@ -12,11 +12,11 @@
                         <span class="mdi mdi-dots-horizontal align-middle"></span>
                         <span class="ml-2 mr-4">更多操作</span>
                     </template>
-                    <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableEditor">
+                    <b-dropdown-item :disabled="selectedRows.length != 1">
                         <span class="icon mdi mdi-circle-edit-outline"></span>
                         <span class="text">编辑</span>
                     </b-dropdown-item>
-                    <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableRemove">
+                    <b-dropdown-item :disabled="selectedRows.length != 1">
                         <span class="icon mdi mdi-close"></span>
                         <span class="text">删除</span>
                     </b-dropdown-item>

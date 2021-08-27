@@ -6,12 +6,13 @@ import Basic from "./basic.vue";
 import Repos from "./repos/repos.vue";
 import Members from "./members/members.vue";
 import Labels from "./labels/labels.vue";
+import Logs from "./logs/logs.vue";
 import PageBreadcrumb from "@/components/page-breadcrumb";
 
 export default {
     page: { title: '项目详情' },
     created() { this.init() },
-    components: { Basic, Repos, Members, Labels, PageBreadcrumb },
+    components: { Basic, Repos, Members, Labels, Logs, PageBreadcrumb },
     data() {
         return {
             des: {name: ''},
@@ -22,6 +23,7 @@ export default {
                 repos: 1,
                 members: 2,
                 labels: 3,
+                logs: 9,
             },
             tabIndex: null,
             page_breadcrumb: {

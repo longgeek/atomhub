@@ -22,10 +22,7 @@ export default {
 <template>
 <div>
     <div class="page-statistics p-2">
-        <div class="loading-text" v-if="loading">
-            <p>正在加载...</p>
-        </div>
-        <div class="row" v-if="!loading">
+        <div class="row">
             <div class="col-12">
                 <div class="page-toolbar pt-0 pl-0">
                     <div class="loading-layer" v-if="loading"></div>

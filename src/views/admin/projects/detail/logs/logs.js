@@ -1,7 +1,6 @@
 /**
- * Logs component
+ * Admin Project Logs component
  */
-import PageIntroduction from "@/components/page-introduction";
 
 const pagination = {
     total: 0,
@@ -14,31 +13,25 @@ const pagination = {
 }
 
 export default {
-    page: { title: '操作日志' },
+    page: { title: '日志 - 项目详情' },
+    props: {
+        des: { type: Object },
+        loading: { type: Boolean },
+        getDetail: { type: Function },
+    },
     data() {
         return {
-            user: {},
             sort: '',
             search: '',
             searchField: 'resource',
             table: { rows: [], cols: [] },
             loading: false,
             pagination: pagination,
-            page_intro: {
-                icon: "mdi mdi-math-log",
-                title: '"操作日志"',
-                content: '最近的操作日志记录'
-            },
         }
     },
-    components: { PageIntroduction },
     created() {
-        this.user = JSON.parse(localStorage.getItem('user'));
         // 生成 table column
         for ( const field in this.$cols.logs ) {
-            // 普通用户无需展示 username 字段
-            if (field == 'username' && !this.user.sysadmin_flag) continue;
-
             const set = this.$cols.logs[field];
             const col = {
                 ellipsis: true,
@@ -53,8 +46,10 @@ export default {
         this.tableData();
     },
     methods: {
-        // 获取日志
+        // 获取列表
         tableData(page=pagination.page, page_size=pagination.pageSize) {
+            // 取消选中的行
+            this.selectedRowKeys = [];
             this.pagination = { ...pagination };
 
             // page 为切换分页参数
@@ -62,21 +57,24 @@ export default {
             this.pagination.page = page;
             this.pagination.pageSize = page_size;
 
-            if ( this.loading )  return;
-            this.loading = true;
-
             // 搜索、排序
-            const params = { page: this.pagination.page, page_size: this.pagination.pageSize };
+            const params = {
+                page: this.pagination.page,
+                page_size: this.pagination.pageSize,
+            };
             if (this.search) params.q = `${this.searchField}=~${this.search}`;
             if (this.sort) params.sort = this.sort;
 
-            this.$http.get(this.$api.logs(), params)
+            if (this.loading) return;
+            this.loading = true;
+
+            this.$http.get(this.$api.projects.logs(this.des.name), params)
                 .then((rsp) => {
                     if (rsp.status === 200) {
                         this.table.rows = rsp.data;
                         this.pagination.total = rsp.headers['x-total-count'];
                     } else {
-                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取日志错误', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取列表错误', variant: 'danger'});
                     }
                     this.loading = false;
             })

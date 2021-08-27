@@ -90,6 +90,7 @@
                                 </span>
                                 <span class="d-none d-sm-inline-block">日志</span>
                             </template>
+                            <Logs :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 9 && des.name" />
                         </b-tab>
                         <b-tab lazy>
                             <template v-slot:title>

@@ -16,6 +16,7 @@ const api = {
     members:        (pid, mid=null) => {
         return mid ?  `${url}/projects/${pid}/members/${mid}` : `${url}/projects/${pid}/members`
     },                                                                                                          // 获取单个 Project 的所有成员
+    logs:           (project)       => {return `${url}/projects/${project}/logs`},                              // 获取单个 Project 的所有日志
   },
   repositories: {
     list:           ()              => {return `${url}/repositories`},                                          // 获取所有镜像仓库
