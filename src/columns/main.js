@@ -6,12 +6,14 @@ import labels from '@/columns/admin/labels.js';
 import projects from '@/columns/admin/projects.js';
 import projectsRepos from '@/columns/admin/projects-repos.js';
 import projectsMembers from '@/columns/admin/projects-members.js';
+import artifacts from '@/columns/artifacts.js';
 
 /**
  * 表格字段
  */
 export default {
     logs: logs,
+    artifacts: artifacts,
     admin: {
         users: users,
         robotAccounts: robotAccounts,

@@ -2,20 +2,28 @@
  * Page-repo-detail component
  */
 import ReposType from '../repos-type.vue';
-import Artifacts from './artifacts.vue';
+import Artifacts from './artifacts/artifacts.vue';
 import Description from './description.vue';
+import PageBreadcrumb from "@/components/page-breadcrumb";
 
 export default {
     page: { title: '镜像详情' },
     data() {
         return {
+            nav: 'markdown',
             repo: {},
             artifacts: [],
             loading: false,
             loadingArtifacts: false,
+            page_breadcrumb: {
+                navs: [
+                    {text: "镜像仓库", to: {name: "repos"}},
+                    {text: "镜像详情"},
+                ],
+            },
         }
     },
-    components: { ReposType, Artifacts, Description },
+    components: { ReposType, Artifacts, Description, PageBreadcrumb },
     created() { this.init() },
     methods: {
         init() {
@@ -36,6 +44,7 @@ export default {
             ).then((rsp) => {
                 if (rsp.status === 200) {
                     this.repo = rsp.data;
+                    this.page_breadcrumb.navs[1].text = `${this.repo.name} 镜像详情`;
 
                     // 获取 repo 所属 project 详情
                     this.$http.get(

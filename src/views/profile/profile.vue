@@ -95,7 +95,7 @@ export default {
     <div class="secondary-nav bg-dark border-top mt-0">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-mg-10">
+                <div class="col-lg-11 col-mg-10">
                     <b-nav>
                         <b-nav-item :active="nav == 'repo'" @click="nav = 'repo'" exact>
                             我的仓库

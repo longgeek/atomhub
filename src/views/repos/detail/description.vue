@@ -69,6 +69,7 @@
         }
     }
     export default {
+        page: { title: '描述信息 - 镜像详情' },
         data,
         props: {
             repo: { type: Object },
@@ -83,13 +84,10 @@
 </script>
 
 <template>
-<div>
-    <div class="small" v-if="loading">正在加载...</div>
-    <div v-if="!loading">
+    <div>
         <div class="page-toolbar detail p-0 mb-3"
             v-if="
-                repo &&
-                (user && project.owner_id == user.user_id) ||
+                (user && project && Object.keys(project).length && project.owner_id == user.user_id) ||
                 (user && user.sysadmin_flag)
             "
         >
@@ -115,7 +113,8 @@
                 取消编辑
             </button>
         </div>
-        <div v-if="repo">
+        <div class="small" v-if="loading">正在加载...</div>
+        <div v-if="!loading">
             <mavon-editor
                 v-model="repo.description"
                 v-if="!readonly"
@@ -130,8 +129,8 @@
                 :editable="!readonly"
                 style="height: calc(100vh - 240px);"
             ></mavon-editor>
-            <div class="shadow markdown-body p-4" v-if="readonly && repo.description" v-html="$options.filters.toMarkDown(repo.description)"></div>
-            <div class="shadow p-4" v-if="readonly && !repo.description">
+            <div class="markdown-body p-4" v-if="readonly && repo.description" v-html="$options.filters.toMarkDown(repo.description)"></div>
+            <div class="p-4" v-if="readonly && !repo.description">
                 <span class="opacity-8">此镜像仓库没有描述信息</span>
             </div>
             <div class="small mt-4" v-if="!readonly">
@@ -175,6 +174,5 @@
             </div>
         </b-modal>
     </div>
-</div>
 </template>
 
