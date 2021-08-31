@@ -1,0 +1,488 @@
+// form 表单用于独立页面
+.form-page {
+    background: #fff;
+    position: relative;
+
+    .params {
+        overflow: hidden;
+
+        .section {
+            padding: 0 !important;
+            .title {
+                position: relative;
+                padding: 10px 0;
+                border-bottom: 1px solid #e4ebf1;
+                margin: 0 20px;
+                float: none;
+                color: #4c5e70;
+
+                h6 {
+                    margin: 0;
+                    color: #4c5e70;
+                    font-size: 14px !important;
+                }
+
+                .coll {
+                    display: inline;
+
+                    .fa {
+                        position: absolute;
+                        top: 13px;
+                        right: 0;
+                        cursor: pointer;
+
+                        .text {
+                            font-weight: 400;
+                        }
+                    }
+
+                    .fa.up {
+                        display: block;
+                        color: $primary;
+                    }
+                    .fa.down {
+                        display: none;
+                    }
+                }
+
+                .coll.collapsed {
+                    .fa.up {
+                        display: none !important;
+                    }
+                    .fa.down {
+                        display: block !important;
+                    }
+                }
+
+                .status-img {
+                    position: absolute;
+                    right: 30px;
+                    top: 0;
+                    width: 220px;
+                }
+            }
+
+            .part {
+                height: auto;
+                min-height: calc(100vh - 430px);
+                overflow: auto;
+                padding: 20px 20px 0;
+
+                .item {
+                    clear: both;
+                    margin: 12px 0;
+
+                    .control-label {
+                        text-align: right;
+                        float: left;
+                        font-size: 12px;
+                        width: 140px;
+                        font-weight: bold;
+                        line-height: 36px;
+                        vertical-align: middle;
+
+                        .key {
+                            line-height: 16px;
+                            display: inline-block;
+                        }
+
+                        .key.required:after {
+                            content: ' *';
+                            color: #ca2621;
+                        }
+                    }
+
+                    .controls {
+                        margin-left: 160px;
+                        min-height: 36px;
+                        margin-right: 10px;
+
+                        input[type="search"], input[type="text"], input[type="password"], input[type="email"], input[type="range"], input[type="url"] {
+                            width: 210px;
+                            height: 36px;
+                        }
+
+                        .width-40 {
+                            width: 40px !important;
+                        }
+
+                        .width-100 {
+                            width: 100px !important;
+                        }
+
+                        .width-150 {
+                            width: 150px !important;
+                        }
+
+                        .width-200 {
+                            width: 200px !important;
+                        }
+
+                        .width-250 {
+                            width: 250px !important;
+                        }
+
+                        .width-300 {
+                            width: 300px !important;
+                        }
+
+                        .width-400 {
+                            width: 400px !important;
+                        }
+
+                        .width-500 {
+                            width: 500px !important;
+                        }
+
+                        .width-600 {
+                            width: 600px !important;
+                        }
+
+                        input[type="radio"], input[type="checkbox"] {
+                            margin: 0 8px 0 0;
+                            line-height: 36px;
+                            cursor: pointer;
+                            width: auto;
+                        }
+
+                        textarea {
+                            padding: 15px;
+                            width: 400px;
+                            height: auto;
+                            max-height: 600px;
+                            line-height: 1.8;
+                        }
+
+                        .line {
+                            color: #778592;
+                            line-height: 36px;
+                        }
+
+                        .help {
+                            display: block;
+                            color: #939ea9;
+                            padding: 9px 0;
+                            font-size: 12px;
+
+                            .clear {
+                                color: $red;
+                                position: absolute;
+                                margin-left: 10px;
+                                opacity: 0.5;
+                                width: 16px;
+                                height: 16px;
+                                text-align: center;
+                                cursor: pointer;
+                                line-height: 16px;
+                            }
+                            .clear:hover {
+                                opacity: 1;
+                            }
+                        }
+
+                        .select-con {
+                            display: inline-block;
+                            box-sizing: border-box;
+                            overflow: hidden;
+                            vertical-align: middle;
+                            margin: 0 10px 0 0;
+                            position: relative;
+                            height: 36px;
+                            -webkit-border-radius: 2px;
+                            -moz-border-radius: 2px;
+                            border-radius: 2px;
+                            background: #fff;
+
+                            select {
+                                padding: 0 28px 0 10px;
+                                -moz-appearance: none;
+                                -webkit-appearance: none;
+                            }
+                        }
+
+                        .select-con:after {
+                            content: '';
+                            position: absolute;
+                            z-index: 2;
+                            top: 14px;
+                            right: 10px;
+                            width: 0;
+                            height: 0;
+                            border: 4px dashed;
+                            border-color: #778592 transparent transparent transparent;
+                            pointer-events: none;
+                        }
+
+                        label.inline {
+                            font-weight: 400;
+                            display: inline-flex;
+                            align-items: center;
+                            padding: 8px 10px 8px 0;
+                            margin: 0;
+                        }
+
+                        .ck-editor {
+                            width: 85%;
+                        }
+
+                        .multiselect {
+                            width: 400px;
+
+                            .multiselect__content-wrapper {
+                                height: 150px;
+                                border-color: #e1ecf9 !important;
+                            }
+                        }
+
+                        .width-250 {
+                            width: 250px;
+                            display: inline-block;
+                            margin-right: 10px;
+                        }
+
+                        .btn {
+                            display: inline-block;
+                        }
+
+                        .collapsible-list {
+                            width: 450px;
+                            margin-bottom: 10px;
+                            display: inline-block;
+
+                            .card {
+                                border: 1px solid #e3ecf9;
+                            }
+                        }
+
+                        .switch-type-group {
+                            float: none;
+                            margin-left: 0;
+                        }
+
+                        .range-con {
+                            position: relative;
+
+                            input {
+                                display: inline-block;
+                            }
+
+                            .text {
+                                top: 7px;
+                                margin-left: 15px;
+                                position: absolute;
+                            }
+                        }
+
+                        .custom-control.custom-switch {
+                            height: 30px;
+                            .custom-control-label {
+                                margin-top: 7px;
+                            }
+                        }
+
+                        .custom-control.custom-switch.is-invalid {
+                            .custom-control-label::before {
+                                border-color: $red;
+                            }
+                            .custom-control-label::after {
+                                background-color: $red;
+                            }
+                        }
+
+                        .form-control.is-invalid {
+                            input {
+                                border-color: $red;
+                            }
+                        }
+
+                        .input-group-text {
+                            height: 36px;
+                            margin-left: -1px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .actions {
+        padding: 10px 20px;
+        padding-left: 120px;
+
+        .btn {
+            min-width: 60px;
+            margin-right: 4px;
+        }
+    }
+}
+
+.form-page .preview {
+    position: fixed;
+    z-index: 1;
+    top: 120px;
+    right: 45px;
+    width: 360px;
+    background: #fff;
+    border: 1px solid $border-color;
+
+    .preview-wrapper {
+        -webkit-border-radius: $border-radius;
+        -moz-border-radius: $border-radius;
+        border-radius: $border-radius;
+
+        .preview-title {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: $gray;
+            -webkit-border-top-left-radius: $border-radius;
+            -moz-border-top-left-radius: $border-radius;
+            border-top-left-radius: $border-radius;
+            -webkit-border-top-right-radius: $border-radius;
+            -moz-border-top-right-radius: $border-radius;
+            border-top-right-radius: $border-radius;;
+            color: #4c5e70;
+            font-size: 14px;
+            font-weight: 500;
+            .icon {
+                margin-right: 7px;
+                vertical-align: middle;
+            }
+            .tips {
+                display: none;
+            }
+        }
+
+        .preview-title:hover {
+            cursor: pointer;
+            .icon, .text {
+                display: none;
+            }
+            .tips {
+                display: block;
+            }
+        }
+
+        .preview-details {
+            overflow: auto;
+            padding: 19px 24px 14px;
+            margin: 15px 0;
+            max-height: calc(100vh - 230px);
+            dl {
+                margin: 0;
+            }
+            dt {
+                color: $text-muted;
+                font-weight: 400;
+            }
+            dl dt {
+                width: 60px;
+                text-align: center;
+            }
+            dl dd {
+                margin-top: -36px;
+                margin-bottom: 0px;
+                white-space: normal;
+                word-break: break-word;
+                margin-inline-start: 80px;
+                .fa.fa-file-o {
+                    opacity: 0.3;
+                    float: right;
+                    margin-top: 2px !important;
+                }
+                .fa.fa-file-o:hover {
+                    opacity: 1;
+                    color: $primary;
+                    cursor: pointer;
+                }
+            }
+            dl dt,
+            dl dd {
+                border-bottom: 0 none;
+                line-height: 16px;
+                min-height: 36px;
+                padding: 5px 0;
+            }
+            dl dd:after,
+            dl dd:before {
+                display: none;
+            }
+            .media-body {
+                margin-top: 3px;
+            }
+        }
+    }
+}
+
+.form-page .preview.fixed {
+    position: fixed;
+    top: 102px;
+    right: 60px;
+}
+
+.form-page.no-preview {
+    .params {
+        padding-right: 0;
+        .section .part .item {
+            .control-label {
+                width: 80px;
+            }
+            .controls {
+                margin-left: 100px;
+                margin-right: 0;
+            }
+        }
+    }
+    .form-control {
+        padding: 6px 0px 6px 6px;
+    }
+}
+
+.form-page .preview.mini {
+    width: 52px;
+    border-radius: 50%;
+    border-color: $blue;
+
+    .preview-title {
+        border-radius: 50%;
+        background: $blue;
+        .icon {
+            color: #fff;
+            margin-right: 0;
+        }
+    }
+
+    .preview-title:hover {
+        cursor: pointer;
+        background: #43a2ff;
+        .tips, .text {
+            display: none;
+        }
+        .icon {
+            margin-bottom: 0;
+            display: inline-block;
+        }
+    }
+
+    .preview-wrapper > .alert,
+    .preview-details,
+    .preview-title .text {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-page .preview {
+        display: none;
+    }
+    .form-page .params {
+        padding-right: 0;
+
+        .item .control-label {
+            width: 60px !important;
+        }
+        .item .controls {
+            margin-left: 80px !important;
+        }
+    }
+}

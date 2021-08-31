@@ -1,0 +1,40 @@
+<div>
+    <section class="section">
+        <div class="container">
+            <PageIntroduction :intro="page_intro" />
+            <div class="row">
+                <div class="col-12">
+                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content" v-model="tabIndex">
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-login"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">认证模式</span>
+                            </template>
+                            <Auth :configs="configurations" :getConfigs="getConfigurations" v-if="tabIndex == 0 && !loading" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">邮箱</span>
+                            </template>
+                            <Repos v-if="tabIndex == 1 && !loading" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-account-multiple"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">系统</span>
+                            </template>
+                            <Members v-if="tabIndex == 2 && !loading" />
+                        </b-tab>
+                    </b-tabs>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
