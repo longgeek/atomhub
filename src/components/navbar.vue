@@ -83,8 +83,8 @@ export default {
             // 获取用户登录状态
             // 将用户信息写入到 localStorage 以便其他页面用到
             this.$http.get(this.$api.users.current())
-                .then((rsp) => {
-                    if (rsp.status === 200) {
+                .then(rsp => {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.user = rsp.data;
                         localStorage.setItem('user', JSON.stringify(rsp.data));
                     } else {
@@ -95,8 +95,8 @@ export default {
             // 获取系统信息，同时写入 __csrf 到 LocalStorage 中
             // 用户在第一次登录设置用户名时调用 api 需要传递 __csft
             this.$http.get(this.$api.systeminfo())
-                .then((rsp) => {
-                    if (rsp.status === 200) {
+                .then(rsp => {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         localStorage.setItem('systeminfo', JSON.stringify(rsp.data));
                         localStorage.setItem('__csrf', rsp.headers['x-harbor-csrf-token']);
                     } else {
@@ -110,8 +110,8 @@ export default {
          */
         logout() {
             this.$http.get(this.$vars.logoutUrl)
-                .then((rsp) => {
-                    if (rsp.status === 200) {
+                .then(rsp => {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         window.location.href = "/repos";
                     }
             })
@@ -299,12 +299,12 @@ export default {
                                     <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-trash-can mr-2"></i>垃圾清理
                                     </router-link>
-                                </li>
+                                </li -->
                                 <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
+                                    <router-link :to="{name: 'admin-configs', params: {tab: 'auth'}}" class="side-nav-link-ref">
                                         <i class="mdi mdi-cogs mr-2"></i>配置管理
                                     </router-link>
-                                </li -->
+                                </li>
                             </ul>
                         </li>
                     </ul>

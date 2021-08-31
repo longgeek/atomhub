@@ -51,7 +51,7 @@
                     this.$route.params.project,
                     this.$route.params.repo
                 ),
-                {description: this.repo.description},
+                {full_description: this.repo.full_description},
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
             ).then(rsp => {
                 if (rsp.status === 200) {
@@ -116,7 +116,7 @@
         <div class="small" v-if="loading">正在加载...</div>
         <div v-if="!loading">
             <mavon-editor
-                v-model="repo.description"
+                v-model="repo.full_description"
                 v-if="!readonly"
                 fontSize="12px"
                 toolbarsBackground="#f6f9fc"
@@ -129,8 +129,8 @@
                 :editable="!readonly"
                 style="height: calc(100vh - 240px);"
             ></mavon-editor>
-            <div class="markdown-body p-4" v-if="readonly && repo.description" v-html="$options.filters.toMarkDown(repo.description)"></div>
-            <div class="p-4" v-if="readonly && !repo.description">
+            <div class="markdown-body p-4" v-if="readonly && repo.full_description" v-html="$options.filters.toMarkDown(repo.full_description)"></div>
+            <div class="p-4" v-if="readonly && !repo.full_description">
                 <span class="opacity-8">此镜像仓库没有描述信息</span>
             </div>
             <div class="small mt-4" v-if="!readonly">

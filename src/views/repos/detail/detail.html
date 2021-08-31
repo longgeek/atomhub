@@ -23,7 +23,7 @@
                         <br />
                         上传于：{{ repo.creation_time | toLocalTime }}，更新于：{{ repo.update_time | toLocalTime }}
                     </p>
-                    <div class="text-white">{{ repo.description | limitTo(200) }}</div>
+                    <div class="text-white">{{ repo.short_description }}</div>
                 </div>
                 <div class="col-lg-4 col-md-9">
                     <div class="shadow p-4 mt-5 border-radius bg-white">
