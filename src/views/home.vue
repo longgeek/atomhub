@@ -224,20 +224,52 @@ export default {
         </div>
 
         <div class="container mt-100 mt-60">
-            <div class="card rounded bg-white shadow border-0">
+            <div class="card rounded bg-white shadow border-0 mb-4">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-sm-7">
                             <div class="text-sm-left">
-                                <h6 class="mb-0">开始使用 OpenAtom 镜像仓库、构建自己专用镜像。</h6>
+                                <h6 class="mb-0">开始使用 AtomHub 镜像仓库</h6>
                             </div>
                         </div>
 
                         <div class="col-sm-5 mt-4 mt-sm-0">
                             <div class="text-sm-right">
                                 <router-link :to="{name: 'repos'}" class="btn btn-dark">
-                                    <i class="mdi mdi-file-document-outline"></i> 立即探索
+                                    <i class="mdi mdi-card-search"></i> 立即探索
                                 </router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded bg-white shadow border-0">
+                <div class="card-body">
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-12 mb-4">
+                            <div class="text-sm-left">
+                                <h6 class="mb-0">成员单位</h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 text-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="https://con.openatom.cn/static/image/partners/HUAWEI.svg" width="180" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 text-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="https://con.openatom.cn/static/image/partners/Inspur.svg" alt="" width="180" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 text-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="https://con.openatom.cn/static/image/partners/360.svg" alt="" width="180" />
+                                </div>
                             </div>
                         </div>
                     </div>
