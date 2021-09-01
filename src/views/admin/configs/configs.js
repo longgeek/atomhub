@@ -56,6 +56,8 @@ export default {
                 .then(rsp => {
                     if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.configurations = rsp.data;
+                        this.configurations.oidc_admin_group.value = '';
+                        this.configurations.oidc_client_secret = { editable: true, value: 'aWpLOSYkIzJTTU4wMDkx' };
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取配置信息错误', variant: 'danger'});
                     }
