@@ -100,7 +100,12 @@ export default {
                 no-close-on-backdrop
                 no-close-on-esc
                 @ok="submit"
-            >确定需要重新设置 Cli 密码吗，重新设置后，就的 Cli 密码将会被弃用。</b-modal>
+            >
+                <div class="alert alert-danger mb-0">
+                    <span class="mdi mdi-information-outline mr-2"></span>
+                    确定需要重新设置 Cli 密码吗，重新设置后，就的 Cli 密码将会被弃用。
+                </div>
+            </b-modal>
         </div>
     </form>
 </div>

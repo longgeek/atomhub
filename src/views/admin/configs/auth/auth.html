@@ -16,7 +16,7 @@
                         </div>
                         <div class="controls">
                             <div class="select-con">
-                                <select disabled="disabled" class="form-control" v-model="form.auth_mode">
+                                <select disabled="disabled" class="form-control" v-model="form.auth_mode.value">
                                     <option value="oidc_auth">OIDC</option>
                                     <option value="db_auth">数据库</option>
                                     <option value="ldap_auth">LDAP</option>
@@ -31,7 +31,7 @@
                             <span class="key required">OIDC 供应商</span>
                         </div>
                         <div class="controls">
-                            <input class="form-control width-300" v-model="form.oidc_name" :class="{ 'is-invalid': submitted && $v.form.oidc_name.$error }"/>
+                            <input class="form-control width-300" v-model="form.oidc_name.value" :class="{ 'is-invalid': submitted && $v.form.oidc_name.value.$error }"/>
                             <span class="help">OIDC 提供商的名字。</span>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             <span class="key required">OIDC Endpoint</span>
                         </div>
                         <div class="controls">
-                            <input class="form-control width-400" v-model="form.oidc_endpoint" :class="{ 'is-invalid': submitted && $v.form.oidc_endpoint.$error }" />
+                            <input class="form-control width-400" v-model="form.oidc_endpoint.value" :class="{ 'is-invalid': submitted && $v.form.oidc_endpoint.value.$error }" />
                             <span class="help">OIDC 服务器地址，必须 以 https:// 开头。</span>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <span class="key required">OIDC 客户端密码</span>
                         </div>
                         <div class="controls">
-                            <input type="password" class="form-control width-400" v-model="form.oidc_client_secret" :class="{ 'is-invalid': submitted && $v.form.oidc_client_secret.$error }" />
+                            <input type="password" class="form-control width-400" v-model="form.oidc_client_secret.value" :class="{ 'is-invalid': submitted && $v.form.oidc_client_secret.value.$error }" />
                         </div>
                     </div>
                     <div class="item">
@@ -65,7 +65,7 @@
                             <span class="key">组名称</span>
                         </div>
                         <div class="controls">
-                            <input class="form-control width-400" v-model="form.oidc_groups_claim" />
+                            <input class="form-control width-400" v-model="form.oidc_groups_claim.value" />
                             <span class="help">ID 和 token 中的 Claim 名称，在组的名称列表中。</span>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <span class="key">OIDC 管理员组</span>
                         </div>
                         <div class="controls">
-                            <input class="form-control width-400" v-model="form.admin_group" />
+                            <input class="form-control width-400" v-model="form.oidc_admin_group.value" />
                             <span class="help">OIDC 管理员组名称。所有该组内用户都会有管理员权限，此属性可以为空。</span>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                             <span class="key required">OIDC Scope</span>
                         </div>
                         <div class="controls">
-                            <input class="form-control width-400" v-model="form.oidc_scope" :class="{ 'is-invalid': submitted && $v.form.oidc_scope.$error }" />
+                            <input class="form-control width-400" v-model="form.oidc_scope.value" :class="{ 'is-invalid': submitted && $v.form.oidc_scope.value.$error }" />
                             <span class="help">在身份验证期间发送到 OIDC 服务器的 scope。它必须包含 "openid" 和 "offline_access"。如果您使用 Google，请从此字段中删除 "脱机访问"。</span>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="controls">
                             <label class="inline">
-                                <input type="checkbox" v-model="form.oidc_verify_cert" />
+                                <input type="checkbox" v-model="form.oidc_verify_cert.value" />
                             </label>
                             <span class="help">如果您的 OIDC 服务器是通过自签名证书托管的，请取消选中此框。</span>
                         </div>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="controls">
                             <label class="inline">
-                                <input type="checkbox" v-model="form.oidc_auto_onboard" />
+                                <input type="checkbox" v-model="form.oidc_auto_onboard.value" />
                             </label>
                             <span class="help">跳过登录界面，这样用户就不能更改其用户名。用户名是从 ID 令牌中获取的。</span>
                         </div>
@@ -128,7 +128,26 @@
         </section>
     </div>
     <div class="actions">
-        <input type="button" value="提交" class="btn btn-dark" @click="submit" :disabled="loading" />
-        <input type="button" value="取消" class="btn btn-outline-dark" @click="$router.back()" :disabled="loading" />
+        <input type="button" value="提交" class="mr-2 btn btn-dark" @click="submit" :disabled="loading" />
+        <input type="button" value="取消" class="mr-2 btn btn-outline-dark" :disabled="loading" v-b-modal.cancel />
+        <input type="button" value="测试 OIDC 服务器" class="mr-2 btn btn-primary" @click="ping" :disabled="loading" />
     </div>
+    <b-modal id="cancel"
+        centered
+        size="sm"
+        title="提示"
+        title-class="font-18"
+        ok-title="确认"
+        ok-variant="dark"
+        cancel-variant="outline-dark"
+        cancel-title="取消"
+        no-close-on-backdrop
+        no-close-on-esc
+        @ok="cancel"
+    >
+        <div class="alert alert-danger mb-0">
+            <span class="mdi mdi-information-outline mr-2"></span>
+             确定取消修改的配置项?
+        </div>
+    </b-modal>
 </form>
