@@ -5,7 +5,7 @@
 import { required } from "vuelidate/lib/validators";
 
 export default {
-    page: { title: '认证模式 - 配置管理' },
+    page: { title: '系统设置 - 配置管理' },
     props: {
         configs: { type: Object },
         getConfigs: { type: Function },
@@ -19,38 +19,15 @@ export default {
     },
     validations: {
         form: {
-            auth_mode: { value: { required } },
-            oidc_name: { value: { required } },
-            oidc_endpoint: { value: { required } },
-            oidc_client_id: { value: { required } },
-            oidc_client_secret: { value: { required } },
-            oidc_scope: { value: { required } },
+            token_expiration: { value: { required } },
+            robot_name_prefix: { value: { required } },
+            robot_token_duration: { value: { required } },
         }
     },
     created() { this.init() },
     methods: {
         init() {
             this.form = JSON.parse(JSON.stringify(this.configs));
-        },
-        ping() {
-            if (this.loading) return;
-            this.loading = true;
-            this.$http.post(
-                this.$api.ping.oidc(),
-                {
-                    url: this.form.oidc_endpoint.value,
-                    verify_cert: this.form.oidc_verify_cert.value,
-                },
-                {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
-            ).then((rsp) => {
-                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 201) {
-                    this.$bvToast.toast(`测试成功`, {title: '提示', variant: 'primary'});
-                    this.$parent.tableData();
-                } else {
-                    this.$bvToast.toast(rsp.data.errors[0].message, {title: '测试失败', variant: 'danger'});
-                }
-                this.loading = false;
-            })
         },
         cancel() {
             this.form = JSON.parse(JSON.stringify(this.configs));
@@ -71,7 +48,7 @@ export default {
             for (let k in this.form) {
                 const value = this.form[k].value;
                 if (value != this.configs[k].value) {
-                    params[k] = value;
+                    params[k] = parseInt(value) ? parseInt(value) : value;
                 }
             }
 

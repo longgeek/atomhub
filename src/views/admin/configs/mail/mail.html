@@ -1,0 +1,102 @@
+<form class="form-page needs-validation">
+    <div class="params">
+        <p class="alert alert-info">请填写工单基本信息，带 * 标记的参数属于必填项，不带标记的属于可选项。</p>
+        <section class="section basic">
+            <fieldset>
+                <div class="title">
+                    <h6>
+                        <span class="mdi mdi-email"></span>
+                        「 邮箱 」基本配置
+                    </h6>
+                </div>
+                <div class="part collapse show">
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key required">邮件服务器</span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.email_host.value" :class="{ 'is-invalid': submitted && $v.form.email_host.value.$error }"/>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key required">邮件服务器端口</span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.email_port.value" :class="{ 'is-invalid': submitted && $v.form.email_port.value.$error }" />
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">用户名</span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.email_username.value" />
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">密码</span>
+                        </div>
+                        <div class="controls">
+                            <input type="password" class="form-control width-400" v-model="form.email_password.value" />
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key required">邮件来源</span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.email_from.value" :class="{ 'is-invalid': submitted && $v.form.email_from.value.$error }"/>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">邮件 SSL</span>
+                        </div>
+                        <div class="controls">
+                            <label class="inline">
+                                <input type="checkbox" v-model="form.email_ssl.value" />
+                            </label>
+                            <span class="help">启用 SSL 到邮件服务器连接。</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">验证证书</span>
+                        </div>
+                        <div class="controls">
+                            <label class="inline">
+                                <input type="checkbox" v-model="form.email_insecure.value" />
+                            </label>
+                            <span class="help">确定是否要验证邮件服务器的证书。如果邮件服务器使用的是自签或者非信任证书，不要勾选此项。</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+    </div>
+    <div class="actions">
+        <input type="button" value="提交" class="mr-2 btn btn-dark" @click="submit" :disabled="loading" />
+        <input type="button" value="取消" class="mr-2 btn btn-outline-dark" :disabled="loading" v-b-modal.cancel />
+        <input type="button" value="测试邮件服务器" class="mr-2 btn btn-primary" @click="ping" :disabled="loading" />
+    </div>
+    <b-modal id="cancel"
+        centered
+        size="sm"
+        title="提示"
+        title-class="font-18"
+        ok-title="确认"
+        ok-variant="dark"
+        cancel-variant="outline-dark"
+        cancel-title="取消"
+        no-close-on-backdrop
+        no-close-on-esc
+        @ok="cancel"
+    >
+        <div class="alert alert-danger mb-0">
+            <span class="mdi mdi-information-outline mr-2"></span>
+             确定取消修改的配置项?
+        </div>
+    </b-modal>
+</form>

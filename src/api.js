@@ -3,7 +3,10 @@
  */
 const url = process.env.VUE_APP_BASE_URL;
 const api = {
-  ping:             (type)          => {return `${url}/system/${type}/ping`},                                   // 测试 LDAP|OIDC 服务器
+  ping: {
+    oidc:           ()              => {return `${url}/system/oidc/ping`},                                      // 测试 OIDC 服务器
+    email:           ()             => {return `${url}/email/ping`},                                            // 测试 EMAIL 服务器
+  },
   systeminfo:       ()              => {return `${url}/systeminfo`},                                            // 获取后端信息
   logs:             ()              => {return `${url}/audit-logs`},                                            // 获取用户所属项目的最近日志
   users: {
