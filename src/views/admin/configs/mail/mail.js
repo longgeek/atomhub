@@ -5,7 +5,7 @@
 import { required } from "vuelidate/lib/validators";
 
 export default {
-    page: { title: '认证模式 - 配置管理' },
+    page: { title: '邮箱 - 配置管理' },
     props: {
         configs: { type: Object },
         getConfigs: { type: Function },
@@ -19,12 +19,9 @@ export default {
     },
     validations: {
         form: {
-            auth_mode: { value: { required } },
-            oidc_name: { value: { required } },
-            oidc_endpoint: { value: { required } },
-            oidc_client_id: { value: { required } },
-            oidc_client_secret: { value: { required } },
-            oidc_scope: { value: { required } },
+            email_host: { value: { required } },
+            email_port: { value: { required } },
+            email_from: { value: { required } },
         }
     },
     created() { this.init() },
@@ -36,10 +33,12 @@ export default {
             if (this.loading) return;
             this.loading = true;
             this.$http.post(
-                this.$api.ping.oidc(),
+                this.$api.ping.email(),
                 {
-                    url: this.form.oidc_endpoint.value,
-                    verify_cert: this.form.oidc_verify_cert.value,
+                    email_from: this.form.email_from.value,
+                    email_host: this.form.email_host.value,
+                    email_port: this.form.email_port.value,
+                    email_username: this.form.email_username.value,
                 },
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
             ).then((rsp) => {
@@ -71,7 +70,7 @@ export default {
             for (let k in this.form) {
                 const value = this.form[k].value;
                 if (value != this.configs[k].value) {
-                    params[k] = value;
+                    params[k] = parseInt(value) ? parseInt(value) : value;
                 }
             }
 

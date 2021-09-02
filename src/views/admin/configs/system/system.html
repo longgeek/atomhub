@@ -1,0 +1,102 @@
+<form class="form-page needs-validation">
+    <div class="params">
+        <p class="alert alert-info">请填写工单基本信息，带 * 标记的参数属于必填项，不带标记的属于可选项。</p>
+        <section class="section basic">
+            <fieldset>
+                <div class="title">
+                    <h6>
+                        <span class="mdi mdi-email"></span>
+                        「 系统设置   」基本配置
+                    </h6>
+                </div>
+                <div class="part collapse show">
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">项目创建</span>
+                        </div>
+                        <div class="controls">
+                            <div class="select-con">
+                                <select class="form-control" v-model="form.project_creation_restriction.value">
+                                    <option value="everyone">所有人</option>
+                                    <option value="adminonly">仅管理员</option>
+                                </select>
+                            </div>
+                            <span class="help">用来确定哪些用户有权限创建项目，默认为 "所有人"，<span class="text-warning">设置为 "仅管理员" 则只有管理员可以创建项目。</span></span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key required">令牌过期时间（分钟）</span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.token_expiration.value" :class="{ 'is-invalid': submitted && $v.form.token_expiration.value.$error }"/>
+                            <span class="help">由令牌服务创建的令牌的过期时间（分钟），默认为 30 分钟。</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key required">机器人账户名称前缀</span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.robot_name_prefix.value" :class="{ 'is-invalid': submitted && $v.form.robot_name_prefix.value.$error }" />
+                            <span class="help">每个机器人账户名称的前缀字符串，默认值为 'robot$'</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key required">机器人账户令牌过期时间（天） </span>
+                        </div>
+                        <div class="controls">
+                            <input class="form-control width-400" v-model="form.robot_token_duration.value" :class="{ 'is-invalid': submitted && $v.form.robot_token_duration.value.$error }" />
+                            <span class="help">机器人账户的令牌的过期时间（天），默认为30天,显示的结果为分钟转化的天数并向下取整。</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">仓库只读</span>
+                        </div>
+                        <div class="controls">
+                            <label class="inline">
+                                <input type="checkbox" v-model="form.read_only.value" />
+                            </label>
+                            <span class="help">用户在此模式下无法对镜像执行任何操作。</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">开启 WEBHOOK</span>
+                        </div>
+                        <div class="controls">
+                            <label class="inline">
+                                <input type="checkbox" v-model="form.notification_enable.value" />
+                            </label>
+                            <span class="help">当执行推送，拉动，删除，扫描镜像或 chart 等特定操作时，启用 webhooks 以在指定端点接收回调。</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+    </div>
+    <div class="actions">
+        <input type="button" value="提交" class="mr-2 btn btn-dark" @click="submit" :disabled="loading" />
+        <input type="button" value="取消" class="mr-2 btn btn-outline-dark" :disabled="loading" v-b-modal.cancel />
+    </div>
+    <b-modal id="cancel"
+        centered
+        size="sm"
+        title="提示"
+        title-class="font-18"
+        ok-title="确认"
+        ok-variant="dark"
+        cancel-variant="outline-dark"
+        cancel-title="取消"
+        no-close-on-backdrop
+        no-close-on-esc
+        @ok="cancel"
+    >
+        <div class="alert alert-danger mb-0">
+            <span class="mdi mdi-information-outline mr-2"></span>
+             确定取消修改的配置项?
+        </div>
+    </b-modal>
+</form>

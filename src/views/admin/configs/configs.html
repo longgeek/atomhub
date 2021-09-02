@@ -17,20 +17,20 @@
                         <b-tab lazy>
                             <template v-slot:title>
                                 <span class="d-inline-block mr-2">
-                                    <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                                    <i class="mdi mdi-email"></i>
                                 </span>
                                 <span class="d-none d-sm-inline-block">邮箱</span>
                             </template>
-                            <Repos v-if="tabIndex == 1 && !loading" />
+                            <Mail :configs="configurations":getConfigs="getConfigurations" v-if="tabIndex == 1 && !loading" />
                         </b-tab>
                         <b-tab lazy>
                             <template v-slot:title>
                                 <span class="d-inline-block mr-2">
-                                    <i class="mdi mdi-account-multiple"></i>
+                                    <i class="mdi mdi-cogs"></i>
                                 </span>
-                                <span class="d-none d-sm-inline-block">系统</span>
+                                <span class="d-none d-sm-inline-block">系统设置</span>
                             </template>
-                            <Members v-if="tabIndex == 2 && !loading" />
+                            <System :configs="configurations":getConfigs="getConfigurations" v-if="tabIndex == 2 && !loading" />
                         </b-tab>
                     </b-tabs>
                 </div>

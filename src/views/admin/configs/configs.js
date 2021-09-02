@@ -3,12 +3,14 @@
  */
 
 import Auth from "./auth/auth.vue";
+import Mail from "./mail/mail.vue";
+import System from "./system/system.vue";
 import PageIntroduction from "@/components/page-introduction";
 
 export default {
     page: { title: '配置管理' },
     created() { this.init() },
-    components: { Auth, PageIntroduction },
+    components: { Auth, Mail, System, PageIntroduction },
     data() {
         return {
             configurations: {},
@@ -56,6 +58,7 @@ export default {
                 .then(rsp => {
                     if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.configurations = rsp.data;
+                        this.configurations.email_password = { editable: true, value: 'aWpLOSYkIzJTTU4wMDkx' };
                         this.configurations.oidc_admin_group.value = '';
                         this.configurations.oidc_client_secret = { editable: true, value: 'aWpLOSYkIzJTTU4wMDkx' };
                     } else {
