@@ -1,12 +1,12 @@
 <form class="form-page needs-validation">
     <div class="params">
-        <p class="alert alert-info">请填写工单基本信息，带 * 标记的参数属于必填项，不带标记的属于可选项。</p>
+        <p class="alert alert-info">请填写表单基本信息，带 * 标记的参数属于必填项，不带标记的属于可选项。</p>
         <section class="section basic">
             <fieldset>
                 <div class="title">
                     <h6>
-                        <span class="mdi mdi-email"></span>
-                        「 系统设置   」基本配置
+                        <span class="mdi mdi-cogs"></span>
+                        「 系统设置 」基本配置
                     </h6>
                 </div>
                 <div class="part collapse show">
@@ -71,6 +71,31 @@
                                 <input type="checkbox" v-model="form.notification_enable.value" />
                             </label>
                             <span class="help">当执行推送，拉动，删除，扫描镜像或 chart 等特定操作时，启用 webhooks 以在指定端点接收回调。</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">部署安全性</span>
+                        </div>
+                        <div class="controls">
+                            <span class="help">
+                                <span class="text-dark">CVE 特赦名单</span>
+                                <br />
+                                <br />
+                                在计算镜像的的安全性漏洞时，在系统的 CVE 特赦名单中的漏洞将会被忽略。
+                                <br />
+                                可添加一条或多条 CVE ID 至系统的 CVE 特赦名单中。
+                            </span>
+                            <b-form-tags
+                                v-model="formCveItemsNew"
+                                class="form-control width-400"
+                                placeholder=""
+                                separator=","
+                            >
+                            </b-form-tags>
+                            <span class="help">
+                                输入一条或多条 CVE ID，之间请用英文逗号隔开或者换行。
+                            </span>
                         </div>
                     </div>
                 </div>
