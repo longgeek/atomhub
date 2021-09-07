@@ -1,0 +1,63 @@
+<div>
+    <div class="page-toolbar pt-0 pl-0">
+        <div class="loading-layer" v-if="loading"></div>
+        <button type="button" class="btn btn-dark mb-0" @click="tableData()" :disabled="loading">
+            <i class="mdi mdi-refresh align-middle"></i>
+        </button>
+    </div>
+    <a-table
+        class="text-norwap"
+        :scroll="{ x: true }"
+        :columns="table.cols"
+        :dataSource="table.rows"
+        :pagination="pagination"
+        :loading="loading"
+        :locale="locale"
+        :rowKey="records => records.id"
+        @change="tableChange"
+    >
+        <template slot="id" slot-scope="id">
+            <span class="text-muted">{{ id }}</span>
+        </template>
+        <template slot="job_kind" slot-scope="job_kind">
+            <span v-if="job_kind == 'MANUAL'">手动</span>
+            <span v-else>{{ job_kind }}</span>
+        </template>
+        <template slot="job_parameters" slot-scope="job_parameters">
+            <span v-if="!JSON.parse(job_parameters).dry_run">是</span>
+            <span v-else>否</span>
+        </template>
+        <template slot="job_status" slot-scope="job_status">
+            <span class="text-uppercase">{{ job_status }}</span>
+        </template>
+        <template slot="schedule" slot-scope="schedule, row">
+            <a v-b-modal.log @click="logId = row.id"><i class="mdi mdi-file-document-box-outline"></i></a>
+        </template>
+        <template slot="update_time" slot-scope="update_time">
+            <span class="text-muted">{{ update_time | toLocalTime }}</span>
+        </template>
+        <template slot="creation_time" slot-scope="creation_time">
+            <span class="text-muted">{{ creation_time | toLocalTime }}</span>
+        </template>
+    </a-table>
+    <b-modal id="log"
+        centered
+        size="sm"
+        :title="'日志' + logId"
+        title-class="font-18"
+        ok-title="确认"
+        ok-variant="dark"
+        cancel-variant="outline-dark"
+        cancel-title="取消"
+        no-close-on-backdrop
+        no-close-on-esc
+        @show="getLog"
+        v-if="logId"
+    >
+        <div class="alert alert-warning mb-0" v-if="logLoading">
+            <span class="mdi mdi-information-outline mr-2"></span>
+            获取日志中...
+        </div>
+        <div class="alert alert-warning mb-0" v-else>{{ log }}</div>
+    </b-modal>
+</div>

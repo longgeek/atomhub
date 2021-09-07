@@ -265,41 +265,16 @@ export default {
                                         <i class="mdi mdi-account-multiple mr-2"></i>组管理
                                     </router-link>
                                 </li>
-                                <!-- li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
-                                        <i class="mdi mdi-checkbox-multiple-blank mr-2"></i>仓库管理
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
-                                        <i class="mdi mdi-content-copy mr-2"></i>复制管理
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
-                                        <i class="mdi mdi-view-week mr-2"></i>分布式分发
-                                    </router-link>
-                                </li -->
                                 <li>
                                     <router-link :to="{name: 'admin-labels'}" class="side-nav-link-ref">
                                         <i class="mdi mdi-tag mr-2"></i>标签
                                     </router-link>
                                 </li>
-                                <!-- li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
-                                        <i class="mdi mdi-hexagon-slice-5 mr-2"></i>项目定额
+                                <li>
+                                    <router-link :to="{name: 'admin-gc', params: {tab: 'clear'}}" class="side-nav-link-ref">
+                                        <i class="mdi mdi-delete-alert mr-2"></i>垃圾清理
                                     </router-link>
                                 </li>
-                                <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
-                                        <i class="mdi mdi-shield-alert mr-2"></i>审查服务
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{name: 'admin-users'}" class="side-nav-link-ref">
-                                        <i class="mdi mdi-trash-can mr-2"></i>垃圾清理
-                                    </router-link>
-                                </li -->
                                 <li>
                                     <router-link :to="{name: 'admin-configs', params: {tab: 'auth'}}" class="side-nav-link-ref">
                                         <i class="mdi mdi-cogs mr-2"></i>配置管理

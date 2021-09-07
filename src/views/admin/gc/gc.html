@@ -1,0 +1,31 @@
+<div>
+    <section class="section">
+        <div class="container">
+            <PageIntroduction :intro="page_intro" />
+            <div class="row">
+                <div class="col-12">
+                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content" v-model="tabIndex">
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-delete-alert"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">垃圾清理</span>
+                            </template>
+                            <Clear v-if="tabIndex == 0 && !loading" />
+                        </b-tab>
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-history"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">历史记录</span>
+                            </template>
+                            <History v-if="tabIndex == 1 && !loading" />
+                        </b-tab>
+                    </b-tabs>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
