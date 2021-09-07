@@ -9,6 +9,9 @@ const api = {
   },
   CVEAllowlist:     ()              => {return `${url}/system/CVEAllowlist`},                                   // CVE 特赦名单
   systeminfo:       ()              => {return `${url}/systeminfo`},                                            // 获取后端信息
+  schedule:         ()              => {return `${url}/system/gc/schedule`},                                    // 垃圾清理
+  history:          ()              => {return `${url}/system/gc`},                                             // 垃圾清理历史记录
+  historyLog:       (id)            => {return `${url}/system/gc/${id}/log`},                                   // 垃圾清理历史任务的日志
   logs:             ()              => {return `${url}/audit-logs`},                                            // 获取用户所属项目的最近日志
   users: {
     current:        ()              => {return `${url}/users/current`},                                         // 获取当前用户信息

@@ -81,6 +81,12 @@ const routes = [
         component: () => import('@/views/admin/labels/labels.vue')
     },
     {
+        path: '/admin/gc/:tab?',
+        name: 'admin-gc',
+        meta: { authRequired: true },
+        component: () => import('@/views/admin/gc/gc.vue')
+    },
+    {
         path: '/admin/manage/:tab?',
         name: 'admin-configs',
         meta: { authRequired: true },

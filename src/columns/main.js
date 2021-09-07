@@ -6,6 +6,7 @@ import labels from '@/columns/admin/labels.js';
 import projects from '@/columns/admin/projects.js';
 import projectsRepos from '@/columns/admin/projects-repos.js';
 import projectsMembers from '@/columns/admin/projects-members.js';
+import gcHistory from '@/columns/admin/gc-history.js';
 import artifacts from '@/columns/artifacts.js';
 
 /**
@@ -22,5 +23,6 @@ export default {
         projects: projects,
         projectsRepos: projectsRepos,
         projectsMembers: projectsMembers,
+        gcHistory: gcHistory,
     },
 }
