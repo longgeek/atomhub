@@ -51,7 +51,6 @@ export default {
                     if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.log = rsp.data;
                     } else {
-                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取配置信息错误', variant: 'danger'});
                         this.log = rsp.data.errors[0].message;
                     }
                     this.logLoading = false;

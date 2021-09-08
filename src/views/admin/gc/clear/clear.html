@@ -9,22 +9,29 @@
                             <span class="key">当前定时任务</span>
                         </div>
                         <div class="controls">
-                            <div class="select-con width-150">
-                                <select class="form-control" v-model="form.auth_mode">
-                                    <option value="oidc_auth">无</option>
-                                    <option value="db_auth">每小时</option>
-                                    <option value="db_auth">每天</option>
-                                    <option value="db_auth">每周</option>
-                                    <option value="uaa_auth">自定义</option>
+                            <div class="select-con width-200">
+                                <select class="form-control" v-model="policy">
+                                    <option value="None">无</option>
+                                    <option value="Hourly">每小时（0 0 * * * *）</option>
+                                    <option value="Daily">每天（0 0 0 * * *）</option>
+                                    <option value="Weekly">每周（0 0 0 * * 0）</option>
+                                    <option value="Custom">自定义</option>
                                 </select>
                             </div>
-                            <span class="help"><a href="https://openid.net/connect/" target="_blank">点击这里，查看更多信息</a></span>
+                            <input class="form-control width-200 mt-2" placeholder="- - - - - -" v-model="cron" v-if="policy == 'Custom'" />
+                            <span class="help">定时任务采用 crontab，如需自定义时间请确保输入正确 cron 格式</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="control-label">
+                            <span class="key">回收 artifacts</span>
                         </div>
                         <div class="controls">
-                            <b-form-checkbox v-model="checked" name="check-button" switch>
-                                允许回收无 tag 的 artifacts
+                            <b-form-checkbox v-model="delete_untagged" name="check-button" switch>
+                                <span v-if="delete_untagged">是</span>
+                                <span v-else>否</span>
                             </b-form-checkbox>
-                            <span class="help"><a href="https://openid.net/connect/" target="_blank">点击这里，查看更多信息</a></span>
+                            <span class="help">是否允许回收无 Tag 的 Artifacts</span>
                         </div>
                     </div>
                 </div>
@@ -32,7 +39,8 @@
         </section>
     </div>
     <div class="actions">
-        <input type="button" value="立即清理垃圾" class="mr-2 btn btn-dark" @click="submit" :disabled="loading" />
-        <input type="button" value="模拟运行" class="mr-2 btn btn-outline-dark" :disabled="loading" />
+        <input type="button" value="保存" class="mr-2 btn btn-dark" @click="submit" :disabled="loading" />
+        <input type="button" value="立即清理垃圾" class="mr-2 btn btn-primary" @click="clear" :disabled="loading" />
+        <input type="button" value="模拟运行" class="mr-2 btn btn-outline-dark" @click="dry" :disabled="loading" />
     </div>
 </form>
