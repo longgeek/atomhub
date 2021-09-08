@@ -31,7 +31,7 @@
             <span class="text-uppercase">{{ job_status }}</span>
         </template>
         <template slot="schedule" slot-scope="schedule, row">
-            <a v-b-modal.log @click="logId = row.id"><i class="mdi mdi-file-document-box-outline"></i></a>
+            <a class="text-primary" v-b-modal.log @click="logId = row.id"><i class="mdi mdi-file-document-box-outline"></i></a>
         </template>
         <template slot="update_time" slot-scope="update_time">
             <span class="text-muted">{{ update_time | toLocalTime }}</span>
