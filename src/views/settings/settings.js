@@ -25,7 +25,7 @@ export default {
         logout() {
             this.$http.get(this.$vars.logoutUrl)
                 .then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         window.location.href = "/repos";
                     }
             })

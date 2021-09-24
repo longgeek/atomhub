@@ -45,11 +45,29 @@
                 @change="tableChange"
                 v-if="Object.keys(repo).length && user.sysadmin_flag"
             >
-                <template slot="id" slot-scope="id">
-                    <span class="text-muted">{{ id }}</span>
+                <template slot="id" slot-scope="id, row">
+                    <router-link :to="{
+                        name: 'repos-artifacts-detail',
+                        params: {
+                            project: $route.params.project,
+                            repo: $route.params.repo,
+                            artifacts: row.digest,
+                        }}"
+                    >
+                        {{ id }}
+                    </router-link>
                 </template>
                 <template slot="digest" slot-scope="digest">
-                    <span class="text-muted">{{ digest | limitTo(15) }}</span>
+                    <router-link :to="{
+                        name: 'repos-artifacts-detail',
+                        params: {
+                            project: $route.params.project,
+                            repo: $route.params.repo,
+                            artifacts: digest,
+                        }}"
+                    >
+                        {{ digest | limitTo(15) }}
+                    </router-link>
                 </template>
                 <template slot="type" slot-scope="type, row">
                     <span class="mdi mdi-content-copy h6 pointer hover-dark"

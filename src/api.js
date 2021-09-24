@@ -29,7 +29,16 @@ const api = {
   repositories: {
     list:           ()              => {return `${url}/repositories`},                                          // 获取所有镜像仓库
     detail:         (project, repo) => {return `${url}/projects/${project}/repositories/${repo}`},              // 获取单个 Repo 详情
-    artifacts:      (project, repo) => {return `${url}/projects/${project}/repositories/${repo}/artifacts`},    // 获取 Repo 构建记录
+    artifacts: {
+      list:         (project, repo) => {return `${url}/projects/${project}/repositories/${repo}/artifacts`},    // 获取 Repo Artifacts 列表
+      detail:       (project,
+                     repo,
+                     artifacts)     => {return `${url}/projects/${project}/repositories/${repo}/artifacts/${artifacts}`},            // 获取 Repo Artifacts 详情
+      tags:         (project,
+                     repo,
+                     artifacts,
+                     tag=null)      => {return tag ? `${url}/projects/${project}/repositories/${repo}/artifacts/${artifacts}/tags/${tag}` : `${url}/projects/${project}/repositories/${repo}/artifacts/${artifacts}/tags`},       // 获取 Repo Artifacts 下的 Tags
+    },
   },
   oidc: {
     onboard:        ()              => {return `/c/oidc/onboard`},                                              // 设置 OIDC 用户名

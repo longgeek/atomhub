@@ -35,7 +35,7 @@ export default {
                 {username: this.username},
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
             ).then((rsp) => {
-                if (rsp.status === 200) {
+                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                     window.location.href = "/repos";
                     this.$bvToast.toast('成功设置用户名', {title: '提示', variant: 'primary'});
                 } else {

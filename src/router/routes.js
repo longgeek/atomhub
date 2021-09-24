@@ -20,6 +20,11 @@ const routes = [
         component: () => import('@/views/repos/detail/detail.vue')
     },
     {
+        path: '/repos/:project/:repo/artifacts/:artifacts/:tab?',
+        name: 'repos-artifacts-detail',
+        component: () => import('@/views/repos/detail/artifacts/detail/detail.vue')
+    },
+    {
         path: '/profile',
         name: 'profile',
         meta: { authRequired: true },

@@ -101,7 +101,7 @@ export default {
 
             this.$http.get(this.$api.admin.projects(), params)
                 .then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.table.rows = rsp.data;
                         this.pagination.total = rsp.headers['x-total-count'];
                         this.getQuotas();
@@ -135,7 +135,7 @@ export default {
         getQuotas() {
             this.$http.get(this.$api.admin.quotas())
                 .then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.quotas = rsp.data;
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取配额信息错误', variant: 'danger'});
@@ -146,7 +146,7 @@ export default {
         getStatistics() {
             this.$http.get(this.$api.admin.statistics())
                 .then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.statistics = rsp.data;
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取统计信息错误', variant: 'danger'});
@@ -157,7 +157,7 @@ export default {
         getConfigurations() {
             this.$http.get(this.$api.admin.configurations())
                 .then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.configurations = rsp.data;
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取配置信息错误', variant: 'danger'});

@@ -2,7 +2,7 @@
     <b-modal id="remove"
         centered
         size="sm"
-        title="删除组"
+        title="删除 TAG"
         title-class="font-18"
         ok-title="确认"
         cancel-title="取消"
@@ -16,7 +16,7 @@
     >
         <div class="alert alert-danger mb-0">
             <span class="mdi mdi-information-outline mr-2"></span>
-            确定要将组 <b class="text-primary">{{ selects[0].group_name }}</b> 删除？
+            确定要将 TAG <b class="text-primary">{{ selects[0].name }}</b> 删除？
         </div>
     </b-modal>
 </template>
@@ -38,18 +38,24 @@
             // 提交表单
             submit() {
                 this.$http.delete(
-                    this.$api.admin.groups(this.selects[0].id),
+                    this.$api.repositories.artifacts.tags(
+                        this.$route.params.project,
+                        this.$route.params.repo,
+                        this.$route.params.artifacts,
+                        this.selects[0].name,
+                    ),
                     {},
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
                     if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.$bvToast.toast('删除成功', {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
+                        this.$nextTick(() => { this.$bvModal.hide('remove') });   // 关闭 modal
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '删除失败', variant: 'danger'});
                     }
+                    this.loading = false;
                 })
-                this.$nextTick(() => { this.$bvModal.hide('remove') });   // 关闭 modal
             },
         },
     }

@@ -8,6 +8,7 @@ import projectsRepos from '@/columns/admin/projects-repos.js';
 import projectsMembers from '@/columns/admin/projects-members.js';
 import gcHistory from '@/columns/admin/gc-history.js';
 import artifacts from '@/columns/artifacts.js';
+import artifactsTags from '@/columns/artifacts-tags.js';
 
 /**
  * 表格字段
@@ -15,6 +16,7 @@ import artifacts from '@/columns/artifacts.js';
 export default {
     logs: logs,
     artifacts: artifacts,
+    artifactsTags: artifactsTags,
     admin: {
         users: users,
         robotAccounts: robotAccounts,

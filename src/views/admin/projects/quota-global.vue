@@ -114,7 +114,7 @@
                     params,
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.$parent.tableData();
                         this.$sleep(2000).then(() => {
                             this.$bvToast.toast(`修改全局空间配额成功`, {title: '提示', variant: 'primary'});

@@ -39,7 +39,7 @@
                 </template>
                 <template slot="name" slot-scope="name, row">
                     <router-link
-                        :to="{name: 'admin-projects-detail', params: {project_id: row.project_id}}"
+                        :to="{name: 'repos-detail', params: {project: row.name.split('/')[0], repo: row.name.split('/')[1]}}"
                         class="text-primary"
                     ><b>{{ name }}</b></router-link>
                 </template>

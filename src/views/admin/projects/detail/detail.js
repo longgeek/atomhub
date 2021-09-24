@@ -64,7 +64,7 @@ export default {
             this.loading = true;
             this.$http.get(this.$api.admin.projects(this.$route.params.project_id))
                 .then(rsp => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.des = rsp.data;
                         this.page_breadcrumb.navs[2].text = `${this.des.name} 项目详情`;
                         this.getSummary();
@@ -78,7 +78,7 @@ export default {
         getSummary() {
             this.$http.get(this.$api.admin.summary(this.$route.params.project_id))
                 .then(rsp => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.summary = rsp.data;
                     } else {
                         this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '获取项目概览信息错误', variant: 'danger'});

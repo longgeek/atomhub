@@ -134,7 +134,7 @@
                     params,
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
-                    if (rsp.status === 201) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 201) {
                         this.$bvToast.toast(`添加 ${this.form.name.username} 成功`, {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                     } else {

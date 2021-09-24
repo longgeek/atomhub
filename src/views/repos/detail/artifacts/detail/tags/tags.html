@@ -1,0 +1,74 @@
+<div class="p-2">
+    <Create />
+    <Editor :selects="selectedRows" />
+    <Remove :selects="selectedRows" />
+    <div class="row">
+        <div class="col-12">
+            <div class="page-toolbar pt-0 pl-0 pr-0">
+                <div class="loading-layer" v-if="loading"></div>
+                <button type="button" class="btn btn-dark" @click="tableData()" :disabled="loading">
+                    <i class="mdi mdi-refresh align-middle"></i>
+                </button>
+                <span v-if="user.sysadmin_flag">
+                    <button type="button" class="btn btn-dark" @click="tableCreate()">
+                        <i class="mdi mdi-shape-rectangle-plus align-middle"></i>
+                        添加 TAG
+                    </button>
+                    <b-dropdown variant="dark" class="dropdown-dark">
+                        <template v-slot:button-content>
+                            <span class="mdi mdi-dots-horizontal align-middle"></span>
+                            <span class="ml-2 mr-4">更多操作</span>
+                        </template>
+                        <b-dropdown-item :disabled="selectedRows.length != 1" @click="tableRemove">
+                            <span class="icon mdi mdi-close"></span>
+                            <span class="text">删除</span>
+                        </b-dropdown-item>
+                    </b-dropdown>
+                </span>
+            </div>
+            <a-table
+                class="text-norwap"
+                :scroll="{ x: true }"
+                :columns="table.cols"
+                :dataSource="table.rows"
+                :pagination="pagination"
+                :loading="loading"
+                :locale="locale"
+                :rowKey="records => records.id"
+                :rowSelection="{ onChange: tableOnSelect, selectedRowKeys: selectedRowKeys, }"
+                @change="tableChange"
+                v-if="user.sysadmin_flag"
+            >
+                <template slot="name" slot-scope="name">
+                    <b>{{ name }}</b>
+                </template>
+                <template slot="repository_id" slot-scope="repository_id">
+                    {{ repository_id }}
+                </template>
+                <template slot="pull_time" slot-scope="pull_time">{{ pull_time | toLocalTime }}</template>
+                <template slot="push_time" slot-scope="push_time">{{ push_time | toLocalTime }}</template>
+            </a-table>
+            <a-table
+                class="text-norwap"
+                :scroll="{ x: true }"
+                :columns="table.cols"
+                :dataSource="table.rows"
+                :pagination="pagination"
+                :loading="loading"
+                :locale="locale"
+                :rowKey="records => records.id"
+                @change="tableChange"
+                v-else
+            >
+                <template slot="name" slot-scope="name">
+                    <b>{{ name }}</b>
+                </template>
+                <template slot="repository_id" slot-scope="repository_id">
+                    {{ repository_id }}
+                </template>
+                <template slot="pull_time" slot-scope="pull_time">{{ pull_time | toLocalTime }}</template>
+                <template slot="push_time" slot-scope="push_time">{{ push_time | toLocalTime }}</template>
+            </a-table>
+        </div>
+    </div>
+</div>

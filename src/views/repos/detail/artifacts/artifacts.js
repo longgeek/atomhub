@@ -14,7 +14,7 @@ const pagination = {
 }
 
 export default {
-    page: { title: '构建历史 - 镜像详情' },
+    page: { title: 'Artifacts - 镜像详情' },
     props: {
         repo: { type: Object, default: {} },
         loading: { type: Boolean, default: true },
@@ -87,13 +87,13 @@ export default {
             this.loading = true;
 
             this.$http.get(
-                this.$api.repositories.artifacts(
+                this.$api.repositories.artifacts.list(
                     this.$route.params.project,
                     this.$route.params.repo,
                 ),
                 params
             ).then((rsp) => {
-                if (rsp.status === 200) {
+                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                     this.table.rows = rsp.data;
                     this.pagination.total = rsp.headers['x-total-count'];
                 } else {
