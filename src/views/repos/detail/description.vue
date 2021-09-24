@@ -54,7 +54,7 @@
                 {full_description: this.repo.full_description},
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
             ).then(rsp => {
-                if (rsp.status === 200) {
+                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                     this.readonly = true;
                     this.getDescription();
                     this.$bvToast.toast('保存镜像描述信息成功', {title: '提示', variant: 'primary'});

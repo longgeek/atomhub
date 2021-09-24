@@ -40,7 +40,7 @@
                     {},
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.$bvToast.toast('移除成功', {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                     } else {

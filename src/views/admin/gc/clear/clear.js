@@ -26,6 +26,7 @@ export default {
                 if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                     this.schedule = rsp.data;
                     this.policy = Object.keys(this.schedule).length ? this.schedule.schedule.type : 'None';
+                    this.delete_untagged = JSON.parse(rsp.data.job_parameters).delete_untagged;
                 } else {
                     this.$bvToast.toast(rsp.data.errors[0].message, {title: '提示', variant: 'danger'});
                 }

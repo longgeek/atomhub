@@ -91,7 +91,7 @@ export default {
 
             this.$http.get(this.$api.admin.labels(), params)
                 .then((rsp) => {
-                    if (rsp.status === 200) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                         this.table.rows = rsp.data;
                         this.pagination.total = rsp.headers['x-total-count'];
                     } else {

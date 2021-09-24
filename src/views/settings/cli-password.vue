@@ -26,7 +26,7 @@ export default {
                 {secret: this.secret},
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
             ).then(rsp => {
-                if (rsp.status === 200) {
+                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                     this.$bvToast.toast('修改 Cli 密码成功', {title: '提示', variant: 'primary'});
                     this.user.oidc_user_meta.secret = this.secret;
                     localStorage.setItem('user', JSON.stringify(this.user));

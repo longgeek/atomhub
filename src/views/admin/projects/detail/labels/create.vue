@@ -105,7 +105,7 @@
                     this.form,
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
-                    if (rsp.status === 201) {
+                    if (rsp && rsp.hasOwnProperty('status') && rsp.status === 201) {
                         this.$bvToast.toast(`创建标签 ${this.form.name} 成功`, {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                         this.$nextTick(() => { this.$bvModal.hide('create') });   // 关闭 modal

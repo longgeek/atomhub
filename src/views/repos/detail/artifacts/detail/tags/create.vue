@@ -3,7 +3,7 @@
         modal-class="labels-modal"
         centered
         size="sm"
-        title="创建标签"
+        title="添加 TAG"
         title-class="font-18"
         ok-title="确认"
         cancel-title="取消"
@@ -23,52 +23,25 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>* 描述</label>
-                        <input v-model="form.description" type="text" class="form-control" :class="{ 'is-invalid': submitted && $v.form.description.$error }" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>* 标签颜色</label>
-                        <input v-model="form.color" type="color" class="form-control" :class="{ 'is-invalid': submitted && $v.form.color.$error }" />
-                        <br />
-                        <Compact :value="color" @input="updateColor" />
-                    </div>
-                </div>
-            </div>
         </form>
     </b-modal>
 </template>
 <script>
-    import { Compact } from 'vue-color';
     import { required, } from "vuelidate/lib/validators";
 
     export default {
         data() {
             return {
-                color: '#FCDC00',
                 form: {
                     name: '',
-                    color: '#FCDC00',
-                    description: '',
-                    project_id: 0,
-                    scope: 'g',
                 },
                 loading: false,
                 submitted: false,
             }
         },
-        components: { Compact },
         validations: {
             form: {
                 name: { required },
-                color: { required },
-                description: { required },
             }
         },
         methods: {
@@ -80,12 +53,6 @@
             },
             show() {
                 this.form.name = '';
-                this.form.color = '#FCDC00';
-                this.form.description = '';
-            },
-            updateColor(value) {
-                this.color = value.hex;
-                this.form.color = value.hex;
             },
             // 提交表单
             submit() {
@@ -99,16 +66,20 @@
 
                 // 调用 API 创建
                 this.$http.post(
-                    this.$api.admin.labels(),
+                    this.$api.repositories.artifacts.tags(
+                        this.$route.params.project,
+                        this.$route.params.repo,
+                        this.$route.params.artifacts,
+                    ),
                     this.form,
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
                     if (rsp && rsp.hasOwnProperty('status') && rsp.status === 201) {
-                        this.$bvToast.toast(`创建标签 ${this.form.name} 成功`, {title: '提示', variant: 'primary'});
+                        this.$bvToast.toast(`添加 TAG ${this.form.name} 成功`, {title: '提示', variant: 'primary'});
                         this.$parent.tableData();
                         this.$nextTick(() => { this.$bvModal.hide('create') });   // 关闭 modal
                     } else {
-                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '创建失败', variant: 'danger'});
+                        this.$bvToast.toast(rsp ? rsp.data.msg : '请联系管理员', {title: '添加失败', variant: 'danger'});
                     }
                     this.loading = false;
                 })

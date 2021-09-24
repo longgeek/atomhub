@@ -1,0 +1,24 @@
+<div>
+    <Create />
+    <Remove :selects="selectedRows" />
+    <section class="pt-navbar pb-4 projects-detail-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <PageBreadcrumb :navs="page_breadcrumb.navs" v-if="!loading" />
+                    <b-tabs nav-class="page-tabs nav-tabs-custom" content-class="page-tabs-content" v-model="tabIndex">
+                        <b-tab lazy>
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-tag-multiple"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">Tags</span>
+                            </template>
+                            <Tags :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 0" />
+                        </b-tab>
+                    </b-tabs>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

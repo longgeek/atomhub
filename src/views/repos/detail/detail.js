@@ -42,7 +42,7 @@ export default {
                     this.$route.params.repo
                 )
             ).then((rsp) => {
-                if (rsp.status === 200) {
+                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
                     this.repo = rsp.data;
                     this.page_breadcrumb.navs[1].text = `${this.repo.name} 镜像详情`;
 
@@ -50,7 +50,7 @@ export default {
                     this.$http.get(
                         this.$api.projects.detail(this.repo.project_id)
                     ).then((rsp) => {
-                        if (rsp.status === 200) this.project = rsp.data;
+                        if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) this.project = rsp.data;
                         this.loading = false;
                     })
                 }
@@ -60,12 +60,12 @@ export default {
         getArtifacts() {
             this.loadingArtifacts = true;
             this.$http.get(
-                this.$api.repositories.artifacts(
+                this.$api.repositories.artifacts.list(
                     this.$route.params.project,
                     this.$route.params.repo
                 )
             ).then((rsp) => {
-                if (rsp.status === 200) this.artifacts = rsp.data;
+                if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) this.artifacts = rsp.data;
                 this.loadingArtifacts = false;
             })
         },
