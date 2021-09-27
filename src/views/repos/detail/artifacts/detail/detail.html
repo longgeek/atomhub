@@ -16,6 +16,15 @@
                             </template>
                             <Tags :des="des" :loading="loading" :getDetail="getDetail" v-if="tabIndex == 0" />
                         </b-tab>
+                        <b-tab lazy v-if="des.hasOwnProperty('extra_attrs')">
+                            <template v-slot:title>
+                                <span class="d-inline-block mr-2">
+                                    <i class="mdi mdi-view-sequential"></i>
+                                </span>
+                                <span class="d-none d-sm-inline-block">属性</span>
+                            </template>
+                            <Attrs :des="des" :loading="loading" v-if="tabIndex == 1" />
+                        </b-tab>
                     </b-tabs>
                 </div>
             </div>
