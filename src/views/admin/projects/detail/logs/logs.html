@@ -38,7 +38,7 @@
                         name: 'repos-detail',
                         params: {
                             project: resource.split('/')[0],
-                            repo: resource.split('/')[1].split(':')[0]}
+                            repo: resource.split('/').slice(1).join('/').split(':')[0]}
                         }"
                         v-if="row.resource_type == 'artifact'"
                     >{{ resource }}</router-link>

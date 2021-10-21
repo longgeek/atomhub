@@ -89,7 +89,7 @@ export default {
             this.$http.get(
                 this.$api.repositories.artifacts.list(
                     this.$route.params.project,
-                    this.$route.params.repo,
+                    this.$route.params.repo.replace('/', '%2F'),
                 ),
                 params
             ).then((rsp) => {

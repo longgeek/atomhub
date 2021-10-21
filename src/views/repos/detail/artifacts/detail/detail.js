@@ -69,7 +69,7 @@ export default {
             this.loading = true;
             this.$http.get(this.$api.repositories.artifacts.detail(
                 this.$route.params.project,
-                this.$route.params.repo,
+                this.$route.params.repo.replace('/', '%2F'),
                 this.$route.params.artifacts,
             )).then(rsp => {
                 if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
