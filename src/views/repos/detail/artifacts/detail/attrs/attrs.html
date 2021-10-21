@@ -1,0 +1,21 @@
+<div class="p-2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="base-item no-shadow border gray">
+                <div class="content card-body">
+                    <h4 class="text-primary">
+                        <img class="mr-2" src="data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAFW0lEQVR4nOyXW2hVVxrH/+uyL+eWScx1ctFk1Bkd0HGMzERNBHFeZh6EeZgLM/MyFEppkaotvUhBoXkQW9uH0ofa0lJ6gdbnSm0ragWrtYkpxWqIlRI1aDw5Ofd9zt7rUvZOTjyJuTYV8+AHYbPW/u9v/dbKf31rHYolFg+B5oolB8QX8/H6p49HNA+b5X1OLpO/+trfig8EiEv7XcPm9aW28pRtsugbAN56IEB+RJqrOhUhoJpAFLze3I8ji8q3aCApFIgGJCEANFlsvkUDGRHT858KBCLluPcNaOPuU89Qk/8blAaDEK2p9EQDNY2hkka7Ynmyf7h3oi1laNbRDmjaPtRj9xzZlF8wkB/R5uowtdgfg8G0zuRujPZFWqq6Su+z1+LnYm3VHRoEBBrCEbN6qD1z5glaxfe2P3X2rz2Ht1yZTjNrHVLQRAkJ5UlooQJ/KFdCuSJ4+iH9d66A9NSsHmp/9BuDmfyxyjX1rTRETvxhz4mmBQNRyqQRNsH8P9sICIyIBSNiB8+gHbaC9zxighCiZpxcKLfZrAyHiMFQ0VbTaIZCH0+nm5jRxr1f9jHO9EQCKasIIQ4oKRmVaKFqCafDJY32ZCMx2F1PSW0DmlPG0qU+KWS295VtXRv3nPp/dHn1Qbs2Vuf3p6/eHnFT+Q5NeERpN/7tqztuotxDlJE7sZW1f9EYc4QTz5w2Y+EGFqLrCSi0kpns9WRftGVZV0mTuXbnXGxlbUew4QGIvNeril7erAx3ljTpgVvHAlhQh1DKSuP9us6udGx9WRMwKENXHzjrmgZ7c5KppSvGU48tnPY95CpAq4nVnKrx234d0mV1aKomyKXlueJoPmlVR6op0bDCkiX1hGOIFsQWSfm/SUA8bIzvFw037YBSKrnNg7xajFGVa8ba5vjYBCJTmFazatcxi4M1edlCSAuJ38RcXE6Ku7D+nBNSFQpsO+nad+a6NrgqelqUm1JrTQmhCuNJCfV95fdN1ZS1iSZkbJH03cE0pZxKHrWsUF1Fi2VSYjgJjIy6gSoEoos55XiS/v1sd8dnPBbhdW2/jZoDxdi9lr8P0WplcfmmC8PBaSHpyZGU+2lPVecFdI9NjPsr64oZd+svGo22wJXbDnReF2su3dhx9Og/5VSN7y83nhP3HcYgGk42BZWVYJy+NB1MAGRxOjyal6g154ZaU2Ohwlr4JdPfgE0sjVspD8SRyS/En/fPpKUVNvvQFBpVdPZL3taWMH53/XPs+1N0wUCrzCwG4kXwlFIpgU04MHNFpxf6M4eIo9zBpBMs60yRcCRaVyzHYCI7bxB/v622svj+dh4kKUAZ29fTvfWHub7Bf14+fzrOsW11cxQDhcgkgfSvOJSAWQY4JRBqZujy8AtcC0+jf6QA5tccTQ6deGHzs3N9FxjCE2ynTngu4km0FhMQiRyMkTSsoQR+zyWe7KgJfDBfmCbbw69EAleGCyAjQkPRF+cDg/La/o/uk//yiPXBznVhtmXtMrBIJdrqo2B0TPLRpRTe7kvOmqzBEggrB/1xB8RRIDmdzzu686uDWy7OayaTDhsA/z389Q5P4pPHt1daaxosGJaJUDgGKxTyjxEcu5rF6xcSEyvFCVBveogQD+lCEYNJFyho0KwSYOSdweHRXQv9SXTPhWrD7pOVqxtDx+sixqbta8N0wwobEZMGZ5P/f/OLx/mhIt7/Lom0q+AVNCA0DFdrCJ0Rmh7JDPH9s11TFwRUinXPnana3Bx9nkA+QoAKxgjzz55gbRR0sijd4Zx0DINcy+TUezlXHb14qHPo50As6Vhyv+0fAs0VD4Hmip8CAAD//+xfb+6fu7P8AAAAAElFTkSuQmCC" />
+                        {{ des.digest | limitTo(15) }}
+                    </h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <span v-for="(v, k, index) in des.extra_attrs" :key="index">
+                            <dt>{{ k }}</dt>
+                            <dd>{{ v }}</dd>
+                        </span>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

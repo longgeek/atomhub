@@ -3,18 +3,20 @@
  */
 
 import Tags from "./tags/tags.vue";
+import Attrs from "./attrs/attrs.vue";
 import PageBreadcrumb from "@/components/page-breadcrumb";
 
 export default {
     page: { title: '项目详情' },
     created() { this.init() },
-    components: { Tags, PageBreadcrumb },
+    components: { Tags, Attrs, PageBreadcrumb },
     data() {
         return {
             des: {},
             // tabs 作为功能标签从左至右排序顺序
             tabs: {
                 tags: 0,
+                attrs: 1,
             },
             tabIndex: null,
             page_breadcrumb: {
@@ -67,7 +69,7 @@ export default {
             this.loading = true;
             this.$http.get(this.$api.repositories.artifacts.detail(
                 this.$route.params.project,
-                this.$route.params.repo,
+                this.$route.params.repo.replace('/', '%2F'),
                 this.$route.params.artifacts,
             )).then(rsp => {
                 if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {

@@ -49,7 +49,7 @@
             this.$http.put(
                 this.$api.repositories.detail(
                     this.$route.params.project,
-                    this.$route.params.repo
+                    this.$route.params.repo.replace('/', '%2F')
                 ),
                 {full_description: this.repo.full_description},
                 {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},

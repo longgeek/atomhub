@@ -43,7 +43,7 @@ module.exports = {
                 secure: false,
                 changeOrigin: true,
             },
-            "/c": {
+            "/c$": {
                 target: "https://atomhub.org",
                 // target: "https://159.138.53.210",
                 ws: true,

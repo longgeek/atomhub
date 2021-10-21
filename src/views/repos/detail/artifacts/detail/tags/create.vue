@@ -68,7 +68,7 @@
                 this.$http.post(
                     this.$api.repositories.artifacts.tags(
                         this.$route.params.project,
-                        this.$route.params.repo,
+                        this.$route.params.repo.replace('/', '%2F'),
                         this.$route.params.artifacts,
                     ),
                     this.form,

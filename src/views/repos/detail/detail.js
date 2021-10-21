@@ -39,7 +39,7 @@ export default {
             this.$http.get(
                 this.$api.repositories.detail(
                     this.$route.params.project,
-                    this.$route.params.repo
+                    this.$route.params.repo.replace('/', '%2F'),
                 )
             ).then((rsp) => {
                 if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) {
@@ -62,7 +62,7 @@ export default {
             this.$http.get(
                 this.$api.repositories.artifacts.list(
                     this.$route.params.project,
-                    this.$route.params.repo
+                    this.$route.params.repo.replace('/', '%2F'),
                 )
             ).then((rsp) => {
                 if (rsp && rsp.hasOwnProperty('status') && rsp.status === 200) this.artifacts = rsp.data;

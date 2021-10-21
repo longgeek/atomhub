@@ -52,7 +52,7 @@
                                 name: 'repos-detail',
                                 params: {
                                     project: item.name.split('/')[0],
-                                    repo: item.name.split('/')[1]}
+                                    repo: item.name.split('/').slice(1).join('/')}
                                 }"
                             >
                                 <div class="repo-card media key-feature align-items-center p-4 rounded shadow bg-white">

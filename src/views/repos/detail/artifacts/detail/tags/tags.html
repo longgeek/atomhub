@@ -42,8 +42,10 @@
                 <template slot="name" slot-scope="name">
                     <b>{{ name }}</b>
                 </template>
-                <template slot="repository_id" slot-scope="repository_id">
-                    {{ repository_id }}
+                <template slot="repository_id" slot-scope="repository_id, row">
+                    <span class="mdi mdi-content-copy h6 pointer hover-dark"
+                        v-clipboard="'docker pull atomhub.org/' + $route.params.project + '/' + $route.params.repo + ':' + row.name"
+                    ></span>
                 </template>
                 <template slot="pull_time" slot-scope="pull_time">{{ pull_time | toLocalTime }}</template>
                 <template slot="push_time" slot-scope="push_time">{{ push_time | toLocalTime }}</template>
@@ -63,8 +65,10 @@
                 <template slot="name" slot-scope="name">
                     <b>{{ name }}</b>
                 </template>
-                <template slot="repository_id" slot-scope="repository_id">
-                    {{ repository_id }}
+                <template slot="repository_id" slot-scope="repository_id, row">
+                    <span class="mdi mdi-content-copy h6 pointer hover-dark"
+                        v-clipboard="'docker pull atomhub.org/' + $route.params.project + '/' + $route.params.repo + ':' + row.name"
+                    ></span>
                 </template>
                 <template slot="pull_time" slot-scope="pull_time">{{ pull_time | toLocalTime }}</template>
                 <template slot="push_time" slot-scope="push_time">{{ push_time | toLocalTime }}</template>

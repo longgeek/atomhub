@@ -36,7 +36,7 @@
             // 提交表单
             submit() {
                 this.$http.delete(
-                    this.$api.projects.repositorie(this.des.name, this.selects[0].name.split('/')[1]),
+                    this.$api.projects.repositorie(this.des.name, this.selects[0].name.split('/').slice(1).join('/').replace('/', '%2F')),
                     {},
                     {'X-Harbor-CSRF-Token': localStorage.getItem('__csrf')},
                 ).then((rsp) => {
